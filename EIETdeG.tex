@@ -1,0 +1,410 @@
+\documentclass[letterpaper,titlepage,12pt,oneside,spanish,final]{report_eie}
+
+%\documentclass[letterpaper,titlepage,12pt,twoside,openright,spanish,final]{report_eie}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}  %Estilo de fuente time new roman
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage[letterpaper]{geometry}
+
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{color}
+
+\usepackage{tocbibind}
+\usepackage{acronym}
+\usepackage{caption2}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{slashbox}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{longtable}
+%\usepackage{doublespace}
+
+\usepackage{fancyhdr}
+%\usepackage{fancyheadings}
+
+\usepackage{booktabs}
+
+%========= Define el estilo de referencias ===============
+%\usepackage[round,authoryear]{natbib}%\usepackage[square,numbers]{natbib}%
+%\usepackage[comma,authoryear]{natbib} esto está abajo
+
+%========= Define el estilo de referencias APA ===============
+\usepackage[natbibapa]{apacite}%natbibapa
+%\usepackage[apaciteclassic]{apacite}%natbibapa
+\usepackage[compact]{titlesec} %modificar espaciado
+
+
+\usepackage{url}
+\usepackage{hyperref}
+%\usepackage[dvips,colorlinks=true,urlcolor=red,citecolor=black,anchorcolor=black,linkcolor=black]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Definición del Documento PDF, (PDFLaTeX)            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{pdfauthor=Nombre}
+
+\hypersetup{pdftitle=Título}%
+
+\hypersetup{pdfkeywords=Palabras clave}
+
+\pdfstringdef{\Produce}{Escuela de Ingeniería Eléctrica, Facultad de Ingeniería, UCV}%
+
+\pdfstringdef{\area}{Área del trabajo}
+
+\hypersetup{pdfproducer=\Produce}
+
+\hypersetup{pdfsubject=\area}
+
+\hypersetup{bookmarksnumbered=true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\setcounter{MaxMatrixCols}{10}
+
+
+%===================== Re-definición de Ambientes =================
+\newtheorem{theorem}{Teorema}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algoritmo}[theorem]{Algorithm}
+\newtheorem{supuestos}[theorem]{Supuestos}
+\newtheorem{hipotesis}[theorem]{Hipótesis}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusión}
+\newtheorem{condition}{Condición}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+\newtheorem{criterion}{Criterion}
+\newtheorem{definition}{Definición}  %{Definition}
+\newtheorem{example}[theorem]{Ejemplo}%{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}{Problem}
+\newtheorem{property}{Property}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}%
+
+\numberwithin{equation}{chapter}%
+\numberwithin{figure}{chapter}%
+\numberwithin{table}{chapter}%
+\numberwithin{definition}{chapter}%
+\numberwithin{lemma}{chapter}%
+\numberwithin{theorem}{chapter}%
+\numberwithin{corollary}{chapter}%
+\numberwithin{condition}{chapter}%
+\numberwithin{criterion}{chapter}%
+ \numberwithin{problem}{chapter}%
+\numberwithin{property}{chapter}%
+\numberwithin{proposition}{chapter}%
+\numberwithin{solution}{chapter}%
+\numberwithin{conjecture}{chapter}%
+
+%==================== Separación en sílabas ========================
+\hyphenpenalty=6800%
+\input{silabear.tex}
+
+%==================== Diseño de Página =============================
+%\pagestyle{headings}
+%\setlength{\headheight}{0.2cm}
+\setlength{\textwidth}{14.52cm}%
+%\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\rhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}%\thepage
+%\lhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries}} \cfoot{}%
+
+%\fancyhead[R]{}
+
+
+\rfoot[\fancyplain{}{\textit{E. Brea}}] {\fancyplain{}{}}
+\lfoot[\fancyplain{}{}] {\fancyplain{}{\textit{}}}    %%%%%%%%%%%%%%%%%%% OJO ACA %%%%%%%%%%
+\cfoot[\fancyplain{}{}] {\fancyplain{}{\bfseries\thepage}}
+%\setlength{\footrulewidth}{0.0pt}%
+%\setlength{\headrulewidth}{0.1pt}%
+
+%===================================================================
+
+
+
+%================== Diseño de Párrafo y delimitador ================
+\renewcommand{\baselinestretch}{1.5}% Espaciado entre linea
+\geometry{left=4cm,right=3cm,top=3cm,bottom=3cm}
+\frenchspacing %
+%\raggedright % Sólo para justificar el texto a la izquierda
+\renewcommand{\captionlabeldelim}{.}%
+\setlength{\parindent}{0.7cm}% Espacio de la sangría
+\setlength{\parskip}{14pt plus 1pt minus 1pt}% Separación entre párrafos
+
+%\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}%
+
+
+%===================================================================
+
+%==========================  Español venezolano =====================
+%%Personalización de caption
+\addto\captionsspanish{%
+  \def\prefacename{Prefacio}%
+  \def\refname{REFERENCIAS}%
+  \def\abstractname{Resumen}%
+  \def\bibname{REFERENCIAS}%{Bibliografía}%
+  \def\chaptername{CAPÍTULO}%
+  \def\appendixname{Apéndice}%{Anexo}
+  \def\contentsname{ÍNDICE GENERAL}
+  \def\listfigurename{LISTA DE FIGURAS}%Índice de Figuras\hspace*{10em}
+  \def\listfigurenameTofC{LISTA DE FIGURAS}%Índice de Figuras
+  \def\listtablename{LISTA DE TABLAS}%Índice de Tablas
+  \def\indexname{Índice alfabético}%
+  \def\figurename{Figura}%
+  \def\tablename{Tabla}%
+  \def\partname{Parte}%
+  \def\enclname{Adjunto}%
+  \def\ccname{Copia a}%
+  \def\headtoname{A}%
+  \def\pagename{Página}%
+  \def\seename{véase}%
+  \def\alsoname{véase también}%
+  \def\proofname{Demostración}%
+  \def\glossaryname{Glosario}
+  }%
+
+
+
+%==================================================================
+
+%\setcounter{secnumdepth}{1}
+%\setcounter{page}{4}
+%\addtocounter{page}{4}%
+
+\pagenumbering{roman}
+
+\makeindex
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\frontmatter
+
+%====================Math ==============================
+\def\vectornu{\mathbf{v}}%)\,)
+\def\sen{\mathrm{sen}}
+%\def\cos{\mathrm{cos}}
+%\def\vectornu2{\nu_{n}}
+
+%===================================================================
+%                            Primera Página
+%================================== Portada =================================================
+\input{portada.tex}
+%===================================================================
+% Una manera diferente, pero no permite muchas facilidades,
+% de diseñar la primera página
+
+%\title{\textbf{Título del Trabajo}}
+%\author{Tu nombre}
+%\date{\today}
+%\maketitle
+
+%======================= Constancia de Aprobación ===================
+%\newpage
+\begin{figure}
+        \begin{center}
+        %\centering
+        %\includegraphics[height=23cm]{aprobacion.eps}
+
+        \vspace{0.5mm}
+        \label{Fig.aprobacion}
+        \end{center}
+        \end{figure}
+\thispagestyle{empty}
+%======================= Mención Honorífica =========================
+\newpage
+%\thispagestyle{empty}
+
+\begin{figure}
+        \begin{center}
+        %\centering
+        %\includegraphics[height=24cm]{mencion.eps}
+        \vspace{0.5mm}
+        \label{Fig.mencion}
+        \end{center}
+\end{figure}
+\thispagestyle{empty}
+%======================= Página de Dedicatoria ======================
+\newpage%
+\newenvironment{dedication}%
+{\cleardoublepage \thispagestyle{empty} \vspace*{\stretch{1}}%
+\begin{center} \em} {\end{center} \vspace*{\stretch{3}} }%
+\begin{dedication}%
+A quien desees dedicar este trabajo
+\end{dedication}%
+
+%==================================================================
+\chapter*{RECONOCIMIENTOS Y AGRADECIMIENTOS}
+%\markboth{Reconocimientos}{Reconocimientos}%
+\addcontentsline{toc}{chapter}{RECONOCIMIENTOS Y AGRADECIMIENTOS}%
+%\setlength{\parskip}{0.2cm}%
+%\input{agradecimientos.tex}%
+
+%======================= Página de Resumen ==========================
+\newpage
+\renewcommand*{\abstract}{\begin{center}\end{center}}
+%\begin{abstract}
+\begin{spacing}{1}
+\begin{center}%
+
+\textbf{Ismael J. Bautista G.}
+
+\begin{large}
+\textbf{DISEÑO DE UN PROTOTIPO DE SISTEMA DE ACCESO REMOTO AL CONTROLADOR DE UN BRAZO MANIPULADOR}
+\end{large}
+\end{center}
+
+\noindent%
+\textbf{Tutor Académico: nombre del profesor. Tesis.
+Caracas, Universidad Central de Venezuela. Facultad de Ingeniería.
+Escuela de Ingeniería Eléctrica. Mención Electrónica Computación y Control. Año 2019, 144 pp.}
+
+\noindent
+\textbf{Palabras Claves:} Palabras clave. \\[1ex]
+
+\noindent \textbf{Resumen.-} Escribe acá tu resumen
+
+\end{spacing}
+
+%\underline{RESUMEN}
+%
+\thispagestyle{empty}%
+%\input{resumen.tex}%
+%\end{abstract}
+%====================== Páginas de Contenidos =====================
+\renewcommand{\baselinestretch}{1.5}% Espaciado entre linea
+\addtocounter{page}{3}%
+\setlength{\parskip}{3pt}% Separación entre párrafos
+
+\tableofcontents%
+
+\listoffigures%
+
+\listoftables%
+
+
+
+%==================================================================
+\chapter*{LISTA DE ACRÓNIMOS}%
+%\markboth{Lista de Acrónimos}{Lista de Acrónimos}%
+\addcontentsline{toc}{chapter}{LISTA DE ACRÓNIMOS}%
+%\input{acroni.tex}%
+
+
+%==================================================================
+\chapter*{INTRODUCCIÓN}\label{CAP:intro}
+\setlength{\parskip}{14pt}% Separación entre párrafos
+\addcontentsline{toc}{chapter}{INTRODUCCIÓN}%
+%\markboth{Introducción}{Introducción}%
+
+\pagenumbering{arabic}%
+\input{ch0.tex}%
+
+%==================================================================
+\chapter{MARCO HISTÓRICO}\label{CAP:hist}
+%\input{marcohistorico.tex}%
+
+%==================================================================
+\chapter{MARCO TEÓRICO}\label{CAP:teor}
+%\markboth{Tu Primer Capítulo}{Tu Primer Capítulo}%
+\input{ch1.tex}%
+
+%==================================================================
+\chapter{MARCO METODOLÓGICO}\label{CAP:met}
+%\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
+%\input{ch3.tex}%
+
+%==================================================================
+\chapter{DESCRIPCIÓN DEL MODELO}\label{CAP:mod}
+%\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
+%\input{ch4.tex}
+
+%==================================================================
+\chapter{PRUEBAS EXPERIMENTALES}\label{CAP:exp}
+%\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
+%\input{ch5.tex}
+
+%==================================================================
+\chapter{RESULTADOS}\label{CAP:resultados}
+%\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
+%\input{resultados.tex}
+
+%==================================================================
+\chapter{CONCLUSIONES}\label{CAP:conclu}
+%\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
+%\input{conclusiones.tex}
+
+%==================================================================
+\chapter{RECOMENDACIONES}\label{CAP:recomendaciones}
+%\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
+%\input{recomendaciones.tex}
+
+\appendix
+
+\renewcommand \thechapter{\Roman{chapter}}
+%==================================================================
+\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo0}
+%\markboth{Tu anexo}{Tu anexo}%
+%\input{apendice0.tex}%
+
+%==================================================================
+\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo1}
+%\markboth{Tu anexo}{Tu anexo}%
+%\input{apendice1.tex}%
+
+%\backmatter
+%==================================================================
+\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo2}
+%\markboth{Tu anexo}{Tu anexo}%
+%\input{apendice2.tex}%
+
+
+
+%\backmatter
+
+%==================================================================
+\newpage
+%\markboth{Referencias}{Referencias}%
+%\addcontentsline{toc}{chapter}{Referencias}%
+
+% References here (outcomment the appropriate case)
+% CASE 1: BiBTeX used to constantly update the references (while the paper is being written).
+%\bibliographystyle{IEEEtranSN}%{IEEEtranS}%%% outcomment this and next line in Case 1 siam
+\bibliographystyle{apacite}%
+\renewcommand{\bibname}{REFERENCIAS}
+\let\oldbibsection\bibsection
+\bibliography{biblioteca} % if more than one, comma separated and without extension bib
+
+
+% CASE 2: BiBTeX used to generate EIETdeG.bbl (to be further fine tuned)
+%\input{EIETdeG.bbl} % outcomment this line in Case
+
+
+%==================================================================
+%\markboth{index}{index}%
+%\addcontentsline{toc}{chapter}{Índice alfabético}%
+\printindex%
+
+\end{document}
