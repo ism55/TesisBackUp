@@ -3,6 +3,7 @@
 
 ### Adobe ###
 # Adobe Source Files
+*.pdf
 *.psd
 *.ai
 *.indd
