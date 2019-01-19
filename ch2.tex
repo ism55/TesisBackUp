@@ -1,18 +1,45 @@
+%==============================================================================%
+\section{Antecedentes}
+
+Marcano, Juan. $"$Implementación de sistema de programación de Trayectorias para el brazo manipulador MA2000". Universidad Central de Venezuela, 2013. Tutor: Prof. Alejandro González. Para establecer el control de posición del MA2000, se implementó un controlador de posición PID independiente para tres articulaciones utilizando el motor DSP de un dsPIC. Se desarrolló un software en el PC que se comunica con el microcontrolador y permite el ajuste dinámico del controlador PID y la visualización de la respuesta dinámica de cada articulación así como la programación de trayectorias. Se ha recuperado el funcionamiento de la pinza neumática del equipo y se ha elaborado documentación en línea del proyecto. \citep{juan1}
+
+%==============================================================================%
+
+Labrador, Alexis. "Diseño de un equipo para el control y monitoreo de un motor asincrónico usando una aplicación móvil". Universidad Central de Venezuela, 2018. Tutor: Prof. Servando Álvarez.El presente trabajo reporta el diseño de un equipo para controlar el encendido y apagado, junto al monitoreo de tensión, corriente y tiempo de funcionamiento de un motor asincrónico usando un ordenador de placa reducida y un dispositivo móvil por medio de la red de comunicación Internet de las cosas. Para lograrlo se selecciona el ordenador de placa reducida Raspberry Pi 3 modelo B, el sensor ACS712, módulos de relés para el accionamiento y componentes electrónicos, se elige y se programa la plataforma de IoT, Ubidots for Education, para el monitoreo y control de forma remota, se selecciona la arquitectura de red en estrella, se eligen los tipos y modo de avisos que tendrá el sistema según las que permite Ubidots for Education, para finalmente implementar dicho diseño con el fin de validar el correcto funcionamiento.\citep{alexis1}
+
 \section{Fundamentos sobre brazos manipuladores.}
 \subsection{Brazo manipulador.}
 
-Un brazo manipulador, o comúnmente llamado "brazo robot", es un sistema electrónico programado para realizar acciones de control a una parte mecánica. Estos existen de diversos tipos y morfología y tienen múltiples aplicaciones industriales, médicas y espaciales.\\
-El término "brazo" se le atribuye por su similitud a la extremidad humana. %Debido a que estos se diseñan para satisfacer una necesidad humana.
+Un brazo manipulador, o comúnmente llamado "brazo robot", es un sistema electrónico programado para realizar acciones de control a una parte mecánica. Estos existen de diversos tipos y morfologías y tienen múltiples aplicaciones industriales.\\
+El término "brazo" se le atribuye por su similitud a la extremidad humana y a su funcionalidad. Contando en algunos casos con partes como "codo", "muñeca", "hombro", "mano", entre otros. %Debido a que estos se diseñan para satisfacer una necesidad humana.
+Existen de tipo: esférico, articulado, SCARA, cilíndrico y cartesiano. Como se observa en la figura \ref{fig:tiporobot}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{img/tiporobot}
+	\caption[Eckovation]{https://engineering.eckovation.com/pick-place-robotic-arm/}
+	\label{fig:tiporobot}
+\end{figure}
 
-\subsection{Brazo pick and place}
-PUMA 560
-Stanford
-LEGO MindStorm NXT
-Canadarm
-Canadarm2
 
-\subsection{Brazo manipulador MA2000}
+Entre algunos brazos manipuladores conocidos se tienen: PUMA 560, Stanford, Canadarm y Canadarm 2.
+
+\subsection{Brazo pick and place.}
+
+El término "pick and place" está asociado a la utilidad del brazo robótico. Ya que posee un elemento final que permite sostener y soltar un elemento deseado. Según la figura \ref{fig:tiporobot} cualquier tipo de brazo robot puede ser utilizado como pick and place, ya que no depende de sus grados de libertad ni de uniones, sino de poseer un elemento como una pinza o garra para cumplir una función específica.
+
+Los siguientes brazos manipuladores a describir, se consideran del tipo "pick and place" debido a sus funciones.
+
+\subsection{PUMA 560.}
+
+\subsection{Stanford.}
+
+\subsection{Canadarm y Canadarm 2.}
+
+\subsection{Brazo manipulador MA2000.}
 
 \section{Acceso remoto.}
-\subsection{Acceso remoto por Bluetooth}
-\subsection{Acceso remoto por Wi-Fi}
+\subsection{Acceso remoto por Bluetooth.}
+\subsection{Acceso remoto por Wi-Fi.}
+\subsection{Acceso remoto por RF.}
+\subsection{LEGO MindStorm NXT.}
+\subsection{Aplicación de IoT.}
