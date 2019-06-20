@@ -1,11 +1,72 @@
-Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspondientes al "brazo" y controlados con motores DC, y los grados restantes, correspondientes a la mano, con motores de aeromodelismo. Cuenta también con una pinza neumática como herramienta final de control.\\
+Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspondientes al hombro, codo y muñeca, controlados con motores DC. Los grados restantes, correspondientes a la mano, poseen motores de aeromodelismo. Cuenta también con una pinza neumática como herramienta final de control.\\
 
-Las acciones de control son realizadas con ayuda de un microcontrolador dsPIC, quien actúa como servidor recibiendo vía puerto serial las órdenes de control mediante la interfaz Robocom. Este programa ajusta las constantes correspondientes a cada controlador PID para los motores DC y las instrucciones de movimiento para la pinza y los motores de aeromodelismo. También ajusta las variables de calibración para el cálculo óptimo del valor a transmitir en la trama y el periodo de muestreo utilizado en la conversión analógica-digital.\\
+Con respecto a cada grado de libertad, se tienen fijados los límites de movilidad de 270° para los motores DC y 120° para los motores de aeromodelismo. Esto para evitar daños a la integridad del equipo.\\
+
+El controlador principal del sistema está desarrollado con un microcontrolador dsPIC30F3011, quien actúa como servidor recibiendo vía puerto serial las órdenes de control, para posteriormente realizar las correspondientes acciones indicadas en cada trama. Para ello, cuenta con un módulo convertidor de USB-Serial para una óptima comunicación con el computador y el software cliente. El controlador también puede responder el estado de cada articulación relacionada a los motores DC, leyendo las entradas analógicas conectadas a potenciómetros que ayudan a conocer la posición del brazo y así ejecutar el control PID.\\
+
+El sistema realiza una acción de control PID en tres articulaciones principales (hombro, codo y muñeca). Para esto se configuran los parámetros desde el software cliente y se envían al controlador en una trama de tres bytes vía puerto serial.\\
+
+
+%Las acciones de control son realizadas con ayuda de un microcontrolador dsPIC30F3011, quien actúa como servidor recibiendo vía puerto serial las órdenes de control mediante la interfaz Robocom. Este programa ajusta las constantes correspondientes a cada controlador PID para los motores DC y las instrucciones de movimiento para la pinza y los motores de aeromodelismo. También ajusta las variables de calibración para el cálculo óptimo del valor a transmitir en la trama y el periodo de muestreo utilizado en la conversión analógica-digital.\\
 
 \subsection{Software Robocom}
 
-Es una interfaz gráfica realizada en C++
+Anteriormente mencionado como 'software cliente', este programa es una interfaz gráfica de usuario desarrollada en lenguaje C++ que permite generar la trama de comunicación que se transmite del computador a la unidad de control mediante el puerto serial. \\
 
+Esta herramienta permite la posibilidad de editar las variables relacionadas al movimiento del brazo y al controlador PID (factor proporcional, factor integral y factor derivativo) para cada motor DC, correspondientes al hombro, codo y muñeca. Configura la activación o desactivación de los puentes H, el accionamiento de la pinza neumática. También puede configurar el timer PR1 del microcontrolador con el que se estima el tiempo de muestreo para la ejecución de las acciones de control. \\
+
+A continuación, se explicarán los detalles de mayor uso contenidos en el software Robocom.
+
+Al abrir el programa, se puede observar lo siguiente:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/robocom_open}
+	\caption{Vista inicial al abrir el software Robocom.}
+	\label{fig:robocomopen}
+\end{figure}
+
+
+En el panel inferior, según se observa en la figura \ref{fig:robocommenu1}, se encuentran las configuraciones generales de comunicación, el accionamiento de la pinza neumática, la habilitación de los puentes H y un menú que corresponde a la configuración del graficador del error.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{img/robocom_menu1}
+	\caption{Panel inferior de Robocom}
+	\label{fig:robocommenu1}
+\end{figure}
+
+En la pestaña 'Comunicación', se selecciona el puerto COM al que se conecta originalmente el controlador del brazo.
+
+La pestaña 'Gripper' posee un botón que activa o desactiva la pinza neumática.
+
+La pestaña 'Puentes H' permite habilitar o deshabilitar los puentes H de los motores principales.
+
+En la pestaña 'Configuración del gráfico' se encuentran las opciones de visualización del error. No obstante, esta funcionalidad no es estudiada en este trabajo.
+
+Un elemento importante es el 'Setpointer', indicado en la figura \ref{fig:robocomsetpointer}. Ya que esto permite ajustar la entrada de referencia al controlador y también realizar movimientos en tiempo real con el brazo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{img/robocom_setpointer}
+	\caption{Función 'Setpointer' del software Robocom.}
+	\label{fig:robocomsetpointer}
+\end{figure}
+
+A la izquierda se observan las letras 'A,B,C,D,E,F' que corresponden a cada motor a mover. 'A,B,C' son para los motores del hombro, codo y muñeca. El resto es para los motores de aeromodelismo de la mano.
+
+Los números que se observan en el panel 'Digital' son los utilizados para generar el segundo y tercer byte (dato) de la trama de comunicación. 
+
+El programa realiza una conversión del número observado en digital a grados o radianes según la expresión \ref{ec:convertiragrados}:
+
+\begin{equation}\label{ec:convertiragrados}
+Valor_{grados} = Valor_{digital}K_{pro}+ K_{offset}
+\end{equation}
+
+Donde $K_{pro}$ es una constante de calibración para convertir el ángulo de binario a grados, medida en [grados/bit] y su valor de inicio es 0.33 grados/bit para los tres casos (A,B,C).
+
+$ K_{offset}$ es el error de corrección de la conversión a bits y es medida en [bits]. Su valor inicial es 0 para el motor A y C, y 39 para el motor B.
+%timer PR1 tiempo de muestre pagina 109 del pdf de anexos
 
 \begin{table}[H]
 % Table generated by Excel2LaTeX from sheet 'Hoja1'
@@ -35,11 +96,13 @@ Es una interfaz gráfica realizada en C++
 	F9 &       Dato & Valor del A/D de articulación C* \\
 	\hline
 \end{tabular}  
+\label{TAB:comandoservidor}
 \caption{Comandos emitidos por el controlador (servidor) como respuesta al cliente.}
 \end{table}
 
 \begin{table}
-
+\centering
+\resizebox{15cm}{!} {
 % Table generated by Excel2LaTeX from sheet 'Hoja1'
 \begin{tabular}{|c|c|c|}
 	\hline
@@ -105,7 +168,9 @@ Es una interfaz gráfica realizada en C++
 	\hline
 	FF &       Dato & Escribir término derivativo del PID C \\
 	\hline
-\end{tabular}  
+\end{tabular}
+}  
+\label{TAB:comandocliente}
 \caption{Comandos emitidos desde el software Robocom (cliente) al brazo.}
 \end{table}
 
