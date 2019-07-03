@@ -322,3 +322,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/tex,adobe,windows,microsoftoffice
+*.pdf
