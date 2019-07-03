@@ -1,0 +1,272 @@
+El sistema de acceso remoto está desarrollado sobre un microcontrolador ESP-8266 12-E, utilizando la tarjeta de pruebas Wemos para el prototipo de este trabajo.
+
+Para el desarrollo del sistema se utilizó como herramienta de programación el ESP-8266 NON-OS SDK de Espressif en lenguaje C, usando el PlatformIO IDE de Atom versión 1.38.1.
+
+El programa consta de tres archivos: user\_main.c, user\_config.h, header.h.
+
+En el archivo user\_main.c se encuentran las definiciones de todas las funciones utilizadas en el programa, así como el segmento de código principal y las rutinas de configuración del módulo para su operatividad.
+
+En el archivo user\_config.h se encuentran los prototipos de todas las funciones. Además, están las variables globales y las cadenas de mayor interés, como es el código HTML de la página web y la cadena de respuesta ante una solicitud exitosa.
+
+Entre otros, también se encuentran las librerías usadas en el programa y la definición de las estructuras globales.
+
+En el archivo user\_config.h se define el mapeo de pines de la tarjeta de desarrollo de acuerdo a la identificación de las GPIO según el SDK. También se definen algunas variables utilizadas para generar las tramas de comunicación y las variables para SSID y contraseña de la red WiFi.
+
+\section{Funcionamiento}\label{SEC:funcionamiento}
+
+El programa principal consta de un servidor TCP que espera una solicitud HTTP proveniente del browser al que se tiene acceso como cliente.
+
+En pseudocódigo:
+
+configurar UART\\
+configurar GPIO\\
+configurar WiFI\\
+crear servidor TCP\\
+esperar solicitud HTTP\\
+procesar el string recibido\\
+responder 200 OK\\
+desconectar canal TCP\\
+reconectar servidor TCP\\
+esperar solicitud HTTP\\
+
+
+En la tabla \ref{TAB:wifi}, se especifica la información de la señal WiFi sobre la que se crea el servidor. Este es creado en el puerto 8266 sobre la IP 192.168.4.1 vía la señal WiFi emitida desde el microcontrolador. Esta comunicación se realiza a 2.4GHz y 54Mbps y solo puede crear 4 canales de comunicación TCP en paralelo, por ese motivo debe desconectarse después de cada comunicación para evitar la saturación del servidor.
+
+\begin{table}[H]
+	\label{TAB:wifi}
+	\caption{Información sobre la conexión WiFi}
+	\centering
+\begin{tabular}{|c|c|}
+	\hline 
+	SSID & ESP8266-WiFi \\
+	\hline 
+	Contraseña & esp123456 \\
+	\hline 
+	Dirección MAC & e0:e6:2e:7b:d4:7b \\ 
+	\hline 
+	Dirección IP & 192.168.4.2 \\ 
+	\hline 
+	Puerta de enlace & 192.168.4.1 \\ 
+	\hline 
+	Máscara de subred & 255.255.255.0 \\ 
+	\hline 
+	DNS & 192.168.4.1 \\ 
+	\hline 
+	Frecuencia & 2.4 GHz \\ 
+	\hline 
+	Velocidad de conexión & 54 Mbps \\ 
+	\hline 
+	Seguridad & WPA/ WPA2 PSK \\ 
+	\hline 
+	Dirección IPv6 & fe80::525c:d653:7ba:b7cb \\ 
+	\hline 
+\end{tabular} 
+
+\end{table}
+
+Para procesar cada string se utiliza la librería \textit{string.h} (declarada como \textit{os$\_$string.h} en el SDK) que contiene múltiples funciones para el manejo de cadenas. 
+
+La cadena recibida en cada comunicación se trata de una petición HTTP con método GET que posee la siguiente estructura:
+
+\begin{verbatim}
+GET /?comando=valor HTTP/1.1
+
+Host: 192.168.4.1:8266
+
+Connection: keep-alive
+
+Accept: */*
+
+X-Requested-With: XMLHttpRequest
+
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169
+
+Safari/537.36
+
+Referer: http://192.168.4.1:8266/
+
+Accept-Encoding: gzip, deflate
+
+Accept-Language: es-ES,es;q=0.9,en;q=0.8
+\end{verbatim}
+
+Una vez recibida la cadena tras una solicitud, esta es comparada con la función \textit{strncmp}. Esta es usada para encontrar una coincidencia dentro de la lista de comandos permitidos que se encuentran en la tabla \ref{TAB:comandosESP}. 
+
+
+\begin{table}[H]
+	\caption{Comandos aceptados en las solicitudes HTTP.}
+	\label{TAB:comandosESP}
+	\centering
+	\resizebox{13cm}{!} {
+	
+\begin{tabular}{|c|l|c|}
+	\hline
+	{\bf COMANDO} & {\bf STRING} & {\bf FUNCIÓN} \\
+	\hline
+	cmd00 & GET / HTTP/1.1 & Solicitud de la página desde el browser \\
+	\hline
+	cmd1 & GET /?num1 & Mover motor 1 \\
+	\hline
+	cmd2 & GET /?num2 & Mover motor 2 \\
+	\hline
+	cmd3 & GET /?num3 & Mover motor 3 \\
+	\hline
+	cmd4 & GET /?num4 & Mover motor 4 \\
+	\hline
+	cmd5 & GET /?num5 & Mover motor 5 \\
+	\hline
+	cmd6 & GET /?num6 & Mover motor 6 \\
+	\hline
+	cmd7 & GET /?gripon & Habilitar pinza neumática \\
+	\hline
+	cmd8 & GET /?gripoff & Deshabilitar pinza neumática \\
+	\hline
+	cmd11 &  GET /?Kp1 & Factor proporcional PID 1 \\
+	\hline
+	cmd12 &  GET /?Ki1 & Factor integral PID 1 \\
+	\hline
+	cmd13 &  GET /?Kd1 & Factor derivativo PID 1 \\
+	\hline
+	cmd14 &  GET /?Kp2 & Factor proporcional PID 2 \\
+	\hline
+	cmd15 &  GET /?Ki2 & Factor integral PID 2 \\
+	\hline
+	cmd16 &  GET /?Kd2 & Factor derivativo PID 2 \\
+	\hline
+	cmd17 &  GET /?Kp3 & Factor proporcional PID 3 \\
+	\hline
+	cmd18 &  GET /?Ki3 & Factor integral PID 3 \\
+	\hline
+	cmd19 &  GET /?Kd3 & Factor derivativo PID 3 \\
+	\hline
+	cmd20 & GET /?Kpro1 & Constante de calibración proporcional 1 \\
+	\hline
+	cmd21 & GET /?Koffset1 & Constante de calibración de offset 1 \\
+	\hline
+	cmd22 & GET /?Kpro2 & Constante de calibración proporcional 2 \\
+	\hline
+	cmd23 & GET /?Koffset2 & Constante de calibración de offset 2 \\
+	\hline
+	cmd24 & GET /?Kpro3 & Constante de calibración proporcional 3 \\
+	\hline
+	cmd25 & GET /?Koffset3 & Constante de calibración de offset 3 \\
+	\hline
+	cmd26 & GET /?puente1=ON & Habilitar Puente H 1 \\
+	\hline
+	cmd27 & GET /?puente1=OFF & Deshabilitar Puente H 1 \\
+	\hline
+	cmd28 & GET /?puente2=ON & Habilitar Puente H 2 \\
+	\hline
+	cmd29 & GET /?puente2=OFF & Deshabilitar Puente H 2 \\
+	\hline
+	cmd30 & GET /?puente3=ON & Habilitar Puente H 3 \\
+	\hline
+	cmd31 & GET /?puente3=OFF & Deshabilitar Puente H 3 \\
+	\hline
+\end{tabular}  
+
+}
+\end{table}
+
+
+De haber una coincidencia, en esta solicitud es de principal interés obtener los parámetros \textit{comando=valor} para algunas peticiones. Como es el caso de los movimientos de los motores y la configuración de parámetros.
+
+Para ello se utiliza la función \textit{strncpy} para copiar al menos 30 caracteres en una variable auxiliar y de esta manera manipular una cadena menor.
+
+Una vez recortada la cadena, se utiliza la función \textit{strtok} para separar cada parte del mensaje en tokens. Colocando como selector el caracter de espacio ' ' e igual '='.
+
+El código del microcontrolador está, además de comandos, estructurado por un total de trece funciones que se ejecutan según sea el caso. Estas serán explicadas en los siguientes apartados.
+
+\subsection{Función server\_sent}
+
+Función de callback cuando se envía algo desde el servidor. Esta función enciende un LED de notificación en el pin D2 de la tarjeta de desarollo.
+
+\subsection{Función server\_discon}
+
+Función de callback cuando se desconecta un canal TCP. Esta espera 10ms y vuelve a crear el servidor TCP en el puerto 8266, seguidamente apaga un led en el pin D4 de la tarjeta de desarrollo.
+
+\subsection{Función server\_listen}
+
+
+Esta función se utiliza para declarar cuáles serán las funciones de callback para 'escuchar' las conexiones en el canal TCP. Para hacer esto, se utiliza las funciones \textit{espconn\_regist\_sentcb} y \textit{espconn\_regist\_disconcb} del NON-OS SDK.
+
+%\subsection{Función server\_recon}
+
+\subsection{Función init\_tcp}
+
+Dentro de la estructura de configuración de la conexión, se define el apuntador, el tipo (TCP) y el puerto para establecer la conexión.
+
+Luego, con las función \textit{espconn\_regist\_connectcb} se define el callback para 'escuchar' el servidor. 
+
+Finalmente, para crear el servidor, se utiliza \textit{espconn\_accept} y se enciende un led en el pin D4 de la tarjeta de desarrollo.
+
+\subsection{Función ap\_config\_func}
+
+Esta función configura la conexión que realiza el microcontrolador por medio de la señal WiFi. Se selecciona el modo de punto de acceso (SOFTAP MODE) en donde se da valor a la SSID y contraseña de la conexión a establecer. Como SSID se colocó 'ESP8266-WiFi' y contraseña 'esp123456' con seguridad WPA/WPA2 PSK, como se indica en la tabla \ref{TAB:wifi}.
+
+\subsection{Función gpio\_init}
+
+Esta función configura los pines D2 y D4 como salidas digitales. También configura el UART2 de 8 bits con bit de parada y 115200 baudios.
+
+\subsection{Función mover\_motor}
+\label{FUNC:movermotor}
+
+Esta función recibe la cadena y la separa por secciones para tomar su valor.
+
+De la cadena recibida, toma los primeros 30 caracteres y se procesa como se explica a continuación:
+
+
+INFORMACIÓN DE LA TRAMA ENVIADA POR EL CLIENTE (BROWSER):
+
+El cliente realiza un request GET cuya cabecera contiene lo siguiente:
+
+GET /?num1=XXX HTTP/1.1
+
+En este mensaje el valor XXX debe ser aislado para ser procesado.
+Esto se hace mediante la función \textit{strtok} de la libreria \textit{string.h}.
+Se colocaran como selectores de token, los caracteres ' ' y '='.
+
+\begin{verbatim}
+1ra vez:
+GET /?num1=XXX HTTP/1.1
+  ^     token=GET
+2da vez:
+/?num1=XXX HTTP/1.1
+      ^    token=/?num1
+
+3ra vez:
+XXX HTTP/1.1
+  ^   token=XXX     y con esto ya se obtiene el valor de XXX.
+\end{verbatim}
+
+Una vez obtenido ese valor, este es convertido en entero con la función atoi de la librería stdlib.h. Seguidamente, se aplica la conversión según la expresión \ref{ec:convertirdigital} obtenida de la ecuación \ref{ec:convertiragrados}.
+
+\begin{equation}\label{ec:convertirdigital}
+Valor_{digital} = (\frac{Valor_{grados}}{K_{pro}}) - K_{offset}
+\end{equation}
+
+Una vez convertido el valor, este se desplaza 6 bits a la izquierda para ordenarlos.
+
+Como se desea transmitir una trama como la indicada en la tabla \ref{TAB:estructura}, es necesario que el valor obtenido anteriormente se desplace 8 bits a la derecha para así dar valor al dato high. El dato low no tiene mayores modificaciones, así que esta función termina su trabajo enviando el arreglo con la instrucción \textit{uart0\_tx\_buffer} del NON-OS SDK.
+
+\subsection{Función mover\_motor\_2}
+
+Esta función realiza la misma operación que \textit{mover\_motor} (\ref{FUNC:movermotor}). Sin embargo, la calibración de offset y proporcionalidad ya están predefinidas y no pueden cambiarse. Esto se hace para dar movimiento a los motores de la mano del robot (D, E, F).
+
+\subsection{Funciones cambiar\_constante, parametro\_pid, puenteH}
+
+Estas funciones se utilizan para cambiar el valor de las constantes de calibración presentes en los motores A, B y C (cambiar\_constante). También configura los parámetros del PID como Kp, Ki, Kd de los motores A, B y C (parametro\_pid). El registro PR1 del timer del controlador y por último habilita o deshabilita los puentes H de los motores A, B y C (puenteH). 
+
+Estas funciones realizan un procesado similar a \textit{mover\_motor} y dan como resultado el número float de interés extraído de la cadena recibida para el caso de la función (cambiar\_constante), o el envío directo de la trama generada con ayuda de la función \textit{uart0\_tx\_buffer} 
+
+
+\subsection{Función myatof}
+
+Esta función se usa para convertir un caracter ASCII a un valor float. No se utiliza la función atof, de la librería \textit{stdlib.h}, ya que genera un error de compilación debido a que las funciones \textit{malloc} y \textit{free} están declaradas dentro del SDK como \textit{os\_malloc} y \textit{os\_free} y escritas de otra manera el compilador no las reconoce. Por lo tanto, se requirió a un algoritmo que realizara el mismo proceso.
+\newpage
+\section{Interfaz}
+
+
+
