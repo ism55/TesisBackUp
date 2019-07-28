@@ -1,4 +1,12 @@
-Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspondientes al hombro, codo y muñeca, controlados con motores DC. Los grados restantes, correspondientes a la mano, poseen motores de aeromodelismo. Cuenta también con una pinza neumática como herramienta final de control.\\
+Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspondientes al hombro, codo y muñeca, controlados con motores DC. Los grados restantes, correspondientes a la mano, poseen motores de aeromodelismo. Cuenta también con una pinza neumática como herramienta final de control. Esto se observa en la figura \ref{fig:esquemabrazo}.\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{img/esquemabrazo}
+	\caption{Esquema de indentificación de los motores del brazo y la pinza neumática.}
+	\label{fig:esquemabrazo}
+\end{figure}
+
 
 Con respecto a cada grado de libertad, se tienen fijados los límites de movilidad de 270° para los motores DC y 120° para los motores de aeromodelismo. Esto para evitar daños a la integridad del equipo.\\
 
@@ -292,6 +300,19 @@ El controlador también puede dar respuesta a las solicitudes de posición del A/D
 
 El microcontrolador recibe todas las instrucciones vía puerto serial configurado con 8 bits, 1 bit de parada, 115200 baudios; y utiliza solo los pines de Rx (U2RX) y Tx(U2TX) para establecer la comunicación. Ante cada instrucción de movimiento, el microcontrolador puede emitir un total de nueve señales PWM. Para los motores A, B, C, les corresponden dos señales, una para movimiento positivo y otra para movimiento negativo, respectivamente. El resto de los motores poseen solo una señal PWM para cada uno. El diagrama de conexiones e identificación de las funciones de cada pin se puede observar en la figura \ref{fig:dspicpinout}.
 
+\section{PWM}
+
+Motores A, B, C:
+
+11bits. 29,328kHz
+
+"La resolución de la señal de PWM obtenida es de 11 bits, por lo tanto para obtener un duty cycle máximo es necesario que el registro PDCx tenga un valor de 2048. Los pines de salida de PWM se han configurado en modo complementario, por lo tanto para que la corriente promedio entregada al motor sea cero es necesario colocar PDCx=1023, para que el motor produzca par máximo el registro de duty cycle debe ser PDCx=0 para que gire en un sentido ó PDCx =2048 para que gire en el otro sentido."
+
+Motores D, E, F:
+
+El manual anexo al trabajo de Marcano indica que:
+
+"se ha configurado el mismo para un periodo de 17,3 ms, para obtener una posición del servomotor centrada, que corresponde con un pulso 1,5 ms de duración el registro de duty cycle debe ser OCxRS=0x1632 (5682 en decimal). Es necesario generar un pulso desde los 1 ms hasta los 2ms por lo tanto los valores válidos del registro en esta aplicación van desde el 3788 hasta el 7576 (en sistema decimal), lo que permite obtener la posición deseada en dentro del rango de posiciones del servomotor."
 \begin{figure}[H]
 	%\centering
 	\includegraphics[scale=0.65]{img/dspicpinout}
