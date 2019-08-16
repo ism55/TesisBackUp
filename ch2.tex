@@ -10,6 +10,7 @@ Labrador, Alexis. "Diseño de un equipo para el control y monitoreo de un motor a
 Valderrama, Jorge. "Diseño de un conjunto de prácticas para la configuración y uso básico del microcontrolador ESP8266". Universidad Central de Venezuela, 2018. Tutor: Prof. Ebert Brea. Este trabajo tiene como resultado una guía para la programación básica del microcontrolador ESP8266 a través del NON OS SDK de Espressif. En él se estudian los elementos básicos como: UART, GPIO, Interrupciones, Timer y Wifi. Cada uno de estos elementos estudiados viene acompañado por una guía de programación y ejemplos para implementación. \citep{jorge1}
 
 
+
 \section{Fundamentos sobre brazos manipuladores.}
 \subsection{Brazo manipulador.}
 
@@ -48,33 +49,37 @@ Ha sido muy utilizado en el campo de la medicina, ya que una característica impo
 
 \subsection{Canadarm}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{img/canadarm1}
-	\caption{Canadarm 1}
+	\subfigure[Canadarm 1]{\includegraphics[scale=0.6]{img/canadarm1}}
+	\subfigure[Canadarm 2]{\includegraphics[scale=0.4]{img/canadarm2}}
+	\caption{Modelos de brazo Canadarm.}
 	\label{fig:canadarm1}
 \end{figure}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.3]{img/canadarm2}
-	\caption{Canadarm 2}
-	\label{fig:canadarm2}
-\end{figure}
+
 
 
 Es un robot diseñado por un equipo de industrias canadienses (Spar Aerospace Ltd., CAE Electronics Ltd. y DSMA Atcon Ltd) bajo la dirección del Concilio Nacional de Investigación de Canadá (NRCC, por sus siglas en inglés). En la actualidad, el brazo Canadarm 2 se encuentra en la Estación Espacial Internacional (ISS).
 
-Se trata de un robot de seis grados de libertad y un elemento final de control controlado por control remoto. El primer modelo, el Canadarm, operó durante treinta años en la Estación Espacial Internacional y fue conocido también con el nombre Shuttle Remote Manipulator System (SRMS).  
-
-
-Este robot fabricado en Canadá, es utilizado en la estación espacial.
+Se trata de un robot de seis grados de libertad y un elemento final de control controlado por control remoto desde la ISS. El primer modelo, el Canadarm, operó durante treinta años en la Estación Espacial Internacional y fue conocido también con el nombre Shuttle Remote Manipulator System (SRMS).  
 
 \subsection{Brazo manipulador MA2000.}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{img/robot}
+	\caption{Robot MA2000}
+	\label{fig:robot}
+\end{figure}
+
 
 Es un brazo robot diseñado alrededor de los años 1980s por George Carter, fundador de Labman Automation Ltd y fabricado por TecQuipment International Ltd, como petición de la Open University británica.
 
 El diseño original era accionado por servomotores que permitían realizar control a lazo cerrado en cualquier instante. Requería adicionalmente una unidad compresora de aire para accionar la pinza neumática. 
 
 En un principio, este brazo era controlado por computadores IBM o por microcontroladores BBC.
+
+En el trabajo de Marcano, se realizó un controlador manejado por computador al cuál se le realizarán mejoras para alcanzar un acceso remoto a este sistema.
+
 
 %% hablar de librerias en C
