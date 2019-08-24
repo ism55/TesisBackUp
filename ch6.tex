@@ -1,33 +1,194 @@
-El sistema de acceso remoto está desarrollado sobre un microcontrolador ESP-8266 12-E, utilizando la tarjeta de pruebas Wemos para el prototipo de este trabajo.
+El sistema de acceso remoto está desarrollado sobre un microcontrolador ESP-8266 12-E, utilizando la tarjeta de desarrollo Wemos para el prototipo de este trabajo.
 
-Para el desarrollo del sistema se utilizó como herramienta de programación el ESP-8266 NON-OS SDK de Espressif en lenguaje C, usando el PlatformIO IDE de Atom versión 1.38.1.
+Para el desarrollo del sistema se utilizó como herramienta de programación el Kit de Desarrollo de Software (SDK) ESP-8266 NON-OS SDK de Espressif en lenguaje C, usando el PlatformIO IDE de Atom versión 1.38.1, compilado con GCC (GNU) 4.8.2.
 
-El programa consta de tres archivos: user\_main.c, user\_config.h, header.h.
 
-En el archivo user\_main.c se encuentran las definiciones de todas las funciones utilizadas en el programa, así como el segmento de código principal y las rutinas de configuración del módulo para su operatividad.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/fotoesp8266}
+	\caption{Placa del microcontrolador ESP-8266.}
+	\label{fig:fotoesp8266}
+\end{figure}
 
-En el archivo user\_config.h se encuentran los prototipos de todas las funciones. Además, están las variables globales y las cadenas de mayor interés, como es el código HTML de la página web y la cadena de respuesta ante una solicitud exitosa.
 
-Entre otros, también se encuentran las librerías usadas en el programa y la definición de las estructuras globales.
+La información de las especificaciones de hardware y software se observan en la tabla \ref{TAB:hardware} y \ref{TAB:software}.
 
+
+\begin{table}
+	
+	\caption{Especificaciones de hardware}
+	\label{TAB:hardware}
+	
+\begin{center}
+	\begin{tabular}{|c|c|}
+	\hline
+	\multicolumn{ 2}{|c|}{\textbf{HARDWARE}} \\
+	\hline
+	Tarjeta de desarrollo &      LOL1n \\
+	\hline
+	Microcontrolador & ESP-8266 12-E \\
+	\hline
+	RAM & 80KB \\
+	\hline
+	Flash & 4MB \\
+	\hline
+	Oscilador & 80MHz\\
+	\hline
+	Procesador & Xtensa Tensilica L106 \\
+	\hline
+	WiFi & 892.11b/g/n \\
+	\hline
+	ISM &     2,4GHz \\
+	\hline
+	PA &     +25dBm \\
+	\hline
+	
+\end{tabular}  
+\end{center}
+\end{table}
+
+
+\begin{table}
+	
+	\caption{Especificaciones de software}
+	\label{TAB:software}
+	
+	\begin{center}
+		\begin{tabular}{|c|c|}
+		\hline
+		\multicolumn{ 2}{|c|}{\textbf{SOFTWARE}} \\
+		\hline
+		SDK & Espressif ESP-8266 NON-OS SDK v2.1.0 \\
+		\hline
+		Lenguaje &          C \\
+		\hline
+		Compilador & GCC (GNU) 4.8.2 \\
+		\hline
+		IDE & Atom PlatformIO IDE v1.38.1 \\
+		\hline
+	\end{tabular}  
+	\end{center}
+\end{table}
+
+
+
+\section{Contenido del programa}
+El programa consta de cinco archivos: user\_main.c, user\_config.h, funciones.h, funciones.c, pagina.h.
+
+\subsection{user\_main.c}
+En el archivo user\_main.c se encuentra el segmento de código principal y las rutinas de configuración del módulo para su operatividad.
+
+\subsection{user\_config.h}
 En el archivo user\_config.h se define el mapeo de pines de la tarjeta de desarrollo de acuerdo a la identificación de las GPIO según el SDK. También se definen algunas variables utilizadas para generar las tramas de comunicación y las variables para SSID y contraseña de la red WiFi.
+
+\subsection{funciones.h y funciones.c}
+
+En el archivo funciones.h se encuentran los prototipos de todas las funciones y el llamado de las librerías de mayor importancia desde el SDK, indicadas a continuación.
+
+\begin{verbatim}
+#include "stdlib.h"
+#include "stdio.h"
+#include "osapi.h"
+#include "user_interface.h"
+#include "driver/uart.h"
+#include "ets_sys.h"
+#include "c_types.h"
+#include "espconn.h"
+#include "mem.h"
+#include "gpio.h"
+#include "eagle_soc.h"
+\end{verbatim}
+
+ En el archivo funciones.c están todas las definiciones de las funciones utilizadas en el programa. Además, están declaradas las variables y estructuras globales necesarias.
+
+\subsection{pagina.h}
+Este archivo contiene dos variables tipo char que contienen en una cadena el código HTML de la página web y la cadena de respuesta ante una solicitud exitosa.
 
 \section{Funcionamiento}\label{SEC:funcionamiento}
 
-El programa principal consta de un servidor TCP que espera una solicitud HTTP proveniente del browser al que se tiene acceso como cliente.
+El programa principal consta del establecimiento de un servidor TCP que espera una solicitud HTTP proveniente del browser al que se tiene acceso como cliente.
 
-En pseudocódigo:
+\subsection{Pseudocódigo:}
 
-configurar UART\\
-configurar GPIO\\
-configurar WiFI\\
-crear servidor TCP\\
-esperar solicitud HTTP\\
-procesar el string recibido\\
-responder 200 OK\\
-desconectar canal TCP\\
-reconectar servidor TCP\\
-esperar solicitud HTTP\\
+\begin{center}
+	\begin{algorithm}[H]
+		Programa principal\;
+		\Begin{
+			Configurar UART\;
+			Configurar GPIO\;
+			Encender LED D4\;
+			Configurar WiFi\;
+			Crear servidor TCP\;
+			
+			\While{1==1}{		
+				//Esperar solicitud TCP\;
+			}%end while
+			
+		}%end begin	
+	\end{algorithm}
+	
+\end{center}
+
+
+\begin{center}
+		\resizebox{11cm}{!} {
+	\begin{algorithm}[H]		
+		Interrupción Wifi\;
+		\Begin{
+			
+			\If{Conexión a página}{
+				Abrir canal TCP\;
+				Responder 200 OK\;
+				Encender LED D2 al iniciar carga\;
+				Apagar LED D2 al culminar carga\;
+				// Este canal no requiere ser desconectado.
+			}
+			\While{Canal abierto}{
+				\Switch{Solicitud}{
+					\Case{Mover motor}{
+						Recibir cadena HTTP\;
+						Procesar información\;
+						Calcular el valor del movimiento\;
+						Construir la trama\;
+						Enviar al puerto serial\;
+						Desconectar canal TCP\;
+					}
+					\Case{Configurar parámetro}{
+						Recibir cadena HTTP\;
+						Procesar información\;
+						Calcular el valor del parámetro\;
+						Construir la trama\;
+						Enviar al puerto serial\;
+						Desconectar canal TCP\;
+					}
+					\Case{Configurar constantes de calibración}{
+						Recibir cadena HTTP\;
+						Procesar información\;
+						Calcular el valor de la constante\;
+						Cambiar el valor de la constante\;
+						Desconectar canal TCP\;
+					}
+					
+				}%end switch
+			}%end while
+		}%end begin
+		
+	\end{algorithm}
+}
+\end{center}
+
+\begin{center}
+	\begin{algorithm}[H]		
+		Función de desconexión\;
+		\Begin{
+			Borrar canal TCP\;
+			Crear nuevo canal TCP. //Esperar\;
+		}%end begin
+		
+	\end{algorithm}
+	
+\end{center}
+
 
 
 En la tabla \ref{TAB:wifi}, se especifica la información de la señal WiFi sobre la que se crea el servidor. Este es creado en el puerto 8266 sobre la IP 192.168.4.1 vía la señal WiFi emitida desde el microcontrolador. Esta comunicación se realiza a 2.4GHz y 54Mbps y solo puede crear 4 canales de comunicación TCP en paralelo, por ese motivo debe desconectarse después de cada comunicación para evitar la saturación del servidor.
@@ -35,7 +196,8 @@ En la tabla \ref{TAB:wifi}, se especifica la información de la señal WiFi sobre 
 \begin{table}[H]
 	\label{TAB:wifi}
 	\caption{Información sobre la conexión WiFi}
-	\centering
+\begin{center}
+		
 \begin{tabular}{|c|c|}
 	\hline 
 	SSID & ESP8266-WiFi \\
@@ -62,33 +224,22 @@ En la tabla \ref{TAB:wifi}, se especifica la información de la señal WiFi sobre 
 	\hline 
 \end{tabular} 
 
+\end{center}
 \end{table}
 
-Para procesar cada string se utiliza la librería \textit{string.h} (declarada como \textit{os$\_$string.h} en el SDK) que contiene múltiples funciones para el manejo de cadenas. 
+Para procesar cada string se utiliza la librería \textit{string.h} (declarada dentro de \textit{osapi.h} en el SDK) que contiene múltiples funciones para el manejo de cadenas. 
 
 La cadena recibida en cada comunicación se trata de una petición HTTP con método GET que posee la siguiente estructura:
 
 \begin{verbatim}
 GET /?comando=valor HTTP/1.1
-
 Host: 192.168.4.1:8266
-
 Connection: keep-alive
-
 Accept: */*
-
 X-Requested-With: XMLHttpRequest
-
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
-
-AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169
-
-Safari/537.36
-
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
 Referer: http://192.168.4.1:8266/
-
 Accept-Encoding: gzip, deflate
-
 Accept-Language: es-ES,es;q=0.9,en;q=0.8
 \end{verbatim}
 
@@ -98,10 +249,10 @@ Una vez recibida la cadena tras una solicitud, esta es comparada con la función 
 \begin{table}[H]
 	\caption{Comandos aceptados en las solicitudes HTTP.}
 	\label{TAB:comandosESP}
-	\centering
-	\resizebox{13cm}{!} {
+\begin{center}
+		\resizebox{13cm}{!} {
 	
-\begin{tabular}{|c|l|c|}
+\begin{tabular}{|c|l|l|}
 	\hline
 	{\bf COMANDO} & {\bf STRING} & {\bf FUNCIÓN} \\
 	\hline
@@ -123,7 +274,7 @@ Una vez recibida la cadena tras una solicitud, esta es comparada con la función 
 	\hline
 	cmd8 & GET /?gripoff & Deshabilitar pinza neumática \\
 	\hline
-	cmd9 &  &  \\
+	cmd9 & GET /?PR1  & Configurar timer PR1 \\
 	\hline
 	cmd11 &  GET /?Kp1 & Factor proporcional PID 1 \\
 	\hline
@@ -170,16 +321,24 @@ Una vez recibida la cadena tras una solicitud, esta es comparada con la función 
 \end{tabular}  
 
 }
-\end{table}
+
+\end{center}\end{table}
 
 
 De haber una coincidencia, en esta solicitud es de principal interés obtener los parámetros \textit{comando=valor} para algunas peticiones. Como es el caso de los movimientos de los motores y la configuración de parámetros.
 
 Para ello se utiliza la función \textit{strncpy} para copiar al menos 30 caracteres en una variable auxiliar y de esta manera manipular una cadena menor.
 
-Una vez recortada la cadena, se utiliza la función \textit{strtok} para separar cada parte del mensaje en tokens. Colocando como selector el caracter de espacio ' ' e igual '='.
+Una vez recortada la cadena, se utiliza la función \textit{strtok} para separar cada parte del mensaje en subvariables o tokens. Colocando como selector el caracter de espacio ' ' e igual '='.
 
-El código del microcontrolador está, además de comandos, estructurado por un total de trece funciones que se ejecutan según sea el caso. Estas serán explicadas en los siguientes apartados.
+El código del microcontrolador está, además de por comandos, estructurado por un total de catorce funciones que se ejecutan según sea el caso. Estas serán explicadas en los siguientes apartados.
+
+\subsection{Función server\_recv}
+Esta es principalmente la función de respuesta ante recepción de información en el servidor.\\
+
+En ella se obtiene la cadena recibida en el canal TCP para la posteriór identificación de los comandos. Para esto, se realiza una evaluación de cadenas mediante la función \textit{strncmp} de la librería \textit{string.h} para buscar el identificador del comando.\\
+
+Posteriormente, de acuerdo al resultado del comando, esta ejecutará una instrucción contenida en un bloque condicional único para cada caso.
 
 \subsection{Función server\_sent}
 
@@ -187,14 +346,15 @@ Función de callback cuando se envía algo desde el servidor. Esta función enciend
 
 \subsection{Función server\_discon}
 
-Función de callback cuando se desconecta un canal TCP. Esta espera 10ms y vuelve a crear el servidor TCP en el puerto 8266, seguidamente apaga un led en el pin D4 de la tarjeta de desarrollo.
+Función de callback cuando se desconecta un canal TCP. Esta borra por completo el canal y vuelve a habilitar el servidor TCP en el puerto 8266, seguidamente apaga un led en el pin D4 de la tarjeta de desarrollo.
 
 \subsection{Función server\_listen}
 
-
 Esta función se utiliza para declarar cuáles serán las funciones de callback para 'escuchar' las conexiones en el canal TCP. Para hacer esto, se utiliza las funciones \textit{espconn\_regist\_sentcb} y \textit{espconn\_regist\_disconcb} del NON-OS SDK.
 
-%\subsection{Función server\_recon}
+\subsection{Función server\_recon}
+
+Esta función se encarga de reconectar el servidor en caso de una falla en el establecimiento del canal TCP. Esto ocurre raramente. No obstante, se incluye como medida cautelar ante posibles errores en la comunicación.
 
 \subsection{Función init\_tcp}
 
@@ -224,7 +384,9 @@ INFORMACIÓN DE LA TRAMA ENVIADA POR EL CLIENTE (BROWSER):
 
 El cliente realiza un request GET cuya cabecera contiene lo siguiente:
 
+\begin{verbatim}
 GET /?num1=XXX HTTP/1.1
+\end{verbatim}
 
 En este mensaje el valor XXX debe ser aislado para ser procesado.
 Esto se hace mediante la función \textit{strtok} de la libreria \textit{string.h}.
@@ -233,17 +395,17 @@ Se colocaran como selectores de token, los caracteres ' ' y '='.
 \begin{verbatim}
 1ra vez:
 GET /?num1=XXX HTTP/1.1
-  ^     token=GET
+   ^     token=GET
 2da vez:
 /?num1=XXX HTTP/1.1
       ^    token=/?num1
 
 3ra vez:
 XXX HTTP/1.1
-  ^   token=XXX     y con esto ya se obtiene el valor de XXX.
+   ^   token=XXX     y con esto ya se obtiene el valor de XXX.
 \end{verbatim}
 
-Una vez obtenido ese valor, este es convertido en entero con la función atoi de la librería stdlib.h. Seguidamente, se aplica la conversión según la expresión \ref{ec:convertirdigital} obtenida de la ecuación \ref{ec:convertiragrados}.
+Una vez obtenido ese valor, este es convertido en entero con la función atoi de la librería stdlib.h o convertido en float con la función atof (o en su defecto, la función personalizada myatof). Seguidamente, se aplica la conversión según la expresión \ref{ec:convertirdigital} obtenida de la ecuación \ref{ec:convertiragrados}.
 
 \begin{equation}\label{ec:convertirdigital}
 Valor_{digital} = (\frac{Valor_{grados}}{K_{pro}}) - K_{offset}
@@ -270,5 +432,8 @@ Esta función se usa para convertir un caracter ASCII a un valor float. No se uti
 \newpage
 \section{Interfaz}
 
+
+%Página Web
+%Aplicación Android
 
 
