@@ -380,7 +380,7 @@ Esta función recibe la cadena y la separa por secciones para tomar su valor.
 De la cadena recibida, toma los primeros 30 caracteres y se procesa como se explica a continuación:
 
 
-INFORMACIÓN DE LA TRAMA ENVIADA POR EL CLIENTE (BROWSER):
+INFORMACIÓN DE LA TRAMA HTTP ENVIADA POR EL CLIENTE (BROWSER):
 
 El cliente realiza un request GET cuya cabecera contiene lo siguiente:
 
@@ -405,7 +405,7 @@ XXX HTTP/1.1
    ^   token=XXX     y con esto ya se obtiene el valor de XXX.
 \end{verbatim}
 
-Una vez obtenido ese valor, este es convertido en entero con la función atoi de la librería stdlib.h o convertido en float con la función atof (o en su defecto, la función personalizada myatof). Seguidamente, se aplica la conversión según la expresión \ref{ec:convertirdigital} obtenida de la ecuación \ref{ec:convertiragrados}.
+Una vez obtenido ese valor, este es convertido en entero con la función \textit{atoi} de la librería \textit{stdlib.h} o convertido en float con la función \textit{atof} (o en su defecto, la función personalizada \textit{myatof}). Seguidamente, se aplica la conversión según la expresión \ref{ec:convertirdigital} obtenida de la ecuación \ref{ec:convertiragrados}.
 
 \begin{equation}\label{ec:convertirdigital}
 Valor_{digital} = (\frac{Valor_{grados}}{K_{pro}}) - K_{offset}
