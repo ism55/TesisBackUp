@@ -6,6 +6,23 @@ En este trabajo se entenderá como Acceso Remoto a todo sistema o recurso ubicado
 
 \subsection{Acceso remoto por RF.}
 
+Cuando se habla de RF, se refiere al espectro de radiofrecuencia contemplado entre los 3Hz hasta 300GHz dentro del espectro electromagnético.\\
+
+Al realizar este tipo de diseño, es necesaria la implementación de circuitos osciladores que logren emitir o recibir la onda de radio que contiene la información de interés. No obstante, con la ayuda de transceptores de radiofrecuencia integrados como el nRF24L01 (Figura \ref{fig:modulorf}) o KYL-500S (Figura \ref{fig:kyl}), se puede realizar el mismo proceso optimizado para el trabajo con microcontroladores.\\
+
+
+\begin{figure}[H]
+	\centering
+	\subfigure[KYL-500S. Fuente: Shenzen KYL Communication Equipment Co., Ltd.]{\includegraphics[scale=0.4]{img/kyl}\label{fig:kyl}}
+	\subfigure[nRF24L01. Fuente: Nordic Semiconductor.]{\includegraphics[scale=0.3]{img/modulorf}\label{fig:modulorf}}
+	\caption{Algunos transceptores de radiofrecuencia.}
+	
+\end{figure}
+
+El diseño de un Acceso remoto por RF debe llevar dos etapas: Transmisión y recepción. La etapa de recepción debe estar conectada al brazo robot, con el interés de realizar las mínimas modificaciones posibles.\\
+
+En cuanto a la etapa transmisora, debe
+
 
 \subsection{Acceso remoto por Bluetooth.}
 
