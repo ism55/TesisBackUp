@@ -4,12 +4,66 @@ En este trabajo se entenderá como Acceso Remoto a todo sistema o recurso ubicado
 
 
 
-\subsection{Acceso remoto por RF.}
+
+\subsection{Radiofrecuencia (RF).}
+
+Es necesario el establecimiento de una interfaz de comunicación para la ejecución de la acción de control de forma inalámbrica, por lo tanto es común el diseño de circuitos osciladores transmisores/receptores que se colocan en el sistema a controlar y su unidad remota. 
+
+Por otro lado, una mejora de estos sistemas se obtiene al utilizar circuitos integrados como el NFR24L01 o el KYL-500S. Estos circuitos transceptores poseen la unidad de transmisión y recepción disponibles según sea la necesidad. Aunado a esto, es importante señalar que existen con la variedad de frecuencias y ancho de banda que requiera el diseñador. Por este motivo, son de gran utilidad para el diseño de accesos remotos.
+
+Una aplicación de un modelo de acceso remoto en brazos manipuladores o de robots en general, puede verse en [1],  [2] y [3]. 
+
+Lo señalado en el trabajo [1] trata de un diseño e implementación de un brazo robótico controlado de forma inalámbrica con fines industriales hecho en la Universidad de Ingeniería y Tecnología en Bangladesh. En este proyecto se contempla un brazo robótico de seis grados de libertad capaz de sostener un objeto de peso específico y colocarlo en una posición deseada. Para controlarlo se estableció un sistema inalámbrico que recibe instrucciones vía un joystick. 
+
+El sistema se incluyó dentro del brazo para mayor facilidad de uso. El controlador del brazo se diseñó usando un microcontrolador ATMEGA-328P, el microcontrolador utilizado en el control remoto fue un ATMEGA-8; ambos dispositivos programados bajo el IDE de Arduino. Estos integrados se encargan de recibir la señal digital que es procesada por un módulo transceptor de comunicación RF no especificado en el documento.
+
+La utilidad del manejo remoto de sistemas de medición puede observarse en propuestas como el trabajo [2], donde se realizó un diseño e implementación de un ambiente robótico de asistencia y monitoreo de variables físicas, controlado de forma inalámbrica usando un módulo de comunicación por RF, NFR24L01 y dos microcontroladores PIC16F77A, uno para monitoreo y manipulación de periféricos; y otro como Interfaz Humano Máquina (HMI). 
+
+De forma similar al trabajo anterior, en [3] se utilizan dos microcontroladores AT89c52 y dos módulos KYL-500S para el diseño del controlador remoto de un interruptor de pared de 13A.
 
 
-\subsection{Acceso remoto por Bluetooth.}
+La tecnología de Radiofrecuencia también involucra sistemas de comunicación vía Bluetooth o WiFi, debido a que estas ofrecen facilidades compatibles con la tecnología en vanguardia; además de permitir la conectividad a internet y ser un recurso importante en los sistemas para IoT.
 
-\subsection{Acceso remoto por Wi-Fi.}
+\subsection{Bluetooth y Wi-Fi.}
+
+Entre las propuestas tecnológicas existentes, Bluetooth y Wi-Fi son las 
+
+
+\begin{table}[H]
+		\caption{Comparación entre Bluetooth y Wi-Fi.}
+		\begin{center}
+			
+			
+			\begin{tabularx}{\textwidth}{|L|L|L|}
+				\hline
+				{\bf Característica} & {\bf Bluetooth} & {\bf Wi-Fi} \\
+				\hline
+				Ancho de banda &       Bajo &       Alto \\
+				\hline
+				Requerimientos de hardware & Adaptador de Bluetooth en todos los dispositivos que requieran conexión. & Adaptador inalámbrico en todos los dispositivos de la red. Router inalámbrico. \\
+				\hline
+				Facilidad de uso & De uso simple y el intercambio de dispositivos es más sencillo. & Es más complejo y requiere configuración de hardware y software. \\
+				\hline
+				Rango &  10 metros & 100 metros \\
+				\hline
+				Seguridad & Menos seguro en comparación & Las características de seguridad son mejores. Posee algunos riesgos. \\
+				\hline
+				Consumo de potencia &       Bajo &       Alto \\
+				\hline
+				Rango de frecuencia & 2.400 GHz y 2.483 GHz & 2.4 GHz y 5 GHz \\
+				\hline
+				Flexibilidad & Soporte para un número limitado de usuarios. (Conexión por pares) & Soporte para gran cantidad de usuarios. (Conexión en red) \\
+				\hline
+				Técnicas de modulación & GFSK (Desplazamiento de frecuencia gausiana) & OFDM (Multiplexación por división de frecuencias ortogonales) y QAM (Modulación de amplitud en cuadratura) \\
+				\hline
+			\end{tabularx}    
+			
+		
+		\end{center}
+		
+	
+
+\end{table}
 
 \subsection{LEGO MindStorm NXT.}
 
