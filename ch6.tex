@@ -237,13 +237,13 @@ Host: 192.168.4.1:8266
 Connection: keep-alive
 Accept: */*
 X-Requested-With: XMLHttpRequest
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)...
 Referer: http://192.168.4.1:8266/
 Accept-Encoding: gzip, deflate
 Accept-Language: es-ES,es;q=0.9,en;q=0.8
 \end{verbatim}
 
-Una vez recibida la cadena tras una solicitud, esta es comparada con la función \textit{strncmp}. Esta es usada para encontrar una coincidencia dentro de la lista de comandos permitidos que se encuentran en la tabla \ref{TAB:comandosESP}. 
+Una vez recibida la cadena tras una solicitud, es comparada con la función \textit{strncmp}. Esta es usada para encontrar una coincidencia dentro de la lista de comandos permitidos que se encuentran en la tabla \ref{TAB:comandosESP}. 
 
 
 \begin{table}[H]
