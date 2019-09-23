@@ -1,12 +1,11 @@
 \section{Acceso remoto.}
 
-En este trabajo se entenderá como Acceso Remoto a todo sistema o recurso ubicado físicamente en una estancia que realice una acción sobre otro en distinto lugar de forma inalámbrica vía una red local o externa a través de cualquier medio de comunicación como WiFi, Bluetooth, entre otros.
+En este trabajo se entenderá como Acceso Remoto a todo sistema o recurso ubicado físicamente en una estancia que realice una acción sobre otro en distinto lugar de forma inalámbrica vía una red local, externa, o a través de cualquier medio de comunicación como WiFi, Bluetooth, GPRS, UMTS, entre otros.
 
 
+\subsection{Radiofrecuencia (RF).}
 
-
-<<<<<<< HEAD
-Cuando se habla de RF, se refiere al espectro de radiofrecuencia contemplado entre los 3Hz hasta 300GHz dentro del espectro electromagnético.\\
+Cuando se habla de RF, se refiere al espectro de radiofrecuencia contemplado entre los 3Hz hasta 300GHz dentro del espectro electromagnético.
 
 Al realizar este tipo de diseño, es necesaria la implementación de circuitos osciladores que logren emitir o recibir la onda de radio que contiene la información de interés. No obstante, con la ayuda de transceptores de radiofrecuencia integrados como el nRF24L01 (Figura \ref{fig:modulorf}) o KYL-500S (Figura \ref{fig:kyl}), se puede realizar el mismo proceso optimizado para el trabajo con microcontroladores.\\
 
@@ -19,35 +18,133 @@ Al realizar este tipo de diseño, es necesaria la implementación de circuitos osc
 	
 \end{figure}
 
-El diseño de un Acceso remoto por RF debe llevar dos etapas: Transmisión y recepción. La etapa de recepción debe estar conectada al brazo robot, con el interés de realizar las mínimas modificaciones posibles.\\
-
-En cuanto a la etapa transmisora, debe
-
-=======
-\subsection{Radiofrecuencia (RF).}
->>>>>>> origin/master
+El diseño de un Acceso remoto por RF debe llevar dos etapas: Transmisión y recepción. La etapa de recepción debe estar conectada al brazo robot, con el interés de realizar las mínimas modificaciones posibles.
 
 Es necesario el establecimiento de una interfaz de comunicación para la ejecución de la acción de control de forma inalámbrica, por lo tanto es común el diseño de circuitos osciladores transmisores/receptores que se colocan en el sistema a controlar y su unidad remota. 
 
 Por otro lado, una mejora de estos sistemas se obtiene al utilizar circuitos integrados como el NFR24L01 o el KYL-500S. Estos circuitos transceptores poseen la unidad de transmisión y recepción disponibles según sea la necesidad. Aunado a esto, es importante señalar que existen con la variedad de frecuencias y ancho de banda que requiera el diseñador. Por este motivo, son de gran utilidad para el diseño de accesos remotos.
 
-Una aplicación de un modelo de acceso remoto en brazos manipuladores o de robots en general, puede verse en [1],  [2] y [3]. 
+Una aplicación de un modelo de acceso remoto en brazos manipuladores o de robots en general, puede verse en \cite{remotearm01},  \cite{inproceedings02} y \cite{aruaru}. 
 
-Lo señalado en el trabajo [1] trata de un diseño e implementación de un brazo robótico controlado de forma inalámbrica con fines industriales hecho en la Universidad de Ingeniería y Tecnología en Bangladesh. En este proyecto se contempla un brazo robótico de seis grados de libertad capaz de sostener un objeto de peso específico y colocarlo en una posición deseada. Para controlarlo se estableció un sistema inalámbrico que recibe instrucciones vía un joystick. 
+Lo señalado en el trabajo \cite{remotearm01} trata de un diseño e implementación de un brazo robótico controlado de forma inalámbrica con fines industriales hecho en la Universidad de Ingeniería y Tecnología en Bangladesh. En este proyecto se contempla un brazo robótico de seis grados de libertad capaz de sostener un objeto de peso específico y colocarlo en una posición deseada. Para controlarlo se estableció un sistema inalámbrico que recibe instrucciones vía un joystick. 
 
 El sistema se incluyó dentro del brazo para mayor facilidad de uso. El controlador del brazo se diseñó usando un microcontrolador ATMEGA-328P, el microcontrolador utilizado en el control remoto fue un ATMEGA-8; ambos dispositivos programados bajo el IDE de Arduino. Estos integrados se encargan de recibir la señal digital que es procesada por un módulo transceptor de comunicación RF no especificado en el documento.
 
-La utilidad del manejo remoto de sistemas de medición puede observarse en propuestas como el trabajo [2], donde se realizó un diseño e implementación de un ambiente robótico de asistencia y monitoreo de variables físicas, controlado de forma inalámbrica usando un módulo de comunicación por RF, NFR24L01 y dos microcontroladores PIC16F77A, uno para monitoreo y manipulación de periféricos; y otro como Interfaz Humano Máquina (HMI). 
+La utilidad del manejo remoto de sistemas de medición puede observarse en propuestas como el trabajo \cite{inproceedings02}, donde se realizó un diseño e implementación de un ambiente robótico de asistencia y monitoreo de variables físicas, controlado de forma inalámbrica usando un módulo de comunicación por RF, NFR24L01 y dos microcontroladores PIC16F77A, uno para monitoreo y manipulación de periféricos; y otro como Interfaz Humano Máquina (HMI). 
 
-De forma similar al trabajo anterior, en [3] se utilizan dos microcontroladores AT89c52 y dos módulos KYL-500S para el diseño del controlador remoto de un interruptor de pared de 13A.
+De forma similar al trabajo anterior, en \cite{aruaru} se utilizan dos microcontroladores AT89c52 y dos módulos KYL-500S para el diseño del controlador remoto de un interruptor de pared de 13A.
 
 
 La tecnología de Radiofrecuencia también involucra sistemas de comunicación vía Bluetooth o WiFi, debido a que estas ofrecen facilidades compatibles con la tecnología en vanguardia; además de permitir la conectividad a internet y ser un recurso importante en los sistemas para IoT.
 
 \subsection{Bluetooth y Wi-Fi.}
 
-Entre las propuestas tecnológicas existentes, Bluetooth y Wi-Fi son las 
+Entre las propuestas tecnológicas existentes en las comunicaciones inalámbricas; Bluetooth y Wi-Fi son las principales opciones debido a su facilidad de acceso y la disponibilidad de software y hardware compatibles con una gran cantidad de dispositivos. 
 
+Estas tecnologías ofrecen una oportunidad para realizar sistemas de IoT, ya que las tecnologías Bluetooth y Wi-Fi están contenidas en muchos dispositivos móviles de múltiples gamas. Además, existen módulos de microcontroladores y microprocesadores que cuentan con capacidad de conectarse a una red Wi-Fi o establecer una conexión por Bluetooth. Dispositivos como: Espressif ESP-8266, Espressif ESP-32, Raspberry Pi 3, Cypress CYW954907, entre otros; son algunos ejemplos de tarjetas de desarrollo compatibles con ambas tecnologías.
+
+Para esquematizar la importancia de ambas tecnologías, es necesario describir las características principales de estas:
+
+\subsubsection{Bluetooth}
+
+Es una tecnología diseñada por el grupo Bluetooth Special Interest Group (SIG), Inc, que se encarga de comercializar e implementar esta herramienta de comunicación en sus productos. 
+
+Está diseñada para redes WPAN, o Redes Inalámbricas de Área Personal y su principal funcionalidad es la transmisión de datos entre dispositivos sin requerir conectores. 
+
+Su banda de funcionamiento es la ISM de 2.4GHz en el espectro de radiofrecuencia y cuenta con un consumo de potencia reducido en sus últimas versiones.
+
+Desde sus inicios, ha presentado mejoras en la tasa de transmisión de datos, conectividad, ancho de banda, alcance y consumo de potencia. La última versión publicada en la página web oficial es la 5.1, que cuenta con una tasa de 50Mbps. La mejora de esta característica se puede observar en la tabla \ref{tab:BTversion}. Del mismo modo, la potencia de transmisión se caracteriza por clases como se muestra en la tabla \ref{tab:BTclases}.
+
+\begin{table}[H]
+
+	\caption{Ancho de banda de datos según las versiones.}
+\begin{center}
+		\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Versión} & \textbf{Ancho de banda} \\
+		\hline
+		Versión 1.2 & 1 Mbps \\
+		\hline
+		Versión 2.0 + EDR & 3 Mbps \\
+		\hline
+		Versión 3.0 + HS & 24 Mbps \\
+		\hline
+		Versión 4.0 & 32 Mbps \\
+		\hline
+		Versión 5 & 50 Mbps \\
+		\hline
+	\end{tabular}%
+\end{center}
+	\label{tab:BTversion}%
+\end{table}%
+
+
+\begin{table}[H]
+
+	\caption{Clases según potencia de transmisión y alcance.}
+\begin{center}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Clase} & \textbf{Potencia máxima permitida}  & \textbf{Alcance} \\
+		\hline
+		Clase 1 & 100 mW & ~100 metros \\
+		\hline
+		Clase 2 & 2.5 mW & ~5-10 metros \\
+		\hline
+		Clase 3 & 1 mW  & ~1 metro \\
+		\hline
+		Clase 4 & 0.5 mW & ~0.5 metro \\
+		\hline
+	\end{tabular}%
+\end{center}
+	\label{tab:BTclases}%
+\end{table}%
+
+
+En \cite{articuloBT} se utilizó Bluetooth para controlar remotamente los movimientos de un brazo robot de cuatro grados de libertad. El controlador del brazo se realizó con un microcontrolador ATMEGA2560, la transmisión de las instrucciones se hizo con un control remoto de Playstation con conectividad Bluetooth.
+
+\subsubsection{Wi-Fi}
+
+Es una tecnología desarrollada por la Alianza Wi-Fi en los años 2000. Es un estándar diseñado para la familia del protocolo IEEE 802, para redes inalámbricas de área local y es comúnmente utilizado con el protocolo Ethernet para establecer conexiones en red a internet.
+
+Su capacidad de alcance es elevada, esto lo hace un elemento útil en el monitoreo y control de variables en campo abierto usando sensores que cuentan con esta tecnología. Además, tiene una alta velocidad de transmisión, comparable con la comunicación cableada. Las bandas que utiliza están determinadas según los estándares de IEEE 802.11. Como aspecto adicional, posee baja latencia para comunicaciones en tiempo real. Sin embargo, dependerá del procesamiento realizado por el dispositivo en cuestión. 
+
+Una ventaja de esta tecnología ante otras de radiofrecuencia es la seguridad en el envío de datos. Cada dispositivo emisor/receptor cuenta con la posibilidad de encriptar la transmisión usando WPA o WPA2.
+
+En la página web oficial establece la sexta generación para el año 2019 como la más actualizada. Esta cuenta con mejoras de seguridad, tasa de transmisión, alcance y fidelidad. Parte de esta información se puede observar en la tabla \ref{tab:WIFIversion}
+
+En \cite{articulowifi} se construyó un brazo robot de cuatro grados de libertad basado en IoT. El controlador del robot se realizó usando una placa de desarrollo NXP FRDM-KL25Z, conectado a un módulo ESP-8266 para conectividad Wi-Fi.
+
+Este sistema recibe las instrucciones vía una plataforma web conectada a internet, y esta se comunica con el módulo ESP para establecer la conexión y de esta forma completar el sistema de IoT.
+
+\begin{table}[H]
+		\caption{Versiones de Wi-Fi.}
+\begin{center}
+	
+
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Generación} & \textbf{Estándar IEEE } & \textbf{Tasa de enlace máxima} \\
+		\hline
+		Wi-Fi 6 & 802.11ax & 600-9608 Mbps \\
+		\hline
+		Wi-Fi 5 & 802.11ac & 433-6933 Mbps \\
+		\hline
+		Wi-Fi 4 & 802.11n & 72-600 Mbps \\
+		\hline
+		Wi-Fi 3 & 802.11g & 3-54 Mbps \\
+		\hline
+		Wi-Fi 2 & 802.11a & 1.5 to 54 Mbps \\
+		\hline
+		Wi-Fi 1 & 802.11b & 1 to 11 Mbps \\
+		\hline
+	\end{tabular}%
+\end{center}
+	\label{tab:WIFIversion}%
+\end{table}%
+
+
+Luego de estudiar los aspectos generales de ambas tecnologías, en la tabla \ref{TAB:comparacionbtwf} puede apreciarse la comparación de estas en sus principales características.
 
 \begin{table}[H]
 		\caption{Comparación entre Bluetooth y Wi-Fi.}
@@ -77,7 +174,7 @@ Entre las propuestas tecnológicas existentes, Bluetooth y Wi-Fi son las
 				Técnicas de modulación & GFSK (Desplazamiento de frecuencia gausiana) & OFDM (Multiplexación por división de frecuencias ortogonales) y QAM (Modulación de amplitud en cuadratura) \\
 				\hline
 			\end{tabularx}    
-			
+			\label{TAB:comparacionbtwf}
 		
 		\end{center}
 		
@@ -85,8 +182,8 @@ Entre las propuestas tecnológicas existentes, Bluetooth y Wi-Fi son las
 
 \end{table}
 
-\subsection{LEGO MindStorm NXT.}
+%\subsection{LEGO MindStorm NXT.}
 
-\subsection{QNX Photon}
+%\subsection{QNX Photon}
 
-\subsection{Aplicación de IoT.}
+%\subsection{Aplicación de IoT.}

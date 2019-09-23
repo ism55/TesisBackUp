@@ -380,9 +380,7 @@ Esta función recibe la cadena y la separa por secciones para tomar su valor.
 De la cadena recibida, toma los primeros 30 caracteres y se procesa como se explica a continuación:
 
 
-INFORMACIÓN DE LA TRAMA HTTP ENVIADA POR EL CLIENTE (BROWSER):
-
-El cliente realiza un request GET cuya cabecera contiene lo siguiente:
+\subsubsection{Información de la trama HTTP enviada por el cliente (Browser):} El cliente realiza un request GET cuya cabecera contiene lo siguiente:
 
 \begin{verbatim}
 GET /?num1=XXX HTTP/1.1
@@ -430,7 +428,7 @@ Estas funciones realizan un procesado similar a \textit{mover\_motor} y dan como
 
 Esta función se usa para convertir un caracter ASCII a un valor float. No se utiliza la función atof, de la librería \textit{stdlib.h}, ya que genera un error de compilación debido a que las funciones \textit{malloc} y \textit{free} están declaradas dentro del SDK como \textit{os\_malloc} y \textit{os\_free} y escritas de otra manera el compilador no las reconoce. Por lo tanto, se requirió un algoritmo que realizara el mismo proceso.
 \newpage
-\section{Interfaz}
+
 
 
 %Página Web

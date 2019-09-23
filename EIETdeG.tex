@@ -31,6 +31,7 @@
 \usepackage{fancyhdr}
 \usepackage{subfigure}
 \usepackage{algorithm2e}
+\usepackage{cite}
 \usepackage{tabularx}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 %\usepackage{fancyheadings}
@@ -42,8 +43,6 @@
 %\usepackage[comma,authoryear]{natbib} esto está abajo
 
 %========= Define el estilo de referencias APA ===============
-\usepackage[natbibapa]{apacite}%natbibapa 
-
 
 
 %usar bibtex
@@ -85,48 +84,6 @@
 
 %\setcounter{MaxMatrixCols}{10}
 
-
-%===================== Re-definición de Ambientes =================
-\newtheorem{theorem}{Teorema}
-\newtheorem{acknowledgement}[theorem]{Acknowledgement}
-\newtheorem{algoritmo}[theorem]{Algorithm}
-\newtheorem{supuestos}[theorem]{Supuestos}
-\newtheorem{hipotesis}[theorem]{Hipótesis}
-\newtheorem{axiom}[theorem]{Axiom}
-\newtheorem{case}[theorem]{Case}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{conclusion}[theorem]{Conclusión}
-\newtheorem{condition}{Condición}
-\newtheorem{conjecture}{Conjecture}
-\newtheorem{corollary}{Corollary}
-\newtheorem{criterion}{Criterion}
-\newtheorem{definition}{Definición}  %{Definition}
-\newtheorem{example}[theorem]{Ejemplo}%{Example}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{lemma}{Lemma}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{problem}{Problem}
-\newtheorem{property}{Property}
-\newtheorem{proposition}{Proposition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{solution}{Solution}
-\newtheorem{summary}[theorem]{Summary}
-\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}%
-
-\numberwithin{equation}{chapter}%
-\numberwithin{figure}{chapter}%
-\numberwithin{table}{chapter}%
-\numberwithin{definition}{chapter}%
-\numberwithin{lemma}{chapter}%
-\numberwithin{theorem}{chapter}%
-\numberwithin{corollary}{chapter}%
-\numberwithin{condition}{chapter}%
-\numberwithin{criterion}{chapter}%
- \numberwithin{problem}{chapter}%
-\numberwithin{property}{chapter}%
-\numberwithin{proposition}{chapter}%
-\numberwithin{solution}{chapter}%
-\numberwithin{conjecture}{chapter}%
 
 %==================== Separación en sílabas ========================
 \hyphenpenalty=6800%
@@ -362,12 +319,12 @@ Escuela de Ingeniería Eléctrica. Mención Electrónica Computación y Control. Año 
 \input{ch6.tex}
 
 %==================================================================
-\chapter{VALIDACIÓN RESULTADOS}\label{CAP:exp}
+\chapter{RESULTADOS}\label{CAP:exp}
 %\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
 \input{ch7.tex}
 
 %==================================================================
-\chapter{RESULTADOS}\label{CAP:resultados}
+%\chapter{RESULTADOS}\label{CAP:resultados}
 %\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
 %\input{resultados.tex}
 
@@ -385,18 +342,18 @@ Escuela de Ingeniería Eléctrica. Mención Electrónica Computación y Control. Año 
 
 \renewcommand \thechapter{\Roman{chapter}}
 %==================================================================
-\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo0}
+%\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo0}
 %\markboth{Tu anexo}{Tu anexo}%
 %\input{apendice0.tex}%
 
 %==================================================================
-\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo1}
+%\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo1}
 %\markboth{Tu anexo}{Tu anexo}%
 %\input{apendice1.tex}%
 
 %\backmatter
 %==================================================================
-\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo2}
+%\chapter{TÍTULO DEL ANEXO}\label{CAP:anexo2}
 %\markboth{Tu anexo}{Tu anexo}%
 %\input{apendice2.tex}%
 
@@ -412,7 +369,7 @@ Escuela de Ingeniería Eléctrica. Mención Electrónica Computación y Control. Año 
 % References here (outcomment the appropriate case)
 % CASE 1: BiBTeX used to constantly update the references (while the paper is being written).
 %\bibliographystyle{IEEEtranSN}%{IEEEtranS}%%% outcomment this and next line in Case 1 siam
-\bibliographystyle{apacite}%
+\bibliographystyle{acm}%
 \renewcommand{\bibname}{REFERENCIAS}
 \let\oldbibsection\bibsection
 \bibliography{biblioteca} % if more than one, comma separated and without extension bib

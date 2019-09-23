@@ -1,16 +1,16 @@
 %==============================================================================%
 \section{Antecedentes}
 
-Marcano, Juan. $"$Implementación de sistema de programación de Trayectorias para el brazo manipulador MA2000". Universidad Central de Venezuela, 2013. Tutor: Prof. Alejandro González. Para establecer el control de posición del MA2000, se implementó un controlador de posición PID independiente para tres articulaciones utilizando el motor DSP de un dsPIC. Se desarrolló un software en el PC que se comunica con el microcontrolador y permite el ajuste dinámico del controlador PID y la visualización de la respuesta dinámica de cada articulación así como la programación de trayectorias. Se ha recuperado el funcionamiento de la pinza neumática del equipo y se ha elaborado documentación en línea del proyecto. \citep{juan1}
+Marcano, Juan. $"$Implementación de sistema de programación de Trayectorias para el brazo manipulador MA2000". Universidad Central de Venezuela, 2013. Tutor: Prof. Alejandro González. Para establecer el control de posición del MA2000, se implementó un controlador de posición PID independiente para tres articulaciones utilizando el motor DSP de un dsPIC. Se desarrolló un software en el PC que se comunica con el microcontrolador y permite el ajuste dinámico del controlador PID y la visualización de la respuesta dinámica de cada articulación así como la programación de trayectorias. Se ha recuperado el funcionamiento de la pinza neumática del equipo y se ha elaborado documentación en línea del proyecto. \cite{juan1}
 
 %==============================================================================%
 
-Labrador, Alexis. "Diseño de un equipo para el control y monitoreo de un motor asincrónico usando una aplicación móvil". Universidad Central de Venezuela, 2018. Tutor: Prof. Servando Álvarez. El presente trabajo reporta el diseño de un equipo para controlar el encendido y apagado, junto al monitoreo de tensión, corriente y tiempo de funcionamiento de un motor asincrónico usando un ordenador de placa reducida y un dispositivo móvil por medio de la red de comunicación Internet de las cosas. Para lograrlo se selecciona el ordenador de placa reducida Raspberry Pi 3 modelo B, el sensor ACS712, módulos de relés para el accionamiento y componentes electrónicos, se elige y se programa la plataforma de IoT, Ubidots for Education, para el monitoreo y control de forma remota, se selecciona la arquitectura de red en estrella, se eligen los tipos y modo de avisos que tendrá el sistema según las que permite Ubidots for Education, para finalmente implementar dicho diseño con el fin de validar el correcto funcionamiento.\citep{alexis1}
+Labrador, Alexis. "Diseño de un equipo para el control y monitoreo de un motor asincrónico usando una aplicación móvil". Universidad Central de Venezuela, 2018. Tutor: Prof. Servando Álvarez. El presente trabajo reporta el diseño de un equipo para controlar el encendido y apagado, junto al monitoreo de tensión, corriente y tiempo de funcionamiento de un motor asincrónico usando un ordenador de placa reducida y un dispositivo móvil por medio de la red de comunicación Internet de las cosas. Para lograrlo se selecciona el ordenador de placa reducida Raspberry Pi 3 modelo B, el sensor ACS712, módulos de relés para el accionamiento y componentes electrónicos, se elige y se programa la plataforma de IoT, Ubidots for Education, para el monitoreo y control de forma remota, se selecciona la arquitectura de red en estrella, se eligen los tipos y modo de avisos que tendrá el sistema según las que permite Ubidots for Education, para finalmente implementar dicho diseño con el fin de validar el correcto funcionamiento.\cite{alexis1}
 
 
 %==============================================================================%
 
-Valderrama, Jorge. "Diseño de un conjunto de prácticas para la configuración y uso básico del microcontrolador ESP8266". Universidad Central de Venezuela, 2018. Tutor: Prof. Ebert Brea. Este trabajo tiene como resultado una guía para la programación básica del microcontrolador ESP8266 a través del NON OS SDK de Espressif. En él se estudian los elementos básicos como: UART, GPIO, Interrupciones, Timer y Wifi. Cada uno de estos elementos estudiados viene acompañado por una guía de programación y ejemplos para implementación. \citep{jorge1}
+Valderrama, Jorge. "Diseño de un conjunto de prácticas para la configuración y uso básico del microcontrolador ESP8266". Universidad Central de Venezuela, 2018. Tutor: Prof. Ebert Brea. Este trabajo tiene como resultado una guía para la programación básica del microcontrolador ESP8266 a través del NON OS SDK de Espressif. En él se estudian los elementos básicos como: UART, GPIO, Interrupciones, Timer y Wifi. Cada uno de estos elementos estudiados viene acompañado por una guía de programación y ejemplos para implementación. \cite{jorge1}
 
 
 %==============================================================================%
@@ -26,12 +26,12 @@ Valderrama, Jorge. "Diseño de un conjunto de prácticas para la configuración y u
 
 \subsection{Grados de libertad}
 
-En [1] se describe cada uno de los seis grados de libertad del brazo manipulador como una unión que permite al robot doblar, rotar o trasladar la parte móvil de este. Así como lo muestra la figura \ref{fig:dof}, donde cada grado de libertad está identificado y relacionado con una parte del cuerpo humano.
+En [1] se describe cada uno de los seis grados de libertad del brazo manipulador como una unión que permite al robot doblar, rotar o trasladar la parte móvil de este. Así como lo muestra la figura \ref{fig:dof}, donde cada grado de libertad está identificado y relacionado con términos antropomórficos.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{img/DOF}
-	\caption{Estructura básica de un brazo robótico. Fuente: [1]}
+	\caption{Estructura básica de un brazo robótico. Fuente: \cite{remotearm01}}
 	\label{fig:dof}
 \end{figure}
 
@@ -69,7 +69,7 @@ Los siguientes brazos manipuladores a describir, se consideran del tipo $ " $pic
 
 El brazo PUMA: Programmable Universal Machine for Assembly, o Programmable Universal Manipulation Arm, por sus siglas en inglés; es un robot industrial desarollado por la empresa Unimation alrededor del año 1980. Entre los modelos más conocidos destacan los de la serie 500, que corresponden a brazos de seis grados de libertad con una herramienta final de control.\\
 
-Ha sido muy utilizado en el campo de la medicina, ya que una característica importante de este sistema es que cuenta con un marco que le permite una mayor precisión y rapidez en los movimientos. Según se menciona en \citep{miller2009anesthesia}, este cuenta con la aceptación de su uso para fines médicos.
+Ha sido muy utilizado en el campo de la medicina, ya que una característica importante de este sistema es que cuenta con un marco que le permite una mayor precisión y rapidez en los movimientos. Según se menciona en \cite{miller2009anesthesia}, este cuenta con la aceptación de su uso para fines médicos.
 
 \subsection{Canadarm}
 
@@ -109,11 +109,37 @@ En el trabajo de Marcano, se realizó un controlador manejado por computador al c
 
 \subsection{Uso de librerías en lenguaje C}
 
-String.h
+Para el desarrollo de aplicaciones con manipulacion de caracteres y cadenas, es necesario utilizar la librería \textit{string.h}. Esta librería está incluída en el estándar de lenguaje C, ya que es de uso común. 
 
-stdlib.h
+Incluye funciones para manipulación de arreglos de caracteres. Propiamente, define un tipo de variable, un macro y varias funciones para manipulación de arreglos y cadenas. Algunas de las funciones utilizadas comúnmente son: \textit{strtok, strcmp, strncmp, memset, strlen, strcpy, strncpy}, entre otros. 
+
+Otra librería importante es \textit{stdlib.h}. También está incluída en el lenguaje C estándar ya que ofrece muchas funciones útiles para manejo de memoria y operaciones numéricas. En definitiva, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras, son las más utilizadas.
 
 \subsection{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
 
+SDK, en inglés Software Development Kit. Es un compilado de herramientas necesarias para desarrollar aplicaciones específicas para el en entorno deseado. 
+
+En el caso del Espressif NON OS ESP-8266 SDK, se trata de un kit diseñado por la empresa Espressif para desarrollar software en dispositivos sin sistema operativo. En ella tiene las librerías de mayor importancia para la configuración y uso del ESP-8266. 
+
+
+El SDK NON-OS provée un conjunto de interfaces de programación de aplicaciones (API) para las funcionalidades del núcleo ESP-8266, como recepción/ transmisión de datos a través de Wi-Fi, funciones para el manejo de TCP/IP, funciones para la interfaz de hardware y el manejo básico del sistema.
+
+Las librerías más importantes incluídas dentro del SDK son: osapi.h, user\_interface.h, driver/uart.h, espconn.h, gpio.h, eagle\_soc.h.
+
+\subsubsection{osapi.h}
+Esta librería realiza una re-definición de algunas de las funciones más importantes de la librería string.h y algunas funciones para manejo del timer. Todas las funciones incluídas en esta librería incluyen el prefijo 'os', que simboliza que estas arrojan una respuesta de debug vía puerto serial al momento de utilizarlas. 
+
+Para deshabilitar estos comandos, es necesario escribir previo a todas las declaraciones del programa principal: 'system\_set\_os\_print(0)'. Y con esto pueden utilizarse sin inconvenientes las funciones con comandos 'os'.
+
+\subsubsection{user\_interface.h}
+
+
+\subsubsection{driver/uart.h}
+
+\subsubsection{espconn.h}
+
+\subsubsection{gpio.h}
+
+\subsubsection{eagle\_soc.h}
 
 %% hablar de librerias en C

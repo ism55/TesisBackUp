@@ -160,9 +160,15 @@ Cada dato incluido en la trama es procesado para ser enviado de forma correcta a
 
 La construcción del dato para los motores A,B y C es la siguiente:
 
-$ V_{digital} = V_{digital}<<6$\\
-$ V_{high} = V_{digital}>>8 $\\
-$ V_{low} = V_{digital} $\\
+\begin{equation*}
+ V_{digital} = V_{digital}<<6
+\end{equation*}
+\begin{equation*}
+V_{high} = V_{digital}>>8
+\end{equation*}
+\begin{equation*}
+ V_{low} = V_{digital}
+\end{equation*}
 
 
 El calculo del equivalente en grados es:
@@ -176,8 +182,12 @@ Considerando como valores por defecto $ K_{pro}= 0.33 $ [grados/bits] para cada 
 
 La construcción del dato para los motores D, E y F es la siguiente:
 
-$V_{high}= V_{digital}>>8 $\\
-$ V_{low} = V_{digital} $\\
+\begin{equation*}
+V_{high}= V_{digital}>>8 
+\end{equation*}
+\begin{equation*}
+ V_{low} = V_{digital} 
+\end{equation*}
 
 
 El calculo del equivalente en grados es:
@@ -312,18 +322,17 @@ El controlador también puede dar respuesta a las solicitudes de posición del A/D
 El microcontrolador recibe todas las instrucciones vía puerto serial configurado con 8 bits, 1 bit de parada, 115200 baudios; y utiliza solo los pines de Rx (U2RX) y Tx(U2TX) para establecer la comunicación. Ante cada instrucción de movimiento, el microcontrolador puede emitir un total de nueve señales PWM. Para los motores A, B, C, les corresponden dos señales, una para movimiento positivo y otra para movimiento negativo, respectivamente. El resto de los motores poseen solo una señal PWM para cada uno. El diagrama de conexiones e identificación de las funciones de cada pin se puede observar en la figura \ref{fig:dspicpinout}.
 
 \section{PWM}
+El manual anexo al trabajo de Marcano (\cite{juan1}) indica que:
 
 Motores A, B, C:
 
-11bits. 29,328kHz
+Estos motores tienen configurado una señal PWM de 11bits y frecuencia 29,328kHz. Marcano lo explica a continuación:
 
-"La resolución de la señal de PWM obtenida es de 11 bits, por lo tanto para obtener un duty cycle máximo es necesario que el registro PDCx tenga un valor de 2048. Los pines de salida de PWM se han configurado en modo complementario, por lo tanto para que la corriente promedio entregada al motor sea cero es necesario colocar PDCx=1023, para que el motor produzca par máximo el registro de duty cycle debe ser PDCx=0 para que gire en un sentido ó PDCx =2048 para que gire en el otro sentido."
+"\textit{La resolución de la señal de PWM obtenida es de 11 bits, por lo tanto para obtener un duty cycle máximo es necesario que el registro PDCx tenga un valor de 2048. Los pines de salida de PWM se han configurado en modo complementario, por lo tanto para que la corriente promedio entregada al motor sea cero es necesario colocar PDCx=1023, para que el motor produzca par máximo el registro de duty cycle debe ser PDCx=0 para que gire en un sentido ó PDCx =2048 para que gire en el otro sentido.}"
 
 Motores D, E, F:
 
-El manual anexo al trabajo de Marcano indica que:
-
-"se ha configurado el mismo para un periodo de 17,3 ms, para obtener una posición del servomotor centrada, que corresponde con un pulso 1,5 ms de duración el registro de duty cycle debe ser OCxRS=0x1632 (5682 en decimal). Es necesario generar un pulso desde los 1 ms hasta los 2ms por lo tanto los valores válidos del registro en esta aplicación van desde el 3788 hasta el 7576 (en sistema decimal), lo que permite obtener la posición deseada en dentro del rango de posiciones del servomotor."
+"\textit{Se ha configurado el mismo para un periodo de 17,3 ms, para obtener una posición del servomotor centrada, que corresponde con un pulso 1,5 ms de duración el registro de duty cycle debe ser OCxRS=0x1632 (5682 en decimal). Es necesario generar un pulso desde los 1 ms hasta los 2ms por lo tanto los valores válidos del registro en esta aplicación van desde el 3788 hasta el 7576 (en sistema decimal), lo que permite obtener la posición deseada en dentro del rango de posiciones del servomotor.}"
 \begin{figure}[H]
 	%\centering
 	\includegraphics[scale=0.65]{img/dspicpinout}
