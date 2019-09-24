@@ -70,6 +70,91 @@ La información de las especificaciones de hardware y software se observan en la 
 	\end{center}
 \end{table}
 
+\subsection{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
+
+SDK, en inglés Software Development Kit. Es un compilado de herramientas necesarias para desarrollar aplicaciones específicas para el en entorno deseado. 
+
+En el caso del Espressif NON OS ESP-8266 SDK, se trata de un kit diseñado por la empresa Espressif para desarrollar software en dispositivos sin sistema operativo. En ella tiene las librerías de mayor importancia para la configuración y uso del ESP-8266. 
+
+
+El SDK NON-OS provée un conjunto de interfaces de programación de aplicaciones (API) para las funcionalidades del núcleo ESP-8266, como recepción/ transmisión de datos a través de Wi-Fi, funciones para el manejo de TCP/IP, funciones para la interfaz de hardware y el manejo básico del sistema.
+
+Las librerías más importantes incluídas dentro del SDK son: osapi.h, user\_interface.h, driver/uart.h, espconn.h, gpio.h, eagle\_soc.h.
+
+\subsubsection{osapi.h}
+Esta librería realiza una re-definición de algunas de las funciones más importantes de la librería string.h y algunas funciones para manejo del timer. Todas las funciones incluídas en esta librería incluyen el prefijo 'os', que simboliza que estas arrojan una respuesta de debug vía puerto serial al momento de utilizarlas. 
+
+Para deshabilitar estos comandos, es necesario escribir previo a todas las declaraciones del programa principal: 'system\_set\_os\_print(0)'. Y con esto pueden utilizarse sin inconvenientes las funciones con comandos 'os'.
+
+\subsubsection{user\_interface.h}
+
+Contiene las definiciones de las estructuras para configurar el Wi-Fi en modo estación o punto de acceso.
+
+\subsubsection{driver/uart.h}
+
+Posee los macros y variables necesarias para la configuración del UART.
+
+\subsubsection{espconn.h}
+
+Define las estructuras para la creación del socket TCP o UDP, así como los prototipos y declaraciones de las funciones de la API correspondiente. Con estas funciones es posible establecer un servidor o cliente mediante solicitudes y respuestas.
+
+\subsubsection{gpio.h}
+
+Contiene los prototipos y definiciones de las funciones que configuran los puertos de propósito general (GPIO). En concreto, las funciones que seleccionan un pin como entrada o salida, en modalidad baja o alta; entre otros parámetros.
+
+\subsubsection{eagle\_soc.h}
+
+Esta librería es, quizá, de las más importantes. En ella se definen los macros que permiten acceder a las múltiples funciones de los GPIO. 
+
+Como puede observarse en la tabla \ref{TAB:registrosesp}, el ESP-8266 posee múltiples puertos de propósito general, por ello es necesario indicar el propósito de uso de cada GPIO deseado. 
+
+\begin{table}[H]
+	
+	\caption{Registros de GPIO del ESP-8266. Fuente: Espressif.}
+	\label{TAB:registrosesp}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			{\bf FUNCTION 3} & {\bf FUNCTION 4} & {\bf AT RESET} & {\bf AFTER RESET} & {\bf SLEEP} \\
+			\hline
+			&    CLK\_OUT &  oe=0, wpu &        wpu &       oe=0 \\
+			\hline
+			{\bf GPIO1} &    CLK\_RTC &   oe=0,wpu &        wpu &       oe=0 \\
+			\hline
+			{\bf } &      U0TXD &   oe=0,wpu &        wpu &       oe=0 \\
+			\hline
+			{\bf GPIO3} &   CLK\_XTAL &   oe=0,wpu &        wpu &       oe=0 \\
+			\hline
+			{\bf } &            &       oe=0 &            &       oe=0 \\
+			\hline
+			{\bf } &            &       oe=0 &            &       oe=0 \\
+			\hline
+			{\bf GPIO6} &      U1CTS &       oe=0 &            &       oe=0 \\
+			\hline
+			{\bf GPIO7} &      U1DXD &       oe=0 &            &       oe=0 \\
+			\hline
+			{\bf GPIO8} &      U1RXD &       oe=0 &            &       oe=0 \\
+			\hline
+			{\bf GPIO9} &     HSPIHD &       oe=0 &            &       oe=0 \\
+			\hline
+			{\bf GPIO10} &     HSPIWP &       oe=0 &            &       oe=0 \\
+			\hline
+			{\bf GPIO11} &      U1RTS &       oe=0 &            &       oe=0 \\
+			\hline
+			{\bf GPIO12} &      U0DTR &  oe=0, wpu &        wpu &       oe=0 \\
+			\hline
+			{\bf GPIO13} &      U0CTS &  oe=0, wpu &        wpu &       oe=0 \\
+			\hline
+			{\bf GPIO14} &      U0DSR &  oe=0, wpu &        wpu &       oe=0 \\
+			\hline
+			{\bf GPIO15} &      U0RTS &  oe=0, wpu &        wpu &       oe=0 \\
+			\hline
+			DEEPSLEEP & BT\_XTAL\_EN &  oe=1, wpd &  oe=1, wpd &       oe=1 \\
+			\hline
+		\end{tabular}  
+	\end{center}
+	
+\end{table}
 
 
 \section{Contenido del programa}
@@ -104,9 +189,29 @@ En el archivo funciones.h se encuentran los prototipos de todas las funciones y 
 \subsection{pagina.h}
 Este archivo contiene dos variables tipo char que contienen en una cadena el código HTML de la página web y la cadena de respuesta ante una solicitud exitosa.
 
+\subsection{Compilado}
+Al compilar el código y cargarlo en el microcontrolador, el IDE muestra los valores totales del consumo de memoria de esta aplicación, como se observa en la figura \ref{fig:compilado}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{img/compilado}
+	\caption{Compilado del programa.}
+	\label{fig:compilado}
+\end{figure}
+
 \section{Funcionamiento}\label{SEC:funcionamiento}
 
 El programa principal consta del establecimiento de un servidor TCP que espera una solicitud HTTP proveniente del browser al que se tiene acceso como cliente.
+
+El funcionamiento específico se resume en la figura, que muestra la comunicación cliente-servidor al momento de solicitar un comando.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{img/http_server_client}
+	\caption{Ejemplo de comunicación cliente- servidor.}
+	\label{fig:httpserverclient}
+\end{figure}
+
 
 \subsection{Pseudocódigo:}
 

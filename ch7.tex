@@ -1,5 +1,156 @@
 \section{Interfaz}
 
+Para acceder al servidor, primero debe comprobarse que el dispositivo está conectado correctamente. Usando otro dispositivo que cuente con Wi-Fi puede hacerse esto rápidamente, mostrando lo indicado en la figura. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{img/redesdisp}
+	\caption{Detección de señal Wi-Fi emitida por el microcontrolador ESP-8266.}
+	\label{fig:redesdisp}
+\end{figure}
+
+
+\subsection{Página web alojada en servidor}
+La aplicación principal consta de una página web alojada en el servidor ESP-8266 a la que se puede acceder vía http://192.168.4.1:8266 que luce como se observa en la figura \ref{fig:paginacompleta}.
+
+Al abrir la web, esta solicitará al usuario que ingrese una clave. De ser exitosa, permitirá el ingreso; en caso contrario, enviará al usuario a Google. Esto se observa en la figura \ref{fig:clave}.
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Solicitud de clave]{\includegraphics[scale=0.7]{img/ingreseclave}\label{fig:ingreseclave}}
+	\subfigure[Clave exitosa]{\includegraphics[scale=0.7]{img/claveexitosa}\label{fig:claveexitosa}}
+	\subfigure[Clave incorrecta]{\includegraphics[scale=0.7]{img/claveincorrecta}\label{fig:claveincorrecta}}
+	\caption{Solicitud de clave para entrada a la página.}
+	\label{fig:clave}
+	
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.06]{img/paginacompleta}
+	\caption{Página web completa.}
+	\label{fig:paginacompleta}
+\end{figure}
+
+Vista en detalle, las partes de la página son:
+
+\subsubsection{Encabezado}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{img/paginaheader}
+	\caption{Encabezado de página}
+	\label{fig:paginaheader}
+\end{figure}
+
+En la figura \ref{fig:paginaheader} puede verse la presentación de la web, con una imagen alojada en el microcontrolador codificada en base64. 
+
+Por otra parte, en la parte inferior puede observarse el botón 'Recargar página' que reconfigura todos los parámetros a sus valores originales, enviando esta trama al brazo robot. Es importante mencionar que cada vez que la página se recargue, esto ocurrirá.
+
+
+\subsubsection{Sección de pruebas}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{img/paginaprobador}
+	\caption{Esquema del brazo robot y probador de trayectorias}
+	\label{fig:paginaprobador}
+\end{figure}
+
+En la figura \ref{fig:paginaprobador} se observan dos elementos: Una imagen del esquema de motores, codificada en base64. Y un cuadro de texto que indica 'Probador de trayectorias'.
+
+Este probador tiene la finalidad de probar rutinas de movimiento sencillas (sin retardos), con la idea de realizar un bosquejo rápido del movimiento que desea el usuario.
+
+Al presionar el botón 'pulsar', toda la rutina contenida en el cuadro de texto se enviará al brazo robot.
+
+Las rutinas deben tener la estructura siguiente:
+
+\begin{verbatim}
+q1 -65.00
+q2 35.00
+q3 -65.00
+q4 34.83
+q5 -65.01
+q6 -34.65
+grip on
+q1 34.48
+q2 -65.02
+q3 34.30
+q4 -65.04
+q5 34.13
+q6 65.05
+grip off
+\end{verbatim}
+
+En estas rutinas, 'qi' es el indicador de movimiento para el motor deseado. Siendo 1, 2, 3, 4, 5 y 6 correspondientes a los motores A, B, C, D, E y F. El número siguiente es el aproximado en grados del movimiento deseado. Puede ser un número entero o un número real de dos cifras significativas. El signo indica si el movimiento es en sentido negativo o no.
+
+\subsubsection{Movimiento en tiempo real}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/paginamov}
+	\caption{Movimiento del brazo en tiempo real}
+	\label{fig:paginamov}
+\end{figure}
+
+En la figura \ref{fig:paginamov}, se observan los cursores de movimiento en tiempo real. Al accionar cualquiera de estos, el valor indicado en la casilla de la derecha cambiará y a su vez será enviado al brazo robot. Además, el usuario puede colocar manualmente un valor específico en estas casillas y seguidamente presionar el botón del motor de su selección.
+
+Es importante mencionar que los valores presentados al cargar la página son los enviados por defecto al inicio de la carga de esta. 
+
+En la parte inferior se encuentran los botones para la habilitación o deshabilitación de la pinza neumática.
+
+\subsubsection{Configuración de parámetros}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/paginaconfig}
+	\caption{Configuración de parámetros generales}
+	\label{fig:paginaconfig}
+\end{figure}
+
+En la figura \ref{fig:paginaconfig} pueden observarse los parámetros configurables del brazo robot. 
+
+A la izquierda se encuentran los parámetros correspondientes a los tres controladores PID presentes en el robot. Los valores mostrados son los enviados por defecto. Sin embargo, se recomienda al usuario cambiarlos a valores óptimos para evitar oscilaciones indeseadas.
+
+A la derecha, se encuentran los parámetros de calibración para el cálculo del valor de movimiento. Estos son los considerados en la ecuación \ref{grad2dig}, por lo tanto es importante realizar variaciones solo cuando el usuario esté completamente seguro.
+
+Seguidamente, se observan las opciones para habilitar o deshabilitar los puentes H de los motores principales. No obstante, esto no es recomendable modificar debido a que los motores constantemente realizan movimientos en sentidos positivos y negativos.
+
+Por último, está la opción de configuración del registro PR1, quien se encarga de seleccionar la tasa de muestreo del controlador manejado por el dsPIC. El valor mostrado es el seleccionado por defecto. Es importante mencionar que este valor solo debe ser modificado cuando se esté completamente seguro de sus consecuencias.
+
+\subsection{Solución a posibles incovenientes}
+
+%https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
+
+%chrome://net-internals/#dns
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/problemapagina}
+	\caption{Vista de chrome:// net-internals}
+	\label{fig:problemapagina}
+\end{figure}
+
+\subsection{Aplicación Android}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/appfrommenu}
+	\caption{Aplicación vista desde el menú.}
+	\label{fig:appfrommenu}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/robocomapp}
+	\caption{Vista principal de la aplicación Android.}
+	\label{fig:robocomapp}
+\end{figure}
+
+
+\section{Montaje}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{img/MontajeTesis}
@@ -11,6 +162,18 @@
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.1]{img/fotocircuito}
-	\caption{Fotografía del montaje de la tarjeta de desarrollo.}
+	\caption{Fotografía del montaje en protoboard de la tarjeta de desarrollo.}
 	\label{fig:fotocircuito}
 \end{figure}
+
+
+
+\begin{figure}[H]
+	\centering
+	{\includegraphics[scale=0.8]{img/100_0937}\label{fig:montaje2}}
+	
+	\caption{Montaje del prototipo.}
+	\label{fig:montajecookie}
+	
+\end{figure}
+

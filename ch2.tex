@@ -115,31 +115,5 @@ Incluye funciones para manipulación de arreglos de caracteres. Propiamente, defi
 
 Otra librería importante es \textit{stdlib.h}. También está incluída en el lenguaje C estándar ya que ofrece muchas funciones útiles para manejo de memoria y operaciones numéricas. En definitiva, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras, son las más utilizadas.
 
-\subsection{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
-
-SDK, en inglés Software Development Kit. Es un compilado de herramientas necesarias para desarrollar aplicaciones específicas para el en entorno deseado. 
-
-En el caso del Espressif NON OS ESP-8266 SDK, se trata de un kit diseñado por la empresa Espressif para desarrollar software en dispositivos sin sistema operativo. En ella tiene las librerías de mayor importancia para la configuración y uso del ESP-8266. 
-
-
-El SDK NON-OS provée un conjunto de interfaces de programación de aplicaciones (API) para las funcionalidades del núcleo ESP-8266, como recepción/ transmisión de datos a través de Wi-Fi, funciones para el manejo de TCP/IP, funciones para la interfaz de hardware y el manejo básico del sistema.
-
-Las librerías más importantes incluídas dentro del SDK son: osapi.h, user\_interface.h, driver/uart.h, espconn.h, gpio.h, eagle\_soc.h.
-
-\subsubsection{osapi.h}
-Esta librería realiza una re-definición de algunas de las funciones más importantes de la librería string.h y algunas funciones para manejo del timer. Todas las funciones incluídas en esta librería incluyen el prefijo 'os', que simboliza que estas arrojan una respuesta de debug vía puerto serial al momento de utilizarlas. 
-
-Para deshabilitar estos comandos, es necesario escribir previo a todas las declaraciones del programa principal: 'system\_set\_os\_print(0)'. Y con esto pueden utilizarse sin inconvenientes las funciones con comandos 'os'.
-
-\subsubsection{user\_interface.h}
-
-
-\subsubsection{driver/uart.h}
-
-\subsubsection{espconn.h}
-
-\subsubsection{gpio.h}
-
-\subsubsection{eagle\_soc.h}
 
 %% hablar de librerias en C
