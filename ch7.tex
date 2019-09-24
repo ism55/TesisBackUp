@@ -121,18 +121,69 @@ Por último, está la opción de configuración del registro PR1, quien se encarga d
 
 \subsection{Solución a posibles incovenientes}
 
+La aplicación web contenida en la página está desarrollada en JavaScript. Concretamente, con herramientas de JS y de JQuery.
+
+Cada navegador o browser actualizado cuenta con JavaScript. Además, cualquiera que ejecute una página web que utilice JQuery automáticamente descarga esta librería (jquery.min.js), permitiendo que pueda cargarse con mayor rapidez en la siguiente ocasión. No obstante, algunas veces esto no se guarda en la memoria por diversos motivos.
+
+Dentro del código HTML, se hace la solicitud de
+
+\begin{verbatim}
+https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
+\end{verbatim}
+
+Para que el browser integre esta librería debe estar previamente descargada, de lo contrario ocasionará problemas en la página y no se ejecutará correctamente. 
+
+Un método para solucionar esta eventualidad es introducir el enlace anterior en el navegador a utilizar con conectividad a internet. El parámetro '/1/' de la cadena solicita la versión más actual disponible.
+
+En algunos casos, esto no soluciona el problema de conexión; por lo que es necesario ajustar parámetros internos del navegador.
+
+Si se está utilizando Google Chrome (probado con versión 76.0.3809.132) u Opera (probado con versión 63.0.3368.94) se puede acceder a la memoria caché de DNS, y así ajustar el valor por defecto. Esto se hace accediendo a la dirección:
+
+\begin{verbatim}
+chrome://net-internals/#dns
+\end{verbatim}
 %https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
 
 %chrome://net-internals/#dns
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{img/problemapagina}
+	\includegraphics[scale=0.7]{img/problemapagina}
 	\caption{Vista de chrome:// net-internals}
 	\label{fig:problemapagina}
 \end{figure}
 
+En la ventana mostrada en la figura \ref{fig:problemapagina} se debe presionar el botón 'Clear host cache'.
+
+Si el problema de conectividad persiste, es necesario eliminar los valores de cookies, caché y demás datos de navegación y repetir lo explicado al inicio de esta sección (descargar nuevamente la librería jquery.min.js).
+
+
 \subsection{Aplicación Android}
+
+Esta aplicación fue desarrollada en Android Studio versión 3.4.1 para API 27 (Android 8.1 Oreo) en lenguaje Java. 
+
+La funcionalidad de la aplicación es comunicarse a través de un canal TCP con el servidor establecido en el ESP-8266. Allí enviará los comandos generados por el archivo de texto en el que será leído línea por línea. Esto se repetirá tantas veces como quiera el usuario.
+
+En esta aplicación sí se permite el uso de comandos de retardo (wait). Un ejemplo es la siguiente rutina:
+
+\begin{verbatim}
+	q1 -74
+	q3 -110
+	wait 200
+	q1 -73
+	q3 -109
+	wait 200
+	q1 -72
+	q3 -108
+	wait 200
+	q1 -71
+	q3 -107
+	wait 200
+\end{verbatim}
+
+Los comandos 'wait' deben ir acompañados de un valor numérico entero que simbolizará un retardo en milisegundos.
+
+En la figura \ref{fig:appfrommenu} se observa la vista en miniatura desde el menú de aplicaciones.
 
 \begin{figure}[H]
 	\centering
@@ -141,6 +192,12 @@ Por último, está la opción de configuración del registro PR1, quien se encarga d
 	\label{fig:appfrommenu}
 \end{figure}
 
+En la figura \ref{fig:robocomapp} se observa la interfaz de la aplicación. 
+
+El banner muestra el nombre de esta, 'ROBOCOM'. Seguidamente, el cuerpo de esta establece un campo de texto editable con etiqueta 'Número de repeticiones. En esta opción se coloca el número de veces que desea repetirse la rutina. Al dejar el valor en '0', el programa se ejecutará una sola vez.
+
+A un lado se encuentra la etiqueta 'Status', que indica si la comunicación fue exitosa o no. De serlo, marcará el número '200'; en caso contrario marcará '404'.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{img/robocomapp}
@@ -148,7 +205,9 @@ Por último, está la opción de configuración del registro PR1, quien se encarga d
 	\label{fig:robocomapp}
 \end{figure}
 
+Al centro de la aplicación está el campo de texto en el que se posará el texto de la rutina. Allí pueden escribirse los comandos de movimiento y configuración directamente o desde un archivo de texto que puede ser cargado al presionar el botón 'Cargar Archivo'.
 
+Las rutinas generadas o modificadas pueden ser guardadas en un nuevo archivo indicando el nombre y presionando la opción 'Guardar a archivo'.
 \section{Montaje}
 
 \begin{figure}[H]
