@@ -18,7 +18,7 @@ Al realizar este tipo de diseño, es necesaria la implementación de circuitos osc
 	
 \end{figure}
 
-El diseño de un Acceso remoto por RF debe llevar dos etapas: Transmisión y recepción. La etapa de recepción debe estar conectada al brazo robot, con el interés de realizar las mínimas modificaciones posibles.
+El diseño de un acceso remoto por RF debe llevar dos etapas: Transmisión y recepción. La etapa de recepción debe estar conectada al brazo robot, con el interés de realizar las mínimas modificaciones posibles.
 
 Es necesario el establecimiento de una interfaz de comunicación para la ejecución de la acción de control de forma inalámbrica, por lo tanto es común el diseño de circuitos osciladores transmisores/receptores que se colocan en el sistema a controlar y su unidad remota. 
 
@@ -26,7 +26,7 @@ Por otro lado, una mejora de estos sistemas se obtiene al utilizar circuitos int
 
 Una aplicación de un modelo de acceso remoto en brazos manipuladores o de robots en general, puede verse en \cite{remotearm01},  \cite{inproceedings02} y \cite{aruaru}. 
 
-Lo señalado en el trabajo \cite{remotearm01} trata de un diseño e implementación de un brazo robótico controlado de forma inalámbrica con fines industriales hecho en la Universidad de Ingeniería y Tecnología en Bangladesh. En este proyecto se contempla un brazo robótico de seis grados de libertad capaz de sostener un objeto de peso específico y colocarlo en una posición deseada. Para controlarlo se estableció un sistema inalámbrico que recibe instrucciones vía un joystick. 
+Lo señalado en el trabajo \cite{remotearm01} trata de un diseño e implementación de un brazo robótico controlado de forma inalámbrica con fines industriales hecho en la Universidad de Ingeniería y Tecnología en Bangladesh. En este proyecto se contempla un brazo robótico de seis grados de libertad capaz de sostener un objeto de peso específico y colocarlo en una posición deseada. Para controlarlo se estableció un sistema que recibe instrucciones vía un joystick inalámbrico. 
 
 El sistema se incluyó dentro del brazo para mayor facilidad de uso. El controlador del brazo se diseñó usando un microcontrolador ATMEGA-328P, el microcontrolador utilizado en el control remoto fue un ATMEGA-8; ambos dispositivos programados bajo el IDE de Arduino. Estos integrados se encargan de recibir la señal digital que es procesada por un módulo transceptor de comunicación RF no especificado en el documento.
 

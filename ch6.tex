@@ -5,7 +5,7 @@ Para el desarrollo del sistema se utilizó como herramienta de programación el Ki
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{img/fotoesp8266}
+	\includegraphics[scale=0.9]{img/fotoesp82662}
 	\caption{Placa del microcontrolador ESP-8266.}
 	\label{fig:fotoesp8266}
 \end{figure}
@@ -70,7 +70,7 @@ La información de las especificaciones de hardware y software se observan en la 
 	\end{center}
 \end{table}
 
-\subsection{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
+\section{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
 
 SDK, en inglés Software Development Kit. Es un compilado de herramientas necesarias para desarrollar aplicaciones específicas para el en entorno deseado. 
 
@@ -81,28 +81,28 @@ El SDK NON-OS provée un conjunto de interfaces de programación de aplicaciones (
 
 Las librerías más importantes incluídas dentro del SDK son: osapi.h, user\_interface.h, driver/uart.h, espconn.h, gpio.h, eagle\_soc.h.
 
-\subsubsection{osapi.h}
+\subsection{osapi.h}
 Esta librería realiza una re-definición de algunas de las funciones más importantes de la librería string.h y algunas funciones para manejo del timer. Todas las funciones incluídas en esta librería incluyen el prefijo 'os', que simboliza que estas arrojan una respuesta de debug vía puerto serial al momento de utilizarlas. 
 
 Para deshabilitar estos comandos, es necesario escribir previo a todas las declaraciones del programa principal: 'system\_set\_os\_print(0)'. Y con esto pueden utilizarse sin inconvenientes las funciones con comandos 'os'.
 
-\subsubsection{user\_interface.h}
+\subsection{user\_interface.h}
 
 Contiene las definiciones de las estructuras para configurar el Wi-Fi en modo estación o punto de acceso.
 
-\subsubsection{driver/uart.h}
+\subsection{driver/uart.h}
 
 Posee los macros y variables necesarias para la configuración del UART.
 
-\subsubsection{espconn.h}
+\subsection{espconn.h}
 
 Define las estructuras para la creación del socket TCP o UDP, así como los prototipos y declaraciones de las funciones de la API correspondiente. Con estas funciones es posible establecer un servidor o cliente mediante solicitudes y respuestas.
 
-\subsubsection{gpio.h}
+\subsection{gpio.h}
 
 Contiene los prototipos y definiciones de las funciones que configuran los puertos de propósito general (GPIO). En concreto, las funciones que seleccionan un pin como entrada o salida, en modalidad baja o alta; entre otros parámetros.
 
-\subsubsection{eagle\_soc.h}
+\subsection{eagle\_soc.h}
 
 Esta librería es, quizá, de las más importantes. En ella se definen los macros que permiten acceder a las múltiples funciones de los GPIO. 
 
@@ -213,7 +213,7 @@ El funcionamiento específico se resume en la figura, que muestra la comunicación
 \end{figure}
 
 
-\subsection{Pseudocódigo:}
+\subsection{Pseudocódigo}
 
 \begin{center}
 	\begin{algorithm}[H]

@@ -1,0 +1,43 @@
+Las especificaciones del diseño del sistema de acceso remoto requieren el establecimiento de un servidor web para realizar una comunicación inalámbrica desde una página web con acceso desde un cliente. En esta página web se desea implementar los comandos de movimiento y configuración del brazo robot en tiempo real o con baja latencia para así eliminar completa o parcialmente la presencia de un computador de forma cableada.
+
+Para compensar la ausencia del computador, este dispositivo debe conectarse al controlador del brazo manipulador vía puerto serial para así establecer la comunicación entre el servidor y el cliente hacia el robot.
+
+Por este motivo, se considera que las necesidades del proyecto requieren de uno o varios dispositivos que cuenten con UART, medios de conexión por radiofrecuencia, memoria flash adaptable a las necesidades del código, y puertos de propósito general suficientes para implementar el prototipo. Dichas de otro modo, se resumen los requerimientos en la tabla \ref{TAB:requerimientos}.
+
+
+\begin{table}[H]
+	\caption{Estimación de requerimientos para el diseño.}
+	\label{TAB:requerimientos}
+\begin{center}
+		\begin{tabular}{|c|c|}
+	\hline 
+	Comunicación por radiofrecuencia & Sí \\ 
+	\hline 
+	Memoria flash & Por el órden de los MB \\ 
+	\hline 
+	GPIO & Al menos 10 \\ 
+	\hline 
+	Costo & Económico \\ 
+	\hline 
+	UART & Sí \\ 
+	\hline 
+	Capacidad de programación en lenguaje C & Sí \\ 
+	\hline 
+\end{tabular} 
+\end{center}
+	
+\end{table}
+
+En el mercado existe una gran cantidad de dispositivos que cubren estos requerimientos y muchos otros no contemplados. Por ello se analizarán algunos de los más importantes.
+
+Raspberry Pi 3
+
+Esta tarjeta de desarrollo cuenta con microprocesador ARM Cortex
+
+Cypress CYW54907
+
+Contiene un microprocesador ARM Cortex R4
+
+ESP 8266
+
+ESP 32

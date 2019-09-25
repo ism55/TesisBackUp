@@ -115,7 +115,15 @@ La estructura general de la trama enviada desde el software Robocom al sistema d
 
 La cabecera o 'comando' de la trama puede tomar cualquier valor referido en la tabla \ref{TAB:comandocliente}. El valor indicará qué instrucción ejecutará el controlador y qué valor tomará el dato del comando.
 
-Un ejemplo de esto, puede verse con ayuda del software SerialMon v1.5.0.0, que es un sniffer/monitor de puerto serial RS232 freeware para Windows.
+Un ejemplo de esto, puede verse en la figura con ayuda del software DockLight v2.2, que es un sniffer/monitor de puerto serial RS232 para Windows.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{img/docklight}
+	\caption{Vista de trama transmitida por el software Robocom al iniciar conexión.}
+	\label{fig:docklight}
+\end{figure}
+
 
 Desde Robocom se puede enviar una rutina default para configuración previa de la posición de cada motor. Esto se logra presionando la pestaña 'Posiciones por defecto' que se observa en la figura \ref{fig:robocomopen}.
 
