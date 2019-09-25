@@ -9,7 +9,7 @@ Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspon
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{img/brazofoto}
+	\includegraphics[scale=0.4]{img/brazofoto}
 	\caption{Detalle de pinza neumática}
 	\label{fig:brazofoto}
 \end{figure}
@@ -341,13 +341,12 @@ El manual anexo al trabajo de Marcano (\cite{juan1}) indica que:
 
 Motores A, B, C:
 
-Estos motores tienen configurado una señal PWM de 11bits y frecuencia 29,328kHz. Marcano lo explica a continuación:
-
-"\textit{La resolución de la señal de PWM obtenida es de 11 bits, por lo tanto para obtener un duty cycle máximo es necesario que el registro PDCx tenga un valor de 2048. Los pines de salida de PWM se han configurado en modo complementario, por lo tanto para que la corriente promedio entregada al motor sea cero es necesario colocar PDCx=1023, para que el motor produzca par máximo el registro de duty cycle debe ser PDCx=0 para que gire en un sentido ó PDCx =2048 para que gire en el otro sentido.}"
+Estos motores tienen configurado una señal PWM de 11bits y frecuencia 29,328kHz. Con esta resolución de señal se puede obtener un duty cycle máximo configurando el registro PDCx a un valor de 2048. Los pines de salida de PWM se configuraron en modo complementario, por lo tanto para que la corriente promedio entregada al motor sea cero se coloca PDCx=1023. Para que el motor produzca par máximo, el registro de duty cycle debe ser PDCx=0 para que gire en un sentido o PDCx =2048 para que gire en el otro sentido.
 
 Motores D, E, F:
 
-"\textit{Se ha configurado el mismo para un periodo de 17,3 ms, para obtener una posición del servomotor centrada, que corresponde con un pulso 1,5 ms de duración el registro de duty cycle debe ser OCxRS=0x1632 (5682 en decimal). Es necesario generar un pulso desde los 1 ms hasta los 2ms por lo tanto los valores válidos del registro en esta aplicación van desde el 3788 hasta el 7576 (en sistema decimal), lo que permite obtener la posición deseada en dentro del rango de posiciones del servomotor.}"
+Se configuraron para un periodo de 17,3 ms. Para obtener una posición del servomotor centrada, que corresponde con un pulso 1,5 ms de duración, el registro de duty cycle debe ser OCxRS=0x1632 (5682 en decimal). Es necesario generar un pulso desde 1 ms hasta 2ms. Por lo tanto, los valores válidos del registro en esta aplicación van desde el 3788 hasta el 7576 (en sistema decimal), lo que permite obtener la posición deseada en dentro del rango de posiciones del servomotor.
+
 \begin{figure}[H]
 	%\centering
 	\includegraphics[scale=0.65]{img/dspicpinout}

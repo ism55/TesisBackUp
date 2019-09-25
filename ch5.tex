@@ -1,3 +1,4 @@
+\section{Requerimientos}
 Las especificaciones del diseño del sistema de acceso remoto requieren el establecimiento de un servidor web para realizar una comunicación inalámbrica desde una página web con acceso desde un cliente. En esta página web se desea implementar los comandos de movimiento y configuración del brazo robot en tiempo real o con baja latencia para así eliminar completa o parcialmente la presencia de un computador de forma cableada.
 
 Para compensar la ausencia del computador, este dispositivo debe conectarse al controlador del brazo manipulador vía puerto serial para así establecer la comunicación entre el servidor y el cliente hacia el robot.
@@ -29,15 +30,61 @@ Por este motivo, se considera que las necesidades del proyecto requieren de uno 
 \end{table}
 
 En el mercado existe una gran cantidad de dispositivos que cubren estos requerimientos y muchos otros no contemplados. Por ello se analizarán algunos de los más importantes.
+\subsection{Raspberry Pi 3 (modelo B+)}
 
-Raspberry Pi 3
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/raspberry}
+	\caption{Tarjeta de desarrollo Raspberry Pi 3 Model B+}
+	\label{fig:raspberry}
+\end{figure}
 
-Esta tarjeta de desarrollo cuenta con microprocesador ARM Cortex
 
-Cypress CYW54907
+Esta tarjeta de desarrollo cuenta con microprocesador Broadcom BCM2837B0, propiamente un Cortex-A53 (ARMv8) de 64-bit. La velocidad de procesamiento del SoC es de 1.4GHz.
 
-Contiene un microprocesador ARM Cortex R4
+Posee cuarenta pines de GPIO, dos UART, además de cuatro puertos USB, un puerto HDMI, un conector auxiliar de 3.5mm y posibilidad de conectar una memoria SD y display táctil. Cuenta con puerto RJ45 para conexión Ethernet, entre otros elementos.
 
-ESP 8266
+Su gran capacidad de procesamiento lo hace ser una de las primeras opciones a considerar en la realización de servidores web debido a su bajo costo (alrededor de 35\$ según distribuidor oficial) con relación a todos los elementos que ofrece, ya que permite la ejecución de sistemas operativos basados en Linux, pudiendo programarse en lenguajes como Python, C\# o C.
 
-ESP 32
+Cuenta, además, con Bluetooth 4.2/BLE y compatibilidad de módulos de conexión Wi-Fi que no están incluidos en el producto principal. 
+
+Las opciones de acceso remoto que ofrece este dispositivo son: 
+
+Acceder a internet a través de un servidor web con conectividad a internet estableciendo un sitio web, o a través de su IP personal. También permite la copia y transferencia de archivos desde/a otro computador usando VNC, SSH, SFTP, SCP, SSHFS, rsync, FTP y SAMBA/CIFS.
+
+\subsection{Cypress CYW54907}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{img/cypress}
+	\caption{Tarjeta de evaluación CYW954907AEVAL1F de Cypress.}
+	\label{fig:cypress}
+\end{figure}
+
+Este equipo es una tarjeta de evaluación basada en el microcontrolador CYW54907 de Cypress. Contiene un microprocesador ARM Cortex R4, con velocidad de procesamiento máxima de 1.4GHz.
+
+El dispositivo cuenta con 30 pines de GPIO, tres UART y posibilidad de conectividad por radiofrecuenia con Wi-Fi o Bluetooth. Cuenta con un conector RJ45 para conexión Ethernet, además de ejecutar sistemas operativos y ser compatible con diversos módulos.
+
+Al poderse programar en diversos lenguajes, este dispositivo es una opción importante a considerar, ya que ofrece algunas ventajas convenientes en comparación a la Raspberry, como lo es poseer Wi-Fi incluido en el SoC. Su costo oficial es de 99\$.
+
+\subsection{ESP 8266}
+
+
+
+\subsection{ESP 32}
+
+
+
+\section{Selección}
+
+Basado en la información mostrada en la tabla \ref{TAB:comparacionbtwf}, se estima que las características más importantes a considerar son: ancho de banda, rango y flexibilidad. Esto debido a que este sistema debe tener la posibilidad de comunicarse desde la página web con el servidor sin desconexión a pesar de recibir instrucciones desde una aplicación externa, ya que es importante que puedan realizarse adaptaciones al mismo sin modificar el código contenido en el dispositivo.
+
+En cuanto al ancho de banda, esto permite que la comunicación sea de baja latencia y pueda transmitir datos en tiempo real con un retardo despreciable. Además, el rango es un factor determinante ya que el dispositivo puede estar considerablemente alejado y aún así poder comunicarse sin realizar reconexiones. 
+
+Por lo mencionado anteriormente, se selecciona Wi-Fi como método de comunicación entre los dispositivos.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{img/arana}
+	\caption{Comparación entre los dispositivos considerados}
+	\label{fig:arana}
+\end{figure}
