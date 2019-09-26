@@ -14,7 +14,7 @@ Para el desarrollo del sistema se utilizó como herramienta de programación el Ki
 La información de las especificaciones de hardware y software se observan en la tabla \ref{TAB:hardware} y \ref{TAB:software}.
 
 
-\begin{table}
+\begin{table}[H]
 	
 	\caption{Especificaciones de hardware}
 	\label{TAB:hardware}
@@ -48,7 +48,7 @@ La información de las especificaciones de hardware y software se observan en la 
 \end{table}
 
 
-\begin{table}
+\begin{table}[H]
 	
 	\caption{Especificaciones de software}
 	\label{TAB:software}
@@ -74,7 +74,7 @@ La información de las especificaciones de hardware y software se observan en la 
 
 SDK, en inglés Software Development Kit. Es un compilado de herramientas necesarias para desarrollar aplicaciones específicas para el en entorno deseado. 
 
-En el caso del Espressif NON OS ESP-8266 SDK, se trata de un kit diseñado por la empresa Espressif para desarrollar software en dispositivos sin sistema operativo. En ella tiene las librerías de mayor importancia para la configuración y uso del ESP-8266. 
+En el caso del Espressif NON OS ESP-8266 SDK, se trata de un kit diseñado por la empresa Espressif para desarrollar software en dispositivos sin sistema operativo. En ella tiene las librerías de mayor importancia para la configuración y uso del ESP-8266. \cite{esp1} \cite{esp2} \cite{esp3} \cite{esp4} 
 
 
 El SDK NON-OS provée un conjunto de interfaces de programación de aplicaciones (API) para las funcionalidades del núcleo ESP-8266, como recepción/ transmisión de datos a través de Wi-Fi, funciones para el manejo de TCP/IP, funciones para la interfaz de hardware y el manejo básico del sistema.
@@ -117,17 +117,17 @@ Como puede observarse en la tabla \ref{TAB:registrosesp}, el ESP-8266 posee múlt
 			\hline
 			{\bf FUNCTION 3} & {\bf FUNCTION 4} & {\bf AT RESET} & {\bf AFTER RESET} & {\bf SLEEP} \\
 			\hline
-			&    CLK\_OUT &  oe=0, wpu &        wpu &       oe=0 \\
+			\textbf{GPIO0}&    CLK\_OUT &  oe=0, wpu &        wpu &       oe=0 \\
 			\hline
 			{\bf GPIO1} &    CLK\_RTC &   oe=0,wpu &        wpu &       oe=0 \\
 			\hline
-			{\bf } &      U0TXD &   oe=0,wpu &        wpu &       oe=0 \\
+			{\bf GPIO2} &      U0TXD &   oe=0,wpu &        wpu &       oe=0 \\
 			\hline
 			{\bf GPIO3} &   CLK\_XTAL &   oe=0,wpu &        wpu &       oe=0 \\
 			\hline
-			{\bf } &            &       oe=0 &            &       oe=0 \\
+			{\bf GPIO4} &            &       oe=0 &            &       oe=0 \\
 			\hline
-			{\bf } &            &       oe=0 &            &       oe=0 \\
+			{\bf GPIO5} &            &       oe=0 &            &       oe=0 \\
 			\hline
 			{\bf GPIO6} &      U1CTS &       oe=0 &            &       oe=0 \\
 			\hline
@@ -236,6 +236,19 @@ El funcionamiento específico se resume en la figura, que muestra la comunicación
 
 
 \begin{center}
+	\begin{algorithm}[H]		
+		Función de desconexión\;
+		\Begin{
+			Borrar canal TCP\;
+			Crear nuevo canal TCP. //Esperar\;
+		}%end begin
+		
+	\end{algorithm}
+	
+\end{center}
+
+
+\begin{center}
 		\resizebox{11cm}{!} {
 	\begin{algorithm}[H]		
 		Interrupción Wifi\;
@@ -281,19 +294,6 @@ El funcionamiento específico se resume en la figura, que muestra la comunicación
 	\end{algorithm}
 }
 \end{center}
-
-\begin{center}
-	\begin{algorithm}[H]		
-		Función de desconexión\;
-		\Begin{
-			Borrar canal TCP\;
-			Crear nuevo canal TCP. //Esperar\;
-		}%end begin
-		
-	\end{algorithm}
-	
-\end{center}
-
 
 
 En la tabla \ref{TAB:wifi}, se especifica la información de la señal WiFi sobre la que se crea el servidor. Este es creado en el puerto 8266 sobre la IP 192.168.4.1 vía la señal WiFi emitida desde el microcontrolador. Esta comunicación se realiza a 2.4GHz y 54Mbps y solo puede crear 4 canales de comunicación TCP en paralelo, por ese motivo debe desconectarse después de cada comunicación para evitar la saturación del servidor.

@@ -68,11 +68,44 @@ Al poderse programar en diversos lenguajes, este dispositivo es una opción impor
 
 \subsection{ESP 8266}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/ESP-01}
+	\caption{ESP8266 con chip ESP-01}
+	\label{fig:esp-01}
+\end{figure}
 
+El ESP8266 es uno de los dispositivos más conocidos en el mercado debido a su alta versatilidad para el diseño de sistemas para IoT y su bajo costo.
+
+Este microcontrolador fabricado por Espressif Systems, con núcleo Xtensa Tensilica L106 de 32 bit con velocidad de 80MHz. Posee 16 GPIO, en los cuales pueden configurarse las entradas, salidas, UART, o algún otro puerto que requiera. Su convertidor analógico/digital es de 10bit, y a su vez posee un único pin de entrada analógica.
+
+Cuenta con una memoria flash de 4MB en algunos modelos, y 32kB de memoria RAM. Posee compatibilidad con SPI, I2C, I2S
+
+Este dispositivo posee incluye en el SoC, la posibilidad de conectividad Wi-Fi bajo seguridad WPA y WPA2. Pudiendo establecer servidores TCP/IP, UDP; así como clientes de los mismos. No posee puerto Ethernet, pero al tener Wi-Fi puede conectarse fácilmente a internet en la banda de 2.4GHz según el estándar IEEE 802.11 b/g/n (Hasta las versiones ESP 12-E). 
+
+Puede programarse en lenguaje C, Simba o Lua. Además, cuenta con un SDK para implementar RTOS o programar sin sistema operativo.
+
+El costo varía entre los 3\$ hasta alrededor de los 5\$. Es por ello que se ha posicionado como una de las mejores opciones en sistemas embebidos en el mercado del IoT.
 
 \subsection{ESP 32}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/esp32}
+	\caption{ESP 32 de Espressif.}
+	\label{fig:esp32}
+\end{figure}
 
+
+El ESP 32 es también fabricado por la empresa Espressif Systems y surgió como una mejora del ESP-8266. 
+
+Una de las nuevas implementaciones que este dispositivo trajo fue la posibilidad de establecer todos los pines de GPIO como entradas analógicas, con un convertidor analógico/digital de 12bit de resolución y un convertidor digital/analógico de 8bit. Es importante mencionar que esta versión cuenta con 36 GPIO y el doble de memoria flash, 16MB.
+
+Cuenta con Wi-Fi y Bluetooth 4.2 BR/EDR/BLE, ademas de compatibilidad de comunicación SPI, I2C, I2S. 
+
+Entre otros elementos resaltantes, posee 3 UART, compatibilidad Ethernet MAC, bus CAN, controlador remoto infrarrojo, sensor de efecto Hall, 10 sensores capacitivos táctiles, y 16 canales para señales PWM.
+
+Tiene un costo entre 5 y 10\$ y desde su aparición ha ganado popularidad entre los seguidores del ESP-8266 debido a la gran cantidad de periféricos que posee por un costo económico en comparación a competidores de mayor gama.
 
 \section{Selección}
 
@@ -80,11 +113,20 @@ Basado en la información mostrada en la tabla \ref{TAB:comparacionbtwf}, se esti
 
 En cuanto al ancho de banda, esto permite que la comunicación sea de baja latencia y pueda transmitir datos en tiempo real con un retardo despreciable. Además, el rango es un factor determinante ya que el dispositivo puede estar considerablemente alejado y aún así poder comunicarse sin realizar reconexiones. 
 
-Por lo mencionado anteriormente, se selecciona Wi-Fi como método de comunicación entre los dispositivos.
+Por lo mencionado anteriormente, se considera que la comunicación vía Wi-Fi cumple las expectativas de los requerimientos. No obstante, cualquiera de los dispositivos anteriormente mencionados (con excepción de la Raspberry Pi 3) puede ajustarse a esta necesidad del diseño. 
+
+Para discriminar y seleccionar el dispositivo que mejor se ajuste a los requerimientos mencionados, puede recurrirse al gráfico de la figura \ref{fig:arana}. 
+
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{img/arana}
+	\includegraphics[scale=0.75]{img/arana}
 	\caption{Comparación entre los dispositivos considerados}
 	\label{fig:arana}
 \end{figure}
+
+En esta figura puede observarse la gráfica verde como guía, ya que es la que representa a las necesidades mínimas del proyecto, según como se indica en la tabla \ref{TAB:requerimientos}. Alrededor se muestran las representaciones de las características de las tarjetas de desarrollo estudiadas en comparación con los parámetros ideales. En este gráfico se puede observar que a pesar de las considerables ventajas que ofrecen todos los dispositivos en cuestión, la gráfica que más se acerca a las condiciones ideales es la azul. Es decir, el ESP-8266. 
+
+Esto se evidencia al comprobar que es el dispositivo de menor costo entre los estudiados. Además, cubre las condiciones mínimas del diseño a pesar de no tener una extrema holgura de recursos como se demuestra en los dispositivos de mayor gama. 
+
+Por los motivos anteriormente expuestos, se seleccionará el dispositivo ESP-8266 con conectividad Wi-Fi sin acceso a internet para establecer un servidor de comunicación con una página web incluida en el SoC el cuál podrá accederse de forma remota para lograr el movimiento del brazo robot sin presencia de computadores intermediarios.
