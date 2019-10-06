@@ -1,22 +1,32 @@
+%
+
+
+\subsubsection{{Breve introducción al capítulo}}
+
+En este capítulo se expondrá el problema que motiva a la investigación de este trabajo, considerando un brazo manipulador ubicado en las instalaciones del Laboratorio de Control, Investigación y Desarrollo (LCID) dentro de la Universidad Central de Venezuela. Para alcanzar el objetivo general, se establecen objetivos específicos como: documentar técnicas y metodologías, determinar las acciones del brazo manipulador, seleccionar y diseñar el sistema remoto que se propondrá en los capítulos siguientes. Como justificación, se indica que el producto de este trabajo permitirá reforzar conocimientos en el área de sistemas automáticos de control; por lo que es siempre importante realizar mejoras en el diseño original.
+
+
 %==============================================================================%
-\section{Planteamiento del problema}
+
+\section{El problema}
+\subsection{Planteamiento del problema}
 El brazo manipulador que se encuentra en el Laboratorio de Control (LCID) actualmente cuenta con un controlador y una interfaz instalados en un computador que sirve de administrador de las acciones de control del sistema. No obstante, el brazo manipulador es de uso reducido porque necesita ajustes en cuanto al controlador y porque las plataformas computacionales se están haciendo obsoletas; por lo que se quiere añadir a esta implementación otro sistema para realizar acciones de control de forma remota.
 
 %==============================================================================%
-\section{Justificación}
+\subsection{Justificación}
 Este equipo permitirá reforzar conocimientos en el área de sistemas automáticos de control. Siendo este manipulador un diseño enfocado como equipo de laboratorio en la Escuela de Ingeniería Eléctrica (EIE)\cite{juan1}, es siempre importante una propuesta para mejorar la utilidad del mismo utilizando nuevas tecnologías relacionadas con accesos remotos.
 
 
 
 %==============================================================================%
-\section{Objetivos}
+\subsection{Objetivos}
 
 
-\subsection{Objetivo general}
+\subsubsection{Objetivo general}
 Diseñar un prototipo de sistema de acceso remoto al controlador del brazo
 manipulador MA2000.
 
-\subsection{Objetivos específicos}
+\subsubsection{Objetivos específicos}
 \begin{itemize}
 	\item Documentar las técnicas y metodologías de acceso remoto empleadas comúnmente en brazos manipuladores.
 	\item Determinar las acciones del sistema de control del brazo manipulador.
@@ -28,15 +38,29 @@ manipulador MA2000.
 \end{itemize}
 
 %==============================================================================%
-\section{Alcance y limitaciones}
+\subsection{Alcance y limitaciones}
 
 El presente trabajo estará solo enmarcado en el diseño del prototipo. Por lo tanto, no contempla una aplicación práctica a un sistema industrial real. Cualquier implementación física o ajuste mecánico para la validación no está contemplada en este trabajo.
 
 %==============================================================================%
-\section{Análisis de factibilidad}
+\subsection{Análisis de factibilidad}
 
 Para la realización de este trabajo se cuenta con una documentación ampliada del sistema de control del brazo manipulador en cuestión. Además, existe suficiente información con respecto al internet de las cosas y manipulación remota de sistemas. 
 
 Por otra parte, al tratarse del diseño de un prototipo, no requiere necesariamente una implementación, por lo cual este trabajo se considera factible ya que disminuye los riesgos económicos y el autor considera que cuenta con la información necesaria. 
 
 De ser necesario, cualquier costo adicional será asumido por el autor. Por último, el tiempo que se propone se considera suficiente para la realización de este trabajo.
+
+%==============================================================================%
+\section{Antecedentes}
+
+Marcano, Juan. $"$Implementación de sistema de programación de Trayectorias para el brazo manipulador MA2000". Universidad Central de Venezuela, 2013. Tutor: Prof. Alejandro González. Para establecer el control de posición del MA2000, se implementó un controlador de posición PID independiente para tres articulaciones utilizando el motor DSP de un dsPIC. Se desarrolló un software en el PC que se comunica con el microcontrolador y permite el ajuste dinámico del controlador PID y la visualización de la respuesta dinámica de cada articulación así como la programación de trayectorias. Se ha recuperado el funcionamiento de la pinza neumática del equipo y se ha elaborado documentación en línea del proyecto. \cite{juan1}
+
+%==============================================================================%
+
+Labrador, Alexis. "Diseño de un equipo para el control y monitoreo de un motor asincrónico usando una aplicación móvil". Universidad Central de Venezuela, 2018. Tutor: Prof. Servando Álvarez. El presente trabajo reporta el diseño de un equipo para controlar el encendido y apagado, junto al monitoreo de tensión, corriente y tiempo de funcionamiento de un motor asincrónico usando un ordenador de placa reducida y un dispositivo móvil por medio de la red de comunicación Internet de las cosas. Para lograrlo se selecciona el ordenador de placa reducida Raspberry Pi 3 modelo B, el sensor ACS712, módulos de relés para el accionamiento y componentes electrónicos, se elige y se programa la plataforma de IoT, Ubidots for Education, para el monitoreo y control de forma remota, se selecciona la arquitectura de red en estrella, se eligen los tipos y modo de avisos que tendrá el sistema según las que permite Ubidots for Education, para finalmente implementar dicho diseño con el fin de validar el correcto funcionamiento.\cite{alexis1}
+
+
+%==============================================================================%
+
+Valderrama, Jorge. "Diseño de un conjunto de prácticas para la configuración y uso básico del microcontrolador ESP8266". Universidad Central de Venezuela, 2018. Tutor: Prof. Ebert Brea. Este trabajo tiene como resultado una guía para la programación básica del microcontrolador ESP8266 a través del NON OS SDK de Espressif. En él se estudian los elementos básicos como: UART, GPIO, Interrupciones, Timer y Wifi. Cada uno de estos elementos estudiados viene acompañado por una guía de programación y ejemplos para implementación. \cite{jorge1}
