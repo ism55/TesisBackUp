@@ -1,9 +1,6 @@
 %
 
-
-\subsubsection{{Breve introducción al capítulo}}
-
-En este capítulo se expondrá el problema que motiva a la investigación de este trabajo, considerando un brazo manipulador ubicado en las instalaciones del Laboratorio de Control, Investigación y Desarrollo (LCID) dentro de la Universidad Central de Venezuela. Para alcanzar el objetivo general, se establecen objetivos específicos como: documentar técnicas y metodologías, determinar las acciones del brazo manipulador, seleccionar y diseñar el sistema remoto que se propondrá en los capítulos siguientes. Como justificación, se indica que el producto de este trabajo permitirá reforzar conocimientos en el área de sistemas automáticos de control; por lo que es siempre importante realizar mejoras en el diseño original.
+En este capítulo se expondrá el problema que motiva a la investigación de este trabajo, considerando un brazo manipulador ubicado en las instalaciones del Laboratorio de Control, Instrumentación y Digitales (LCID) dentro de la Universidad Central de Venezuela. Se menciona la justificación, objetivos, alcance, factibilidad y antecedentes.
 
 
 %==============================================================================%
@@ -53,6 +50,16 @@ De ser necesario, cualquier costo adicional será asumido por el autor. Por últim
 
 %==============================================================================%
 \section{Antecedentes}
+
+En primer lugar se tiene el trabajo de grado presentado en mayo de 2013 por Juan Marcano en la Universidad Central de Venezuela, titulado $"$Implementación de sistema de programación de Trayectorias para el brazo manipulador MA2000".\cite{juan1}
+
+Este proyecto se trató de la implementación de un sistema que permitió la comunicación con el brazo manipulador a través de un software instalado en un computador y de esta manera realizar las acciones de movimiento y programación de trayectorias. Para alcanzar esto, se realizó un controlador PID para el manejo de la posición de los motores con ayuda de un microcontrolador Microchip dsPIC y las librerías DSP compatibles con el mismo. 
+
+El software es capaz de comunicarse con el brazo manipulador a través de un convertidor USB a Serial conectado en uno de los puertos del microcontrolador. De esta manera, se puede realizar desde el computador el ajuste dinámico del controlador de posición y la respuesta dinámica de cada articulación del robot por medio de una interfaz gráfica.
+
+Como producto de este trabajo se generó un manual con el código fuente de las aplicaciones y demás características sobre los motores, además de obtener la documentación necesaria a través del documento de grado.
+
+Este sistema ayudó a comprender el funcionamiento del software, hardware y las acciones de movimiento del brazo manipulador, cuya información fue de gran importancia para la ejecución de la propuesta de mejora planteada en el presente trabajo de grado.
 
 Marcano, Juan. $"$Implementación de sistema de programación de Trayectorias para el brazo manipulador MA2000". Universidad Central de Venezuela, 2013. Tutor: Prof. Alejandro González. Para establecer el control de posición del MA2000, se implementó un controlador de posición PID independiente para tres articulaciones utilizando el motor DSP de un dsPIC. Se desarrolló un software en el PC que se comunica con el microcontrolador y permite el ajuste dinámico del controlador PID y la visualización de la respuesta dinámica de cada articulación así como la programación de trayectorias. Se ha recuperado el funcionamiento de la pinza neumática del equipo y se ha elaborado documentación en línea del proyecto. \cite{juan1}
 
