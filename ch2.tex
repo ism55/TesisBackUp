@@ -22,11 +22,18 @@
 
 
 
-\section{Fundamentos sobre brazos manipuladores.}
+\section{Fundamentos sobre brazos manipuladores de tipo pick and place.}
 
-\subsection{Grados de libertad}
 
-En [1] se describe cada uno de los seis grados de libertad del brazo manipulador como una unión que permite al robot doblar, rotar o trasladar la parte móvil de este. Así como lo muestra la figura \ref{fig:dof}, donde cada grado de libertad está identificado y relacionado con términos antropomórficos.
+\subsubsection{Brazo robot pick and place}
+
+Un brazo manipulador, o comúnmente llamado "brazo robot", es un sistema electrónico programado para realizar acciones de control a una parte mecánica. Estos existen de diversos tipos y morfologías y tienen múltiples aplicaciones industriales.
+
+El término \textquotedblleft brazo\textquotedblright\quad  se le atribuye por su similitud a la extremidad humana y a su funcionalidad. Cada grado de libertad de un brazo manipulador se describe como una unión que permite al robot doblar, rotar o trasladar la parte móvil de este.\cite{remotearm01}
+
+A menudo suelen describirse estas partes como se observa en la figura \ref{fig:dof}. Cada grado de libertad de un brazo manipulador posee un nombre con relación a términos antropomórficos como "cintura", "mano", "antebrazo", "muñeca", "brazo", "codo", "hombro", entre otros.  
+
+% \textquotedblleft codo\textquotedblright, "muñeca", "hombro", "mano", entre otros. %Debido a que estos se diseñan para satisfacer una necesidad humana.
 
 \begin{figure}[H]
 	\centering
@@ -36,12 +43,17 @@ En [1] se describe cada uno de los seis grados de libertad del brazo manipulador
 	\label{fig:dof}
 \end{figure}
 
-
-\subsection{Brazo manipulador de tipo pick and place.}
-
-Un brazo manipulador, o comúnmente llamado "brazo robot", es un sistema electrónico programado para realizar acciones de control a una parte mecánica. Estos existen de diversos tipos y morfologías y tienen múltiples aplicaciones industriales.\\
-El término \textquotedblleft brazo\textquotedblright\quad  se le atribuye por su similitud a la extremidad humana y a su funcionalidad. Contando en algunos casos con partes como \textquotedblleft codo\textquotedblright, "muñeca", "hombro", "mano", entre otros. %Debido a que estos se diseñan para satisfacer una necesidad humana.
 Existen de tipo: esférico, articulado, SCARA, cilíndrico y cartesiano. Como se observa en la figura \ref{fig:tiporobot}.
+
+%\subsubsection{Grados de libertad}
+%En [1]--- quien es 1 ?
+%Cada grado de libertad de un brazo manipulador se describe como una unión que permite al robot doblar, rotar o trasladar la parte móvil de este.\cite{remotearm01}
+
+%En la figura \ref{fig:dof} se puede observar cómo suelen describirse las partes o grados de libertad de un brazo manipulador con relación a términos antropomórficos como "cintura", "mano", "antebrazo", "muñeca", "brazo", "codo", "hombro", entre otros. 
+
+
+
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{img/tiporobot}
@@ -49,14 +61,23 @@ Existen de tipo: esférico, articulado, SCARA, cilíndrico y cartesiano. Como se o
 	\label{fig:tiporobot}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/pickandplacechart}
+	\caption[Pick and place]{https://www.omicsonline.org/open-access/automatic-pick-and-place-robot-manipulation-using-a-microcontroller-2168-9679-1000408-103563.html}
+	\label{fig:tiporobot}
+\end{figure}
+
+
 
 Entre algunos brazos manipuladores conocidos se tienen: PUMA, Stanford y Canadarm.
 
-\subsection{Brazo pick and place.}
+%\subsection{Brazo pick and place.}
 
 El término $ " $pick and place$ " $ está asociado a la utilidad del brazo robótico. Ya que posee un elemento final que permite sostener y soltar un elemento deseado. Según la figura \ref{fig:tiporobot} cualquier tipo de brazo robot puede ser utilizado como pick and place, ya que no depende de sus grados de libertad ni de uniones, sino de poseer un elemento como una pinza o garra para cumplir una función específica.
 
 Los siguientes brazos manipuladores a describir, se consideran del tipo $ " $pick and place$ " $ debido a sus funciones.
+
 
 \subsection{PUMA.}
 
