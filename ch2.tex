@@ -27,17 +27,17 @@
 
 \subsubsection{Brazo robot pick and place}
 
-Un brazo manipulador, o comúnmente llamado "brazo robot", es un sistema electrónico programado para realizar acciones de control a una parte mecánica. Estos existen de diversos tipos y morfologías y tienen múltiples aplicaciones industriales.
+Un brazo manipulador, o comúnmente llamado "brazo robot", es un tipo de brazo mecánico que posee un sistema electrónico programable para realizar acciones de control a un conjunto de motores. Estos existen de diversos tipos y morfologías y tienen múltiples aplicaciones industriales.
 
 El término \textquotedblleft brazo\textquotedblright\quad  se le atribuye por su similitud a la extremidad humana y a su funcionalidad. Cada grado de libertad de un brazo manipulador se describe como una unión que permite al robot doblar, rotar o trasladar la parte móvil de este.\cite{remotearm01}
 
-A menudo suelen describirse estas partes como se observa en la figura \ref{fig:dof}. Cada grado de libertad de un brazo manipulador posee un nombre con relación a términos antropomórficos como "cintura", "mano", "antebrazo", "muñeca", "brazo", "codo", "hombro", entre otros.  
+A menudo, estos grados de libertad suelen describirse como partes del cuerpo humano. Un ejemplo de esto se observa en la figura \ref{fig:dof} donde cada grado de libertad posee un nombre con relación a términos antropomórficos como $"$cintura$"$, $"$mano$"$, $"$antebrazo$"$, $"$muñeca$"$, $"$brazo$"$, $"$codo$"$, $"$hombro$"$, entre otros.  
 
 % \textquotedblleft codo\textquotedblright, "muñeca", "hombro", "mano", entre otros. %Debido a que estos se diseñan para satisfacer una necesidad humana.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{img/DOF}
+	\includegraphics[scale=0.5]{img/DOF}
 	\caption{Estructura básica de un brazo robótico.}
 	{Fuente: \cite{remotearm01}}
 	\label{fig:dof}
@@ -54,29 +54,34 @@ Existen de tipo: esférico, articulado, SCARA, cilíndrico y cartesiano. Como se o
 
 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=1]{img/tiporobot}
-	\caption[Eckovation]{https://engineering.eckovation.com/pick-place-robotic-arm/}
-	\label{fig:tiporobot}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=1]{img/tiporobot}
+%	\caption[Eckovation]{https://engineering.eckovation.com/pick-place-robotic-arm/}
+%	\label{fig:tiporobot}
+%\end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{img/pickandplacechart}
-	\caption[Pick and place]{https://www.omicsonline.org/open-access/automatic-pick-and-place-robot-manipulation-using-a-microcontroller-2168-9679-1000408-103563.html}
+	\caption {Anatomías básicas de brazos Pick and place.}{ a) Polar b) Cilíndrico c) Cartesiano d) Articulado e) SCARA\\}
+	{{\small Fuente: https://www.omicsonline.org/open-access/automatic-pick-and-place-robot-manipulation-using-a-microcontroller-2168-9679-1000408-103563.html}}
 	\label{fig:tiporobot}
 \end{figure}
 
 
 
-Entre algunos brazos manipuladores conocidos se tienen: PUMA, Stanford y Canadarm.
+%Entre algunos brazos manipuladores conocidos se tienen: PUMA, Stanford y Canadarm.
 
 %\subsection{Brazo pick and place.}
 
 El término $ " $pick and place$ " $ está asociado a la utilidad del brazo robótico. Ya que posee un elemento final que permite sostener y soltar un elemento deseado. Según la figura \ref{fig:tiporobot} cualquier tipo de brazo robot puede ser utilizado como pick and place, ya que no depende de sus grados de libertad ni de uniones, sino de poseer un elemento como una pinza o garra para cumplir una función específica.
 
-Los siguientes brazos manipuladores a describir, se consideran del tipo $ " $pick and place$ " $ debido a sus funciones.
+\subsubsection{Brazo pick and place articulado}
+
+Los brazos manipuladores articulados constan de una base fija a una superficie y sobre ella se ejecutan las acciones de movimiento. Existen de múltiples morfologías y son comúnmente empleados los brazos de seis grados de libertad para aplicaciones industriales, científicas o médicas. Dentro de esta categoría se encuentran los brazos: PUMA, Canadarm 1, Canadarm 2 y un brazo manipulador implementado por la Open University: MA 2000; que serán explicados en las siguientes secciones.
+
+%Los siguientes brazos manipuladores a describir, se consideran del tipo $ " $pick and place$ " $ debido a sus funciones.
 
 
 \subsection{PUMA.}
@@ -85,14 +90,14 @@ Los siguientes brazos manipuladores a describir, se consideran del tipo $ " $pic
 	\centering
 	\includegraphics[scale=0.5]{img/pumarobot}
 	\caption{Representación de un brazo PUMA 560}
-	{Fuente: https://grabcad.com/library/robot-puma-560}
+	{{\small Fuente: https://grabcad.com/library/robot-puma-560}}
 	\label{fig:pumarobot}
 \end{figure}
 
 
-El brazo PUMA: Programmable Universal Machine for Assembly, o Programmable Universal Manipulation Arm, por sus siglas en inglés; es un robot industrial desarollado por la empresa Unimation alrededor del año 1980. Entre los modelos más conocidos destacan los de la serie 500, que corresponden a brazos de seis grados de libertad con una herramienta final de control.\\
+El brazo PUMA: Programmable Universal Machine for Assembly, o Programmable Universal Manipulation Arm, por sus siglas en inglés; es un robot industrial desarollado por la empresa Unimation alrededor del año 1980\cite{Online:puma}. Entre los modelos más conocidos destacan los de la serie 500, que corresponden a brazos de seis grados de libertad con una herramienta final de control. En la figura \ref{fig:pumarobot} se ilustra un brazo PUMA 560.\\
 
-Ha sido muy utilizado en el campo de la medicina, ya que una característica importante de este sistema es que cuenta con un marco que le permite una mayor precisión y rapidez en los movimientos. Según se menciona en \cite{miller2009anesthesia}, este cuenta con la aceptación de su uso para fines médicos.
+Ha sido muy utilizado en el campo de la medicina, ya que una característica importante de este sistema es que cuenta con un marco que le permite una mayor precisión y rapidez en los movimientos, según se menciona en \cite{miller2009anesthesia}.
 
 \subsection{Canadarm}
 
@@ -108,7 +113,7 @@ Es un robot diseñado por un equipo de industrias canadienses (Spar Aerospace Ltd
 
 Se trata de un robot de seis grados de libertad y un elemento final de control controlado por control remoto desde la ISS. El primer modelo, el Canadarm, operó durante treinta años en la Estación Espacial Internacional (ISS) y fue conocido también con el nombre Shuttle Remote Manipulator System (SRMS).  
 
-\subsection{Brazo manipulador MA2000.}
+\subsection{Brazo manipulador MA2000.}\label{SUBSEC:ma2000}
 
 \begin{figure}[H]
 	\centering
@@ -118,7 +123,7 @@ Se trata de un robot de seis grados de libertad y un elemento final de control c
 \end{figure}
 
 
-Es un brazo robot diseñado alrededor de los años 1980s por George Carter, fundador de Labman Automation Ltd y fabricado por TecQuipment International Ltd, como petición de la Open University británica.
+Es un brazo robot articulado diseñado alrededor de los años 1980s por George Carter, fundador de Labman Automation Ltd y fabricado por TecQuipment International Ltd, como petición de la Open University británica.
 
 El diseño original era accionado por servomotores que permitían realizar control a lazo cerrado en cualquier instante. Requería adicionalmente una unidad compresora de aire para accionar la pinza neumática. 
 
