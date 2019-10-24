@@ -65,7 +65,7 @@ Existen de tipo: esférico, articulado, SCARA, cilíndrico y cartesiano. Como se o
 	\centering
 	\includegraphics[scale=0.5]{img/pickandplacechart}
 	\caption {Anatomías básicas de brazos Pick and place.}{ a) Polar b) Cilíndrico c) Cartesiano d) Articulado e) SCARA\\}
-	{{\small Fuente: https://www.omicsonline.org/open-access/automatic-pick-and-place-robot-manipulation-using-a-microcontroller-2168-9679-1000408-103563.html}}
+	{Fuente: \cite{manjula1}}
 	\label{fig:tiporobot}
 \end{figure}
 
@@ -90,7 +90,7 @@ Los brazos manipuladores articulados constan de una base fija a una superficie y
 	\centering
 	\includegraphics[scale=0.5]{img/pumarobot}
 	\caption{Representación de un brazo PUMA 560}
-	{{\small Fuente: https://grabcad.com/library/robot-puma-560}}
+	{{\small Fuente: \cite{Online:puma2}}}
 	\label{fig:pumarobot}
 \end{figure}
 
@@ -106,12 +106,13 @@ Ha sido muy utilizado en el campo de la medicina, ya que una característica impo
 	\subfigure[Canadarm 1]{\includegraphics[scale=0.6]{img/canadarm1}}
 	\subfigure[Canadarm 2]{\includegraphics[scale=0.4]{img/canadarm2}}
 	\caption{Modelos de brazo Canadarm.}
+	{Fuente: \cite{Online:canadarm1}}
 	\label{fig:canadarm1}
 \end{figure}
 
 Es un robot diseñado por un equipo de industrias canadienses (Spar Aerospace Ltd., CAE Electronics Ltd. y DSMA Atcon Ltd) bajo la dirección del Concilio Nacional de Investigación de Canadá (NRCC, por sus siglas en inglés). En la actualidad, el brazo Canadarm 2 se encuentra en la Estación Espacial Internacional (ISS).
 
-Se trata de un robot de seis grados de libertad y un elemento final de control controlado por control remoto desde la ISS. El primer modelo, el Canadarm, operó durante treinta años en la Estación Espacial Internacional (ISS) y fue conocido también con el nombre Shuttle Remote Manipulator System (SRMS).  
+Se trata de un robot de seis grados de libertad y un elemento final de control controlado por control remoto desde la ISS. El primer modelo, el Canadarm, operó durante treinta años en la Estación Espacial Internacional (ISS) y fue conocido también con el nombre Shuttle Remote Manipulator System (SRMS). \cite{Online:canadarm2}
 
 \subsection{Brazo manipulador MA2000.}\label{SUBSEC:ma2000}
 
@@ -119,27 +120,37 @@ Se trata de un robot de seis grados de libertad y un elemento final de control c
 	\centering
 	\includegraphics[scale=0.4]{img/robot}
 	\caption{Robot MA2000}
+	{Fuente: \cite{Online:ma2000}}
 	\label{fig:robot}
 \end{figure}
 
 
-Es un brazo robot articulado diseñado alrededor de los años 1980s por George Carter, fundador de Labman Automation Ltd y fabricado por TecQuipment International Ltd, como petición de la Open University británica.
+Es un brazo robot articulado de tipo pick and place de seis grados de libertad diseñado alrededor de los años 1980s por George Carter, fundador de Labman Automation Ltd y fabricado por TecQuipment International Ltd, como petición de la Open University británica.\cite{Online:ma2000}
 
-El diseño original era accionado por servomotores que permitían realizar control a lazo cerrado en cualquier instante. Requería adicionalmente una unidad compresora de aire para accionar la pinza neumática. 
+El diseño original era accionado por seis servomotores que permitían realizar control a lazo cerrado en cualquier instante. Requería adicionalmente una unidad compresora de aire para accionar la herramienta final de control (pinza neumática). Además, era controlado por computadores IBM o por microcontroladores BBC, quienes poseían el firmware para generar el movimiento de los motores.  \cite{Online:ma2000}
 
-En un principio, este brazo era controlado por computadores IBM o por microcontroladores BBC.
+Este diseño se concibió como una herramienta de estudio para el área de la robótica en ambientes académicos gracias a la Open University. Por otro lado, hasta la fecha de publicación de este trabajo de grado, el brazo manipulador se encuentra operando con seis motores DC y una pinza neumática. El sistema de control está implementado sobre un microcontrolador Microchip dsPIC30 que acciona un controlador PID digital en conjunto con una circuito de potencia para los motores y un software instalado en un computador para generar la trama de comunicación.
 
-En el trabajo de Marcano, se realizó un controlador manejado por computador al cuál se le realizarán mejoras para alcanzar un acceso remoto a este sistema.
+En \cite{juan1}, se explica detalladamente el proceso que se realizó para la optimización del sistema de control original a través de los elementos ilustrados en la figura \ref{fig:diagramajuan}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/diagramajuan}
+	\caption{Estructura del sistema de control de brazo MA 2000.}
+	\label{fig:diagramajuan}
+\end{figure}
 
 
 
-\subsection{Uso de librerías en lenguaje C}
 
-Para el desarrollo de aplicaciones con manipulacion de caracteres y cadenas, es necesario utilizar la librería \textit{string.h}. Esta librería está incluída en el estándar de lenguaje C, ya que es de uso común. 
+%\subsection{Uso de librerías en lenguaje C}
 
-Incluye funciones para manipulación de arreglos de caracteres. Propiamente, define un tipo de variable, un macro y varias funciones para manipulación de arreglos y cadenas. Algunas de las funciones utilizadas comúnmente son: \textit{strtok, strcmp, strncmp, memset, strlen, strcpy, strncpy}, entre otros. 
+%Para el desarrollo de aplicaciones con manipulación de caracteres y cadenas es necesario utilizar la librería \textit{string.h}. Esta librería está incluída en el estándar de lenguaje C, ya que es de uso común. 
 
-Otra librería importante es \textit{stdlib.h}. También está incluída en el lenguaje C estándar ya que ofrece muchas funciones útiles para manejo de memoria y operaciones numéricas. En definitiva, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras, son las más utilizadas.
+%Incluye funciones para manipulación de arreglos de caracteres. Propiamente, define un tipo de variable, un macro y varias funciones para manipulación de arreglos y cadenas. Algunas de las funciones utilizadas comúnmente son: \textit{strtok, strcmp, strncmp, memset, strlen, strcpy, strncpy}, entre otros. 
+
+
+%Otra librería importante que sirve soporte a \textit{string.h} es \textit{stdlib.h}, ya que posee las funciones necesarias para la conversión de caracteres en números, utilización de memoria dinámica para la generación de listas, colas y demás algoritmos de organización y posicionamiento de memorias. También está incluída en el lenguaje C estándar y es considerada de uso común. A grandes rasgos, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras, son las más utilizadas.
 
 
 %% hablar de librerias en C
