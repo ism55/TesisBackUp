@@ -1,25 +1,38 @@
+En este capítulo se ilustrará con mayor detalle la información sobre el brazo manipulador MA2000, tomando en cuenta la configuración original desde el software Robocom y demás detalles referentes a la trama de comunicación y el sistema de control.
+
 \section{ACCIONES DEL SISTEMA DE CONTROL DEL BRAZO MANIPULADOR MA2000.}
 
-Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspondientes al hombro (A), codo (B) y muñeca (C), controlados con motores DC. Los grados restantes, correspondientes a la mano, poseen motores de aeromodelismo. Cuenta también con una pinza neumática como herramienta final de control. Esto se observa en las figuras \ref{fig:esquemabrazo} y \ref{fig:brazofoto}.\\
+Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspondientes al hombro (A), codo (B) y muñeca (C), controlados con motores DC. Los grados restantes (D, E, F), son los correspondientes a la mano, y son controlados mediante servomotores. Cuenta también con una pinza neumática (pinza) como herramienta final de control. Esto se observa en las figuras \ref{fig:esquemabrazo} y \ref{fig:brazofoto}.\\
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{img/esquemabrazo}
+	\includegraphics[scale=0.3]{img/esquemabrazo}
 	\caption{Esquema de indentificación de los motores del brazo y la pinza neumática.}
 	\label{fig:esquemabrazo}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{img/brazofoto}
+	\includegraphics[scale=0.3]{img/brazofoto}
 	\caption{Detalle de pinza neumática}
 	\label{fig:brazofoto}
 \end{figure}
 
 
-Con respecto a cada grado de libertad, se tienen fijados los límites de movilidad de 270° para los motores DC y 120° para los motores de aeromodelismo. Esto para evitar daños a la integridad del equipo.\\
+Con respecto a cada grado de libertad, se tienen fijados los límites de movilidad de 270° para los motores A, B y C y 120° para los motores D, E y F. Esto para evitar daños a la integridad del equipo (enredo de cables o exigir un exceso de potencia a los motores) y cualquier inconveniente que altere la funcionalidad del mismo.
 
-El controlador principal del sistema está desarrollado con un microcontrolador dsPIC30F3011, quien actúa como servidor recibiendo vía puerto serial las órdenes de control, para posteriormente realizar las correspondientes acciones indicadas en cada trama. Para ello, cuenta con un módulo convertidor de USB-Serial (FTDI232) para una óptima comunicación con el computador y el software cliente. El controlador también puede responder el estado de cada articulación relacionada a los motores DC, leyendo las entradas analógicas conectadas a potenciómetros que ayudan a conocer la posición del brazo y así ejecutar el control PID.\\
+En la figura \ref{fig:diagramajuan2} se puede observar el diagrama de bloques que comprende detalladamente cada una de las partes del sistema del brazo manipulador MA2000. En esta se puede apreciar la unidad controladora principal apoyada por el microcontrolador dsPIC30F3011, quien procesa la trama de comunicación para accionar a los actuadores de cada motor.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/diagramajuan}
+	\caption{Estructura del sistema de control de brazo MA 2000.}
+	\label{fig:diagramajuan2}
+\end{figure}
+
+
+
+En la figura puede observarse con detalle el controlador principal del sistema, quien actúa como servidor recibiendo vía puerto serial las órdenes de control, para posteriormente realizar las correspondientes acciones indicadas en cada trama. Para ello, cuenta con un módulo convertidor de USB-Serial (FTDI232) para una óptima comunicación con el computador y el software cliente. El controlador también puede responder el estado de cada articulación relacionada a los motores DC, leyendo las entradas analógicas conectadas a potenciómetros que ayudan a conocer la posición del brazo y así ejecutar el control PID.\\
 
 El sistema realiza una acción de control PID en tres articulaciones principales (hombro, codo y muñeca). Para esto se configuran los parámetros desde el software cliente y se envían al controlador en una trama de tres bytes vía puerto serial.\\
 
