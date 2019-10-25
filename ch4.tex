@@ -356,6 +356,37 @@ El controlador también puede dar respuesta a las solicitudes de posición del A/D
 
 
 %Considerando como valores por defecto Kpro= 0.33 [grados/bits] para cada motor y Koffset = 0 para los motores A y C; y Koffset = 39[bits] para el motor B. Estos valores pueden ser modificados dentro de la interfaz del programa según como lo requiera el usuario.
+%
+%Permite establecer la posición angular de cada articulación.
+%2. Permite el ajuste de los parámetros proporcional integral y derivativo
+%del controlador PID, así como periodo de tiempo durante el cual el
+%controlador toma las muestras y ejecuta el algoritmo de control.
+%3. Permite visualizar en forma simultánea el error de posición de las
+%articulaciones A, B y C del manipulador en un gráfico xy.
+%4. Permite la calibración del manipulador respecto al ángulo medido en
+%las articulaciones A, B y C. Para realizar la calibración se emplean dos
+%constantes, una de offset y otra de proporcionalidad que relacionan el
+%número obtenido a partir del convertidor A/D y los potenciómetros de
+%las articulaciones A, B y C del DSC con el ángulo físico medido en
+%grados o radianes.
+%5. Permite la resolución del problema cinemático directo a partir de las
+%coordenadas articulares deseadas. Se puede obtener tanto las
+%coordenadas angulares según la convención de DH como la
+%orientación del efector final del manipulador. El cálculo cinemático
+%directo se realiza utilizando la convención de Denavit-Hartenberg y
+%matrices de transformación homogéneas. Se pueden variar los
+%parámetros de Denavit-Hartenberg en caso de que se realice al
+%manipulador alguna modificación geométrica.
+%6. Permite la programación de trayectorias tanto mediante guiado activo
+%como pasivo y el software genera un archivo de texto que puede ser
+%almacenado para permitir la ejecución posterior de las trayectorias61
+%programadas. Convenientemente el archivo de texto puede ser
+%generado mediante otros lenguajes de programación con herramientas
+%matemáticas más poderosas a partir de los cuales se puedan generar
+%trayectorias, tales como Matlab y la Toolbox de robótica de Peter
+%Corke o cualquier otra herramienta sin demasiados inconvenientes.
+%7. Permite el accionamiento de la pinza neumática, así como activación y
+%desactivación de los puentes H.
 
 
 \section{Unidad de control}
