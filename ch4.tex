@@ -19,7 +19,128 @@ Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspon
 \end{figure}
 
 
+
 Con respecto a cada grado de libertad, se tienen fijados los límites de movilidad de 270° para los motores A, B y C y 120° para los motores D, E y F. Esto para evitar daños a la integridad del equipo (enredo de cables o exigir un exceso de potencia a los motores) y cualquier inconveniente que altere la funcionalidad del mismo.
+
+%\begin{figure}[H]
+%	\centering
+%	\subfigure[scale=0.1]{img/q1_grado_0}
+%	\caption{Motor A en posición de 0°}
+%	\label{fig:q1grado0}
+%\end{figure}
+
+
+\begin{figure}[H]
+		\begin{minipage}[c]{0.3\textwidth}
+			\centering
+			\includegraphics[scale=0.1]{img/q1_grado_0}
+	\end{minipage}
+	\hfill 	
+		\begin{minipage}[c]{0.3\textwidth}
+			\centering
+			\includegraphics[scale=0.1]{img/q1_grado_+135}
+	\end{minipage}
+	\hfill	
+		\begin{minipage}[c]{0.3\textwidth}
+			\centering
+			\includegraphics[scale=0.1]{img/q1_grado_-135}
+	\end{minipage}
+	\caption{Límites máximos de movimiento para el motor A.}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q2_grado_0}
+	\end{minipage}
+	\hfill 	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q2_grado_+135}
+	\end{minipage}
+	\hfill	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q2_grado_-135}
+	\end{minipage}
+	\caption{Límites máximos de movimiento para el motor B.}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q3_grado_0}
+	\end{minipage}
+	\hfill 	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q3_grado_+135}
+	\end{minipage}
+	\hfill	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q3_grado_-135}
+	\end{minipage}
+	\caption{Límites máximos de movimiento para el motor C.}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q4_grado_0}
+	\end{minipage}
+	\hfill 	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q4_grado_+66}
+	\end{minipage}
+	\hfill	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q4_grado_-66}
+	\end{minipage}
+	\caption{Límites máximos de movimiento para el motor D.}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q5_grado_0}
+	\end{minipage}
+	\hfill 	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q5_grado_+60}
+	\end{minipage}
+	\hfill	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q5_grado_-66}
+	\end{minipage}
+	\caption{Límites máximos de movimiento para el motor E.}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q6_grado_0}
+	\end{minipage}
+	\hfill 	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q6_grado_+66}
+	\end{minipage}
+	\hfill	
+	\begin{minipage}[c]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.1]{img/q6_grado_-66}
+	\end{minipage}
+	\caption{Límites máximos de movimiento para el motor F.}
+\end{figure}
 
 En la figura \ref{fig:diagramajuan2} se puede observar el diagrama de bloques que comprende detalladamente cada una de las partes del sistema del brazo manipulador MA2000. En esta se puede apreciar la unidad controladora principal apoyada por el microcontrolador dsPIC30F3011, quien procesa la trama de comunicación para accionar a los actuadores de cada motor.
 
