@@ -1,8 +1,8 @@
 En este capítulo se ilustrará con mayor detalle la información sobre el brazo manipulador MA2000, tomando en cuenta la configuración original desde el software Robocom y demás detalles referentes a la trama de comunicación y el sistema de control.
 
-\section{ACCIONES DEL SISTEMA DE CONTROL DEL BRAZO MANIPULADOR MA2000.}
+\section{ACCIONES DEL SISTEMA DE CONTROL DEL BRAZO MANIPULADOR MA2000.}\label{SEC:acciones}
 
-Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspondientes al hombro (A), codo (B) y muñeca (C), controlados con motores DC. Los grados restantes (D, E, F), son los correspondientes a la mano, y son controlados mediante servomotores. Cuenta también con una pinza neumática (pinza) como herramienta final de control. Esto se observa en las figuras \ref{fig:esquemabrazo} y \ref{fig:brazofoto}.\\
+Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspondientes al hombro (A), codo (B) y muñeca (C), controlados con motores DC. Los grados restantes (D, E, F), son los correspondientes a la mano, y son controlados mediante servomotores. Cuenta también con una pinza neumática (pinza) como herramienta final de control. Esto se observa en las figuras \ref{fig:esquemabrazo}.\\
 
 \begin{figure}[H]
 	\centering
@@ -11,16 +11,20 @@ Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspon
 	\label{fig:esquemabrazo}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.3]{img/brazofoto}
-	\caption{Detalle de pinza neumática}
-	\label{fig:brazofoto}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.3]{img/brazofoto}
+%	\caption{Detalle de pinza neumática}
+%	\label{fig:brazofoto}
+%\end{figure}
 
+\subsubsection{Limitaciones de movimiento}
 
+Los motores del brazo manipulador MA2000, identificados como A, B, C, D, E y F en la figura \ref{fig:esquemabrazo}, tienen limitaciones físicas que impiden que tenga una total libertad de movimiento. Esto conlleva a que el sistema controlador del brazo deba evitar que los motores hagan un esfuerzo mayor al permitido limitando estos movimientos según las condiciones de cada motor. pudiendo disminuir la posibilidad de daños a la integridad del equipo para garantizar una mejor funcionalidad del sistema.
 
-Con respecto a cada grado de libertad, se tienen fijados los límites de movilidad de 270° para los motores A, B y C y 120° para los motores D, E y F. Esto para evitar daños a la integridad del equipo (enredo de cables o exigir un exceso de potencia a los motores) y cualquier inconveniente que altere la funcionalidad del mismo.
+En las figuras \ref{fig:maximoA}, \ref{fig:maximoB} y \ref{fig:maximoC} se puede observar que para los motores  A, B y C, se tienen aproximadamente 270° de movilidad en torno a sus ejes centrales.
+
+%Con respecto a cada grado de libertad, se tienen fijados los límites de movilidad de 270° para los motores A, B y C y 120° para los motores D, E y F. Esto para evitar daños a la integridad del equipo (enredo de cables o exigir un exceso de potencia a los motores) y cualquier inconveniente que altere la funcionalidad del mismo.
 
 %\begin{figure}[H]
 %	\centering
@@ -34,112 +38,137 @@ Con respecto a cada grado de libertad, se tienen fijados los límites de movilida
 		\begin{minipage}[c]{0.3\textwidth}
 			\centering
 			\includegraphics[scale=0.1]{img/q1_grado_0}
+			(a) 0°
 	\end{minipage}
 	\hfill 	
 		\begin{minipage}[c]{0.3\textwidth}
 			\centering
 			\includegraphics[scale=0.1]{img/q1_grado_+135}
+			(b) 135°
 	\end{minipage}
 	\hfill	
 		\begin{minipage}[c]{0.3\textwidth}
 			\centering
 			\includegraphics[scale=0.1]{img/q1_grado_-135}
+			(c) -135°
 	\end{minipage}
 	\caption{Límites máximos de movimiento para el motor A.}
+	\label{fig:maximoA}
 \end{figure}
 
 
 \begin{figure}[H]
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q2_grado_0}
+		\includegraphics[scale=0.15]{img/q2_grado_0}
+		(a) 0°
 	\end{minipage}
 	\hfill 	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q2_grado_+135}
+		\includegraphics[scale=0.15]{img/q2_grado_+135}
+		(b) 135°
 	\end{minipage}
 	\hfill	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q2_grado_-135}
+		\includegraphics[scale=0.15]{img/q2_grado_-135}
+		(c) -135°
 	\end{minipage}
 	\caption{Límites máximos de movimiento para el motor B.}
+	\label{fig:maximoB}
 \end{figure}
 
 
 \begin{figure}[H]
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q3_grado_0}
+		\includegraphics[scale=0.15]{img/q3_grado_0}
+		(a) 0°
 	\end{minipage}
 	\hfill 	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q3_grado_+135}
+		\includegraphics[scale=0.15]{img/q3_grado_+135}
+		(b) 135°
 	\end{minipage}
 	\hfill	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q3_grado_-135}
+		\includegraphics[scale=0.15]{img/q3_grado_-135}
+		(c) -135°
 	\end{minipage}
 	\caption{Límites máximos de movimiento para el motor C.}
+	\label{fig:maximoC}
 \end{figure}
 
+En las figuras \ref{fig:maximoD}, \ref{fig:maximoE} y \ref{fig:maximoF} se puede observar que para los motores D, E y F, se tienen aproximadamente 120° de movilidad en torno a sus ejes centrales.
 
 \begin{figure}[H]
-	\begin{minipage}[c]{0.3\textwidth}
+	\noindent\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q4_grado_0}
-	\end{minipage}
+		\includegraphics[scale=0.15]{img/q4_grado_0}
+		(a) 0°
+	\end{minipage}%
 	\hfill 	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q4_grado_+66}
+		\includegraphics[scale=0.15]{img/q4_grado_+66}
+		(b) 66°
 	\end{minipage}
 	\hfill	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q4_grado_-66}
+		\includegraphics[scale=0.15]{img/q4_grado_-66}
+		(c) -66°
 	\end{minipage}
 	\caption{Límites máximos de movimiento para el motor D.}
+	\label{fig:maximoD}
 \end{figure}
 
 \begin{figure}[H]
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q5_grado_0}
+		\includegraphics[scale=0.15]{img/q5_grado_0}
+		(a) 0°
 	\end{minipage}
 	\hfill 	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q5_grado_+60}
+		\includegraphics[scale=0.15]{img/q5_grado_+60}
+		(b) 60°
 	\end{minipage}
 	\hfill	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q5_grado_-66}
+		\includegraphics[scale=0.15]{img/q5_grado_-66}
+		(c) -66°
 	\end{minipage}
 	\caption{Límites máximos de movimiento para el motor E.}
+	\label{fig:maximoE}
 \end{figure}
 
 
 \begin{figure}[H]
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q6_grado_0}
+		\includegraphics[scale=0.20]{img/q6_grado_0}
+		(a) 0°
 	\end{minipage}
 	\hfill 	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q6_grado_+66}
+		\includegraphics[scale=0.20]{img/q6_grado_+66}
+		(b) 66°
 	\end{minipage}
 	\hfill	
 	\begin{minipage}[c]{0.3\textwidth}
 		\centering
-		\includegraphics[scale=0.1]{img/q6_grado_-66}
+		\includegraphics[scale=0.20]{img/q6_grado_-66}
+		(c) -66°
 	\end{minipage}
 	\caption{Límites máximos de movimiento para el motor F.}
+	\label{fig:maximoF}
 \end{figure}
 
 En la figura \ref{fig:diagramajuan2} se puede observar el diagrama de bloques que comprende detalladamente cada una de las partes del sistema del brazo manipulador MA2000. En esta se puede apreciar la unidad controladora principal apoyada por el microcontrolador dsPIC30F3011, quien procesa la trama de comunicación para accionar a los actuadores de cada motor.
@@ -153,24 +182,45 @@ En la figura \ref{fig:diagramajuan2} se puede observar el diagrama de bloques qu
 
 
 
-En la figura puede observarse con detalle el controlador principal del sistema, quien actúa como servidor recibiendo vía puerto serial las órdenes de control, para posteriormente realizar las correspondientes acciones indicadas en cada trama. Para ello, cuenta con un módulo convertidor de USB-Serial (FTDI232) para una óptima comunicación con el computador y el software cliente. El controlador también puede responder el estado de cada articulación relacionada a los motores DC, leyendo las entradas analógicas conectadas a potenciómetros que ayudan a conocer la posición del brazo y así ejecutar el control PID.\\
+En la figura \ref{fig:dspic} puede observarse con detalle la tarjeta del controlador principal del brazo robot, quien actúa como servidor recibiendo vía puerto serial las órdenes de control, para posteriormente realizar las correspondientes acciones indicadas en la trama de comunicación. Para ello, cuenta con un módulo convertidor de USB-Serial FTDI232 (figura \ref{fig:ftdi}) para una óptima comunicación con el computador a través de un software cliente. El controlador también puede responder el estado de cada articulación relacionada a los motores DC, leyendo las entradas analógicas conectadas a potenciómetros y engranajes que ayudan a conocer la posición del brazo y así ejecutar el control PID, tal como se indica en la figura \ref{fig:diagramajuan2}.\\
 
-El sistema realiza una acción de control PID en tres articulaciones principales (hombro, codo y muñeca). Para esto se configuran los parámetros desde el software cliente y se envían al controlador en una trama de tres bytes vía puerto serial.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.45]{img/dsPIC.jpg}
+	\caption{Tarjeta controladora con microcontrolador dsPIC30F3011}
+	\label{fig:dspic}
+\end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/ftdi}
+	\caption{Tarjeta del convertidor USB/Serial FTDI232}
+	\label{fig:ftdi}
+\end{figure}
+
+
+El sistema realiza una acción de control PID en tres articulaciones principales (hombro, codo y muñeca) con ayuda de los puentes H de la figura \ref{fig:actuadores}. Para esto se configuran los parámetros desde un software (cliente) y se envían al controlador en una trama de tres bytes vía puerto serial, la cual será descrita en secciones posteriores.\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/actuadores}
+	\caption{Puentes H L296.}
+	\label{fig:actuadores}
+\end{figure}
 
 %Las acciones de control son realizadas con ayuda de un microcontrolador dsPIC30F3011, quien actúa como servidor recibiendo vía puerto serial las órdenes de control mediante la interfaz Robocom. Este programa ajusta las constantes correspondientes a cada controlador PID para los motores DC y las instrucciones de movimiento para la pinza y los motores de aeromodelismo. También ajusta las variables de calibración para el cálculo óptimo del valor a transmitir en la trama y el periodo de muestreo utilizado en la conversión analógica-digital.\\
 
 \section{Software Robocom}
 
-Anteriormente mencionado como 'software cliente', este programa es una interfaz gráfica de usuario desarrollada en lenguaje C++ que permite generar la trama de comunicación que se transmite del computador a la unidad de control mediante el puerto serial. \\
+En la sección \ref{SEC:acciones} se mencionó la utilización de un software cliente que se encarga de generar la trama de comunicación que es enviada al controlador a través del puerto serial, este programa es una interfaz gráfica de usuario desarrollada en lenguaje C++ que permite, además, configurar los parámetros de mayor importancia del robot. \\
 
-Esta herramienta permite la posibilidad de editar las variables relacionadas al movimiento del brazo y al controlador PID (factor proporcional, factor integral y factor derivativo) para cada motor DC, correspondientes al hombro, codo y muñeca. Configura la activación o desactivación de los puentes H, el accionamiento de la pinza neumática. También puede configurar el timer PR1 del microcontrolador con el que se estima el tiempo de muestreo para la ejecución de las acciones de control. \\
+Esta herramienta permite la posibilidad de editar las variables relacionadas al movimiento del brazo y al controlador PID (factor proporcional, factor integral y factor derivativo) para cada motor DC, correspondientes al hombro, codo y muñeca. Configura la activación o desactivación de los puentes H, el accionamiento de la pinza neumática. También puede configurar el timer del microcontrolador con el que se estima el tiempo de muestreo para la ejecución de las acciones de control. \\
 
 \subsection{Elementos fundamentales}
 
 A continuación, se explicarán los detalles de mayor uso contenidos en el software Robocom.
 
-Al abrir el programa, se puede observar lo indicado en la figura \ref{fig:robocomopen}:
+Al ejecutar el programa, se puede observar una pantalla como la expuesta en la figura \ref{fig:robocomopen}:
 
 \begin{figure}[H]
 	\centering
