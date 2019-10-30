@@ -37,19 +37,19 @@ En las figuras \ref{fig:maximoA}, \ref{fig:maximoB} y \ref{fig:maximoC} se puede
 \begin{figure}[H]
 		\begin{minipage}[c]{0.3\textwidth}
 			\centering
-			\includegraphics[scale=0.1]{img/q1_grado_0}
+			\includegraphics[scale=0.11]{img/q1_grado_0}
 			(a) 0°
 	\end{minipage}
 	\hfill 	
 		\begin{minipage}[c]{0.3\textwidth}
 			\centering
-			\includegraphics[scale=0.1]{img/q1_grado_+135}
+			\includegraphics[scale=0.11]{img/q1_grado_+135}
 			(b) 135°
 	\end{minipage}
 	\hfill	
 		\begin{minipage}[c]{0.3\textwidth}
 			\centering
-			\includegraphics[scale=0.1]{img/q1_grado_-135}
+			\includegraphics[scale=0.11]{img/q1_grado_-135}
 			(c) -135°
 	\end{minipage}
 	\caption{Límites máximos de movimiento para el motor A.}
@@ -224,8 +224,15 @@ Al ejecutar el programa, se puede observar una pantalla como la expuesta en la f
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.9]{img/robocom_open}
+	\includegraphics[scale=0.9]{img/robocom_open2}
 	\caption{Vista inicial al abrir el software Robocom.}
+	{1. Panel de funciones rápidas.\\
+	2. Setpointer.\\
+	3. Opciones de comunicación.\\
+	4. Habilitar/Deshabilitar pinza neumática.\\
+	5. Habilitar/Deshabilitar puentes H.\\
+	6. Graficador de error de posición.\\
+	}
 	\label{fig:robocomopen}
 \end{figure}
 
@@ -234,7 +241,7 @@ En el panel inferior, según se observa en la figura \ref{fig:robocommenu1}, se e
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=1]{img/robocom_menu1}
+	\includegraphics[scale=0.8]{img/robocom_menu2}
 	\caption{Panel inferior de Robocom}
 	\label{fig:robocommenu1}
 \end{figure}
@@ -245,7 +252,7 @@ La pestaña 'Gripper' posee un botón que activa o desactiva la pinza neumática.
 
 La pestaña 'Puentes H' permite habilitar o deshabilitar los puentes H de los motores principales.
 
-En la pestaña 'Configuración del gráfico' se encuentran las opciones de visualización del error. No obstante, esta funcionalidad no es estudiada en este trabajo.
+%En la pestaña 'Configuración del gráfico' se encuentran las opciones de visualización del error. No obstante, esta funcionalidad no es estudiada en este trabajo.
 
 Un elemento importante es el 'Setpointer', indicado en la figura \ref{fig:robocomsetpointer}. Ya que esto permite ajustar la entrada de referencia al controlador y también realizar movimientos en tiempo real con el brazo.
 
@@ -256,7 +263,7 @@ Un elemento importante es el 'Setpointer', indicado en la figura \ref{fig:roboco
 	\label{fig:robocomsetpointer}
 \end{figure}
 
-A la izquierda se observan las letras 'A,B,C,D,E,F' que corresponden a cada motor a mover. 'A,B,C' son para los motores del hombro, codo y muñeca. El resto es para los motores de aeromodelismo de la mano. De igual modo, la parte central cuenta con barras deslizantes que permiten generar la trama en tiempo real.
+A la izquierda se observan las letras 'A,B,C,D,E,F' que corresponden a cada motor. 'A, B, C' son para los motores de mayor potencia que dan movimiento al armazón del brazo robot (hombro, codo y muñeca). El resto es para los motores de la mano (D, E, F). De igual modo, la parte central de este cuadro cuenta con barras deslizantes cuya información permite generar la trama de comunicación que es enviada al microcontrolador.
 
 Los números que se observan en el panel 'Digital' son los utilizados para generar el segundo y tercer byte (dato) de la trama de comunicación. 
 
@@ -266,9 +273,9 @@ El programa realiza una conversión del número observado en digital a grados o ra
 Valor_{grados} = (Valor_{digital}+ K_{offset})K_{pro}
 \end{equation}
 
-Donde $K_{pro}$ es una constante de calibración para convertir el ángulo de binario a grados, medida en grados/bits y su valor de inicio es 0.33 grados/bits para los tres casos (A, B, C). Para los casos (D, E, F), el valor es fijo y vale 0.035 grados/bits.
+Donde $K_{pro}$ es una constante proporcional de calibración que es utilizada para convertir el ángulo de binario a grados, medida en grados/bits y su valor programado por defecto es 0.33 grados/bits para los tres motores principales (A, B, C). Para el caso de los motores de la mano (D, E, F), el valor es fijo y vale 0.035 grados/bits.
 
-$ K_{offset}$ es el error de corrección de la conversión a bits y es medida en bits. Su valor inicial es 0 para el motor A y C, y 39 para el motor B. Para los motores (D, E, F), el valor es fijo y vale 5682 bits.
+$ K_{offset}$ es el error de corrección de la conversión a bits y es medida en bits. Su valor inicial es 0 para los motores A y C, y 39 para el motor B. Para los motores de la mano (D, E, F), el valor es fijo y vale 5682 bits.
 
 
 
@@ -282,7 +289,7 @@ $ K_{offset}$ es el error de corrección de la conversión a bits y es medida en b
 
 
 
-En la pestaña 'Calibración', mostrada en la figura \ref{fig:robocomcali}, puede apreciarse mejor esta información.
+En la pestaña 'Calibración', mostrada en la figura \ref{fig:robocomcali}, puede apreciarse mejor la información sobre $ K_{offset}$ y $K_{pro}$ descritas anteriormente.
 
 \begin{figure}[H]
 	\centering
@@ -292,9 +299,10 @@ En la pestaña 'Calibración', mostrada en la figura \ref{fig:robocomcali}, puede 
 \end{figure}
 
 
-\subsection{Generación de la trama}
+\subsection{Generación de la trama de comunicación}
 
-La estructura general de la trama enviada desde el software Robocom al sistema de control consta de:\\
+\subsubsection{Estructura}
+La estructura general de la trama enviada desde el software Robocom al sistema de control consta de tres bytes cuya estructura corresponde a la tabla \ref{TAB:estructura}. Esta trama carece de bytes que determinen el inicio o el fin de la comunicación o de algún un método de comprobación de errores en la transmisión.\\
 
 \begin{table}[H]
 	\label{TAB:estructura}
@@ -304,27 +312,138 @@ La estructura general de la trama enviada desde el software Robocom al sistema d
 	\begin{tabular}{||c||c||c||}
 	\hline 
 	\rule[-1ex]{0pt}{2.5ex}  comando& dato high & dato low \\ 
-	\hline 
+	\hline
+	 \rule[-1ex]{0pt}{2.5ex}  8 bits& 8 bits & 8 bits\\ 
+	 \hline
 \end{tabular} 
 \end{center}
 	
 \end{table}
 
+
+
+\subsubsection{Sintaxis}
+
 La cabecera o 'comando' de la trama puede tomar cualquier valor referido en la tabla \ref{TAB:comandocliente}. El valor indicará qué instrucción ejecutará el controlador y qué valor tomará el dato del comando.
 
-Un ejemplo de esto, puede verse en la figura con ayuda del software DockLight v2.2, que es un sniffer/monitor de puerto serial RS232 para Windows.
+\begin{table}[H]
+\centering
+\caption{Comandos emitidos desde el software Robocom (cliente) al brazo.}
+\begin{center}
+	\resizebox{15cm}{!} {
+% Table generated by Excel2LaTeX from sheet 'Hoja1'
+\begin{tabular}{|c|c|c|}
+	\hline
+	\multicolumn{ 3}{|c|}{CLIENTE} \\
+	\hline
+	1er byte & 2do y 3er Byte & \multicolumn{ 1}{|c|}{Descripción} \\
+	
+	
+	Comando (8 bits) & Dato (16 bits) & \multicolumn{ 1}{|c|}{} \\
+	\hline
+	\multicolumn{ 1}{|c|}{} &         00 & Enable articulacion A \\
+	
+	\multicolumn{ 1}{|c|}{} &         01 & Disable articulacion A \\
+	
+	\multicolumn{ 1}{|c|}{} &         02 & Enable articulacion B \\
+	
+	\multicolumn{ 1}{|c|}{} &         03 & Disable articulacion B \\
+	
+	\multicolumn{ 1}{|c|}{E0} &         04 & Enable pinza neumática \\
+	
+	\multicolumn{ 1}{|c|}{} &         05 & Disable pinza neumática \\
+	
+	\multicolumn{ 1}{|c|}{} &         06 & Enable articulacion C \\
+	
+	\multicolumn{ 1}{|c|}{} &         07 & Disable articulacion C \\
+	
+	\multicolumn{ 1}{|c|}{} &         09 & Solicitud de la posición del A/D de articulación A \\
+	
+	\multicolumn{ 1}{|c|}{} &         10 & Solicitud de la posición del A/D de articulación B \\
+	
+	\multicolumn{ 1}{|c|}{} &         11 & Solicitud de la posición del A/D de articulación C \\
+	\hline
+	
+	F0 &       Dato & Escribir Periodo de muestreo \\
+	\hline
+	F1 &       Dato & Escribir Referencia de control de PID A (PID\_A.controlReference) \\
+	\hline
+	F2 &       Dato & Escribir Referencia de control de PID B (PID\_B.controlReference) \\
+	\hline
+	F3 &       Dato & Escribir Referencia de control de PID C (PID\_C.controlReference) \\
+	\hline
+	F4 &       Dato & Escribir Referencia de motor de modelismo D (OC1RS) \\
+	\hline
+	F5 &       Dato & Escribir Referencia de motor de modelismo E (OC2RS) \\
+	\hline
+	F6 &       Dato & Escribir Referencia de motor de modelismo F (OC3RS) \\
+	\hline
+	F7 &       Dato & Escribir término proporcional del PID A \\
+	\hline
+	F8 &       Dato & Escribir término proporcional del PID B \\
+	\hline
+	F9 &       Dato & Escribir término proporcional del PID C \\
+	\hline
+	FA &       Dato & Escribir término integral del PID A \\
+	\hline
+	FB &       Dato & Escribir término integral del PID B \\
+	\hline
+	FC &       Dato & Escribir término integral del PID C \\
+	\hline
+	FD &       Dato & Escribir término derivativo del PID A \\
+	\hline
+	FE &       Dato & Escribir término derivativo del PID B \\
+	\hline
+	FF &       Dato & Escribir término derivativo del PID C \\
+	\hline
+\end{tabular}
+}  
+\end{center}
+\label{TAB:comandocliente}
+
+\end{table}
+
+
+Al seleccionar el motor que se moverá, el software Robocom envía un comando cabecera que identifica dicho motor o comando, posteriormente la construcción del dato para los motores A, B y C es la siguiente:
+
+\begin{center}
+	\begin{algorithm}[H]
+			Entero de 16 bits Vdigital\;
+			Entero de 8 bits Vhigh, Vlow\;
+		\Begin{
+				//Cantidad de movimiento\;
+				Se genera un valor binario correspondiente al ángulo deseado y es almacenado en la variable Vdigital\;
+				\;
+				//La variable Vdigital es modificada\;
+				Vdigital se traslada 6 bits a la izquierda\;
+				\;
+				//Obtener bits altos\;
+				
+				Vhigh es igual al valor generado al trasladar Vdigital 8 bits a la derecha\;
+				\;
+				//Obtener bits bajos\;
+				
+				Vlow es igual a los 8 bits bajos de Vdigital\;
+
+		}%end begin	
+	\end{algorithm}
+	
+\end{center}
+
+
+Desde Robocom se puede enviar una rutina default para configuración previa de la posición de cada motor. Esto se logra presionando la pestaña 'Posiciones por defecto' que se observa en la figura \ref{fig:robocomopen}(1).
+
+Al presionar la función 'Posiciones por defecto' se producirá la trama de comunicación mostrada en la figura \ref{fig:docklight}.Esto se observó con ayuda del software DockLight v2.2, que es un sniffer/monitor de puerto serial RS232 para Windows.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{img/docklight}
+	\includegraphics[scale=0.5]{img/docklight}
 	\caption{Vista de trama transmitida por el software Robocom al iniciar conexión.}
 	\label{fig:docklight}
 \end{figure}
 
 
-Desde Robocom se puede enviar una rutina default para configuración previa de la posición de cada motor. Esto se logra presionando la pestaña 'Posiciones por defecto' que se observa en la figura \ref{fig:robocomopen}.
 
-Esto produce la siguiente trama:
 
 \begin{table}[H]
 
@@ -409,83 +528,83 @@ El calculo del equivalente en grados es:
 \end{equation}
 
 La información contenida en la cabecera y cuerpo de la trama transmitida, se construye de acuerdo a las tablas \ref{TAB:comandocliente} y \ref{TAB:comandoservidor}.
-\begin{table}[H]
-\centering
-\caption{Comandos emitidos desde el software Robocom (cliente) al brazo.}
-\begin{center}
-	\resizebox{15cm}{!} {
-% Table generated by Excel2LaTeX from sheet 'Hoja1'
-\begin{tabular}{|c|c|c|}
-	\hline
-	\multicolumn{ 3}{|c|}{CLIENTE} \\
-	\hline
-	1er byte & 2do y 3er Byte & \multicolumn{ 1}{|c|}{Descripción} \\
-	
-	
-	Comando (8 bits) & Dato (16 bits) & \multicolumn{ 1}{|c|}{} \\
-	\hline
-	\multicolumn{ 1}{|c|}{} &         00 & Enable articulacion A \\
-	
-	\multicolumn{ 1}{|c|}{} &         01 & Disable articulacion A \\
-	
-	\multicolumn{ 1}{|c|}{} &         02 & Enable articulacion B \\
-	
-	\multicolumn{ 1}{|c|}{} &         03 & Disable articulacion B \\
-	
-	\multicolumn{ 1}{|c|}{E0} &         04 & Enable pinza neumática \\
-	
-	\multicolumn{ 1}{|c|}{} &         05 & Disable pinza neumática \\
-	
-	\multicolumn{ 1}{|c|}{} &         06 & Enable articulacion C \\
-	
-	\multicolumn{ 1}{|c|}{} &         07 & Disable articulacion C \\
-	
-	\multicolumn{ 1}{|c|}{} &         09 & Solicitud de la posición del A/D de articulación A \\
-	
-	\multicolumn{ 1}{|c|}{} &         10 & Solicitud de la posición del A/D de articulación B \\
-	
-	\multicolumn{ 1}{|c|}{} &         11 & Solicitud de la posición del A/D de articulación C \\
-	\hline
-	
-	F0 &       Dato & Escribir Periodo de muestreo \\
-	\hline
-	F1 &       Dato & Escribir Referencia de control de PID A (PID\_A.controlReference) \\
-	\hline
-	F2 &       Dato & Escribir Referencia de control de PID B (PID\_B.controlReference) \\
-	\hline
-	F3 &       Dato & Escribir Referencia de control de PID C (PID\_C.controlReference) \\
-	\hline
-	F4 &       Dato & Escribir Referencia de motor de modelismo D (OC1RS) \\
-	\hline
-	F5 &       Dato & Escribir Referencia de motor de modelismo E (OC2RS) \\
-	\hline
-	F6 &       Dato & Escribir Referencia de motor de modelismo F (OC3RS) \\
-	\hline
-	F7 &       Dato & Escribir término proporcional del PID A \\
-	\hline
-	F8 &       Dato & Escribir término proporcional del PID B \\
-	\hline
-	F9 &       Dato & Escribir término proporcional del PID C \\
-	\hline
-	FA &       Dato & Escribir término integral del PID A \\
-	\hline
-	FB &       Dato & Escribir término integral del PID B \\
-	\hline
-	FC &       Dato & Escribir término integral del PID C \\
-	\hline
-	FD &       Dato & Escribir término derivativo del PID A \\
-	\hline
-	FE &       Dato & Escribir término derivativo del PID B \\
-	\hline
-	FF &       Dato & Escribir término derivativo del PID C \\
-	\hline
-\end{tabular}
-}  
-\end{center}
-\label{TAB:comandocliente}
-
-\end{table}
-
+%\begin{table}[H]
+%\centering
+%\caption{Comandos emitidos desde el software Robocom (cliente) al brazo.}
+%\begin{center}
+%	\resizebox{15cm}{!} {
+%% Table generated by Excel2LaTeX from sheet 'Hoja1'
+%\begin{tabular}{|c|c|c|}
+%	\hline
+%	\multicolumn{ 3}{|c|}{CLIENTE} \\
+%	\hline
+%	1er byte & 2do y 3er Byte & \multicolumn{ 1}{|c|}{Descripción} \\
+%	
+%	
+%	Comando (8 bits) & Dato (16 bits) & \multicolumn{ 1}{|c|}{} \\
+%	\hline
+%	\multicolumn{ 1}{|c|}{} &         00 & Enable articulacion A \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         01 & Disable articulacion A \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         02 & Enable articulacion B \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         03 & Disable articulacion B \\
+%	
+%	\multicolumn{ 1}{|c|}{E0} &         04 & Enable pinza neumática \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         05 & Disable pinza neumática \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         06 & Enable articulacion C \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         07 & Disable articulacion C \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         09 & Solicitud de la posición del A/D de articulación A \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         10 & Solicitud de la posición del A/D de articulación B \\
+%	
+%	\multicolumn{ 1}{|c|}{} &         11 & Solicitud de la posición del A/D de articulación C \\
+%	\hline
+%	
+%	F0 &       Dato & Escribir Periodo de muestreo \\
+%	\hline
+%	F1 &       Dato & Escribir Referencia de control de PID A (PID\_A.controlReference) \\
+%	\hline
+%	F2 &       Dato & Escribir Referencia de control de PID B (PID\_B.controlReference) \\
+%	\hline
+%	F3 &       Dato & Escribir Referencia de control de PID C (PID\_C.controlReference) \\
+%	\hline
+%	F4 &       Dato & Escribir Referencia de motor de modelismo D (OC1RS) \\
+%	\hline
+%	F5 &       Dato & Escribir Referencia de motor de modelismo E (OC2RS) \\
+%	\hline
+%	F6 &       Dato & Escribir Referencia de motor de modelismo F (OC3RS) \\
+%	\hline
+%	F7 &       Dato & Escribir término proporcional del PID A \\
+%	\hline
+%	F8 &       Dato & Escribir término proporcional del PID B \\
+%	\hline
+%	F9 &       Dato & Escribir término proporcional del PID C \\
+%	\hline
+%	FA &       Dato & Escribir término integral del PID A \\
+%	\hline
+%	FB &       Dato & Escribir término integral del PID B \\
+%	\hline
+%	FC &       Dato & Escribir término integral del PID C \\
+%	\hline
+%	FD &       Dato & Escribir término derivativo del PID A \\
+%	\hline
+%	FE &       Dato & Escribir término derivativo del PID B \\
+%	\hline
+%	FF &       Dato & Escribir término derivativo del PID C \\
+%	\hline
+%\end{tabular}
+%}  
+%\end{center}
+%\label{TAB:comandocliente}
+%
+%\end{table}
+%
 
 El controlador también puede dar respuesta a las solicitudes de posición del A/D. Los comandos emitidos por el controlador se observan en la tabla \ref{TAB:comandoservidor}. No obstante, no son objeto de estudio de este trabajo.
  
