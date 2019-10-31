@@ -10,8 +10,28 @@ Otra librería importante que sirve soporte a \textit{string.h} es \textit{stdlib
 
 \section{Selección de dispositivos}
 
-
 \section{Requerimientos}
+
+El sistema original realiza la comunicación de forma alámbrica a través de un convertidor USB-serial y un software instalado en un computador, para de esta forma generar las instrucciones de movimiento en el brazo manipulador. Tal como se indica en la figura \ref{fig:esquemaprevio}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/esquemaprevio2}
+	\caption{Esquema de comunicación original}
+	\label{fig:esquemaprevio}
+\end{figure}
+
+
+Por otra parte, la mejora que propone este trabajo de grado trata sobre una optimización del método de comunicación que se realiza con el controlador del brazo robot a través de un dispositivo remoto. Es por ello que se requiere que el sistema que se propone sea el correspondiente a la figura ?? .
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/esquemapropuesto1}
+	\caption{Esquema de comunicación propuesto de forma inalámbrica.}
+	\label{fig:esquemapropuesto1}
+\end{figure}
+
 Las especificaciones del diseño del sistema de acceso remoto requieren el establecimiento de un servidor web para realizar una comunicación inalámbrica desde una página web con acceso desde un cliente. En esta página web se desea implementar los comandos de movimiento y configuración del brazo robot en tiempo real o con baja latencia para así eliminar completa o parcialmente la presencia de un computador de forma cableada.
 
 Para compensar la ausencia del computador, este dispositivo debe conectarse al controlador del brazo manipulador vía puerto serial para así establecer la comunicación entre el servidor y el cliente hacia el robot.
