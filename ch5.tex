@@ -1,16 +1,10 @@
-\section{Uso de librerías en lenguaje C}
+En este capítulo se mostrarán los requerimientos necesarios para el diseño propuesto en este trabajo. Además, se hace una comparación entre diversos dispositivos que cumplen con estos requerimientos. Luego de esta comparación, se hace una selección de acuerdo a las características que mejor se ajusten a los objetivos planteados.
 
-Para el desarrollo de aplicaciones con manipulación de caracteres y cadenas es necesario utilizar la librería \textit{string.h}. Esta librería está incluída en el estándar de lenguaje C, ya que es de uso común. 
-
-Incluye funciones para manipulación de arreglos de caracteres. Propiamente, define un tipo de variable, un macro y varias funciones para manipulación de arreglos y cadenas. Algunas de las funciones utilizadas comúnmente son: \textit{strtok, strcmp, strncmp, memset, strlen, strcpy, strncpy}, entre otros. 
-
-
-Otra librería importante que sirve soporte a \textit{string.h} es \textit{stdlib.h}, ya que posee las funciones necesarias para la conversión de caracteres en números, utilización de memoria dinámica para la generación de listas, colas y demás algoritmos de organización y posicionamiento de memorias. También está incluída en el lenguaje C estándar y es considerada de uso común. A grandes rasgos, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras, son las más utilizadas.
 
 
 \section{Selección de dispositivos}
 
-\section{Requerimientos}
+\subsection{Requerimientos}
 
 El sistema original realiza la comunicación de forma alámbrica a través de un convertidor USB-serial y un software instalado en un computador, para de esta forma generar las instrucciones de movimiento en el brazo manipulador. Tal como se indica en la figura \ref{fig:esquemaprevio}
 
@@ -22,21 +16,37 @@ El sistema original realiza la comunicación de forma alámbrica a través de un co
 \end{figure}
 
 
-Por otra parte, la mejora que propone este trabajo de grado trata sobre una optimización del método de comunicación que se realiza con el controlador del brazo robot a través de un dispositivo remoto. Es por ello que se requiere que el sistema que se propone sea el correspondiente a la figura ?? .
+Por otra parte, la mejora que propone este trabajo de grado trata sobre una optimización del método de comunicación que se realiza con el controlador del brazo robot a través de un dispositivo remoto. Es por ello que se requiere que el sistema que se propone sea el correspondiente a la figura \ref{fig:esquemapropuesto1}.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.3]{img/esquemapropuesto1}
-	\caption{Esquema de comunicación propuesto de forma inalámbrica.}
+	\caption{Esquema de comunicación inalámbrica.}
 	\label{fig:esquemapropuesto1}
 \end{figure}
 
-Las especificaciones del diseño del sistema de acceso remoto requieren el establecimiento de un servidor web para realizar una comunicación inalámbrica desde una página web con acceso desde un cliente. En esta página web se desea implementar los comandos de movimiento y configuración del brazo robot en tiempo real o con baja latencia para así eliminar completa o parcialmente la presencia de un computador de forma cableada.
+Las especificaciones de diseño del sistema de acceso remoto requieren del establecimiento de un servicio que permita comunicarse inalámbricamente con el brazo robot sin la necesidad de modificar invasivamente el hardware de este. De utilizarse tecnología de RF es necesario implementar el hardware emisor y receptor para procesar las señales, por lo que modificaría el sistema más de lo esperado. Lo mismo ocurre con las tecnologías de telefónia como GPRS y UMTS que dependen de la señal transmitida por las antenas repetidoras y de la cobertura local al momento de comunicarse para transmitir señales de largo alcance, lo cuál lo hace una tecnología económica y óptima para diversos sistemas, pero poco práctica para aplicaciones en áreas geográficas disminuidas como es el caso del brazo robot ubicado en el LCID de la Universidad Central de Venezuela.
 
-Para compensar la ausencia del computador, este dispositivo debe conectarse al controlador del brazo manipulador vía puerto serial para así establecer la comunicación entre el servidor y el cliente hacia el robot.
+La tecnología bluetooth puede considerarse como una buena opción ya que los dispositivos que cuentan con ella son en su mayoría sencillos de implementar. No obstante, su conectividad está limitada a un área disminuida en donde la señal puede perderse a través de diversas superficies generando problemas de comunicación. Esto podría solucionarse estableciendo un servidor de los datos transmitidos desde un computador y algún otro dispositivo. No obstante, la tecnología bluetooth no soporta la posibilidad de servidores en red ya que su conectividad es de punto a punto, omitiendo la opción de otros equipos de unirse a esta red, imposibilitando el esquema propuesto en la figura \ref{fig:esquemapropuesto1}.
 
-Por este motivo, se considera que las necesidades del proyecto requieren de uno o varios dispositivos que cuenten con UART, medios de conexión por radiofrecuencia, memoria flash adaptable a las necesidades del código, y puertos de propósito general suficientes para implementar el prototipo. Dichas de otro modo, se resumen los requerimientos en la tabla \ref{TAB:requerimientos}.
+
+La tecnología Wi-Fi implica implícitamente un mayor consumo de potencia en comparación con las tecnologías mencionadas anteriormente. Sin embargo, para algunas aplicaciones este factor no es delimitante para determinar su utilidad. En contraste, esta tecnología permite conectar una mayor cantidad de dispositivos a través de una red y a una distancia superior a la lograda por Bluetooth, lo cuál permite que computadores, teléfonos celulares y dispositivos de IoT, puedan establecer comunicación a través de un servidor web de forma local (sin conexión a internet) o en línea sin necesidad de una conexión física. Para compensar la ausencia del computador, este dispositivo debe conectarse al controlador del brazo manipulador vía puerto serial para así establecer la comunicación entre el servidor y el cliente hacia el robot.
+
+Considerando una distribución relacionada al diagrama de bloques de la figura , puede observarse que 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.45]{img/diagrama_bloques}
+	\caption{Diagrama de bloques del sistema por conexión Wi-Fi}
+	\label{fig:diagramabloques}
+\end{figure}
+
+
+%En esta página web se desea implementar los comandos de movimiento y configuración del brazo robot en tiempo real o con baja latencia para así eliminar completa o parcialmente la presencia de un computador de forma cableada.
+
+
+Motivado a esta estructura, se considera que las necesidades del proyecto requieren de un dipositivo que cuente con periféricos UART, medios de conexión por Wi-Fi, memoria con capacidad de las necesidades del código, y puertos de propósito general suficientes para implementar las señales indicadoras del prototipo. Dichas de otro modo, se resumen los requerimientos en la tabla \ref{TAB:requerimientos}.
 
 
 \begin{table}[H]
@@ -51,24 +61,27 @@ Por este motivo, se considera que las necesidades del proyecto requieren de uno 
 	\hline 
 	GPIO & Al menos 10 \\ 
 	\hline 
-	Costo & Económico \\ 
-	\hline 
+	Costo & 5 a 20 $\textdollar$ \\ 
+	\hline
 	UART & Sí \\ 
 	\hline 
 	Capacidad de programación en lenguaje C & Sí \\ 
+	\hline 
+		Capacidad de programación en otros lenguajes & Sí \\ 
 	\hline 
 \end{tabular} 
 \end{center}
 	
 \end{table}
 
-En el mercado existe una gran cantidad de dispositivos que cubren estos requerimientos y muchos otros no contemplados. Por ello se analizarán algunos de los más importantes.
+%En el mercado existe una gran cantidad de dispositivos que cubren estos requerimientos y muchos otros no contemplados. Por ello se analizarán algunos de los más importantes.
 \subsection{Raspberry Pi 3 (modelo B+)}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.3]{img/raspberry}
 	\caption{Tarjeta de desarrollo Raspberry Pi 3 Model B+}
+	{Fuente: https://www.raspberrypi.org/products/}
 	\label{fig:raspberry}
 \end{figure}
 
@@ -77,7 +90,7 @@ Esta tarjeta de desarrollo cuenta con microprocesador Broadcom BCM2837B0, propia
 
 Posee cuarenta pines de GPIO, dos UART, además de cuatro puertos USB, un puerto HDMI, un conector auxiliar de 3.5mm y posibilidad de conectar una memoria SD y display táctil. Cuenta con puerto RJ45 para conexión Ethernet, entre otros elementos.
 
-Su gran capacidad de procesamiento lo hace ser una de las primeras opciones a considerar en la realización de servidores web debido a su bajo costo (alrededor de 35\$ según distribuidor oficial) con relación a todos los elementos que ofrece, ya que permite la ejecución de sistemas operativos basados en Linux, pudiendo programarse en lenguajes como Python, C\# o C.
+Su gran capacidad de procesamiento lo hace ser una de las primeras opciones a considerar en la realización de servidores web debido a su bajo costo (alrededor de 35\$ según distribuidor oficial. Consultado el 24 de septiembre de 2019.) con relación a todos los elementos que ofrece, ya que permite la ejecución de sistemas operativos basados en Linux, pudiendo programarse en lenguajes como Python, C\# o C.
 
 Cuenta, además, con Bluetooth 4.2/BLE y compatibilidad de módulos de conexión Wi-Fi que no están incluidos en el producto principal. 
 
@@ -90,14 +103,15 @@ Acceder a internet a través de un servidor web con conectividad a internet estab
 	\centering
 	\includegraphics[scale=0.4]{img/cypress}
 	\caption{Tarjeta de desarrollo CYW954907AEVAL1F de Cypress.}
+	{Fuente: https://www.cypress.com/documentation/development-kitsboards/cyw954907aeval1f-evaluation-kit}
 	\label{fig:cypress}
 \end{figure}
 
-Este equipo es una tarjeta de evaluación basada en el microcontrolador CYW54907 de Cypress. Contiene un microprocesador ARM Cortex R4, con velocidad de procesamiento máxima de 1.4GHz.
+Este equipo es una tarjeta de desarrollo basada en el microcontrolador CYW54907 de Cypress. Contiene un microprocesador ARM Cortex R4, con velocidad de procesamiento máxima de 1.4GHz.
 
 El dispositivo cuenta con 30 pines de GPIO, tres UART y posibilidad de conectividad por radiofrecuenia con Wi-Fi o Bluetooth. Cuenta con un conector RJ45 para conexión Ethernet, además de ejecutar sistemas operativos y ser compatible con diversos módulos.
 
-Al poderse programar en diversos lenguajes, este dispositivo es una opción importante a considerar, ya que ofrece algunas ventajas convenientes en comparación a la Raspberry, como lo es poseer Wi-Fi incluido en el SoC. Su costo oficial es de 99\$.
+Al poderse programar en diversos lenguajes, este dispositivo es una opción importante a considerar, ya que ofrece algunas ventajas convenientes en comparación a la Raspberry, como lo es poseer Wi-Fi incluido en el SoC. Su costo oficial es de 99\$. (Consultado el 24 de septiembre de 2019.)
 
 \subsection{ESP 8266}
 
@@ -118,7 +132,7 @@ Este dispositivo posee incluye en el SoC, la posibilidad de conectividad Wi-Fi b
 
 Puede programarse en lenguaje C, Simba o Lua. Además, cuenta con un SDK para implementar RTOS o programar sin sistema operativo.
 
-El costo varía entre los 3\$ hasta alrededor de los 5\$. Es por ello que se ha posicionado como una de las mejores opciones en sistemas embebidos en el mercado del IoT.
+El costo varía entre los 3\$ hasta alrededor de los 5\$ (consultado el 24 de septiembre de 2019). Es por ello que se ha posicionado como una de las mejores opciones en sistemas embebidos en el mercado del IoT.
 
 \subsection{ESP 32}
 
@@ -132,13 +146,13 @@ El costo varía entre los 3\$ hasta alrededor de los 5\$. Es por ello que se ha p
 
 El ESP 32 es también fabricado por la empresa Espressif Systems y surgió como una mejora del ESP-8266. 
 
-Una de las nuevas implementaciones que este dispositivo trajo fue la posibilidad de establecer todos los pines de GPIO como entradas analógicas, con un convertidor analógico/digital de 12bit de resolución y un convertidor digital/analógico de 8bit. Es importante mencionar que esta versión cuenta con 36 GPIO y el doble de memoria flash, 16MB.
+Una de las nuevas implementaciones que este dispositivo trajo fue la posibilidad de establecer todos los pines de GPIO como entradas analógicas, con un convertidor analógico/digital de 12bits de resolución y un convertidor digital/analógico de 8bits. Es importante mencionar que esta versión cuenta con 36 GPIO y el doble de memoria flash, 16MB.
 
 Cuenta con Wi-Fi y Bluetooth 4.2 BR/EDR/BLE, ademas de compatibilidad de comunicación SPI, I2C, I2S. 
 
 Entre otros elementos resaltantes, posee 3 UART, compatibilidad Ethernet MAC, bus CAN, controlador remoto infrarrojo, sensor de efecto Hall, 10 sensores capacitivos táctiles, y 16 canales para señales PWM.
 
-Tiene un costo entre 5 y 10\$ y desde su aparición ha ganado popularidad entre los seguidores del ESP-8266 debido a la gran cantidad de periféricos que posee por un costo económico en comparación a competidores de mayor gama.
+Tiene un costo entre 5\$ y 10\$ (consultado el 24 de septiembre de 2019) y desde su aparición ha ganado popularidad entre los seguidores del ESP-8266 debido a la gran cantidad de periféricos que posee por un costo económico en comparación a competidores de mayor gama.
 
 \section{Selección}
 
@@ -163,3 +177,14 @@ En esta figura puede observarse la gráfica verde como guía, ya que es la que rep
 Esto se evidencia al comprobar que es el dispositivo de menor costo entre los estudiados. Además, cubre las condiciones mínimas del diseño a pesar de no tener una extrema holgura de recursos como se demuestra en los dispositivos de mayor gama. 
 
 Por los motivos anteriormente expuestos, se seleccionará el dispositivo ESP-8266 con conectividad Wi-Fi sin acceso a internet para establecer un servidor de comunicación con una página web incluida en el SoC el cuál podrá accederse de forma remota para lograr el movimiento del brazo robot sin presencia de computadores intermediarios.
+
+
+
+\section{Uso de librerías en lenguaje C}
+
+Para el desarrollo de aplicaciones con manipulación de caracteres y cadenas es necesario utilizar la librería \textit{string.h}. Esta librería está incluída en el estándar de lenguaje C, ya que es de uso común. 
+
+Incluye funciones para manipulación de arreglos de caracteres. Propiamente, define un tipo de variable, un macro y varias funciones para manipulación de arreglos y cadenas. Algunas de las funciones utilizadas comúnmente son: \textit{strtok, strcmp, strncmp, memset, strlen, strcpy, strncpy}, entre otros. 
+
+
+Otra librería importante que sirve soporte a \textit{string.h} es \textit{stdlib.h}, ya que posee las funciones necesarias para la conversión de caracteres en números, utilización de memoria dinámica para la generación de listas, colas y demás algoritmos de organización y posicionamiento de memorias. También está incluída en el lenguaje C estándar y es considerada de uso común. A grandes rasgos, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras, son las más utilizadas.

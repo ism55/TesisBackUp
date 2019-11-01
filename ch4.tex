@@ -193,7 +193,7 @@ En la figura \ref{fig:dspic} puede observarse con detalle la tarjeta del control
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{img/ftdi}
+	\includegraphics[scale=0.8]{img/ftdi}
 	\caption{Tarjeta del convertidor USB/Serial FTDI232}
 	\label{fig:ftdi}
 \end{figure}
@@ -203,7 +203,7 @@ El sistema realiza una acción de control PID en tres articulaciones principales 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{img/actuadores}
+	\includegraphics[scale=0.8]{img/actuadores}
 	\caption{Puentes H L296.}
 	\label{fig:actuadores}
 \end{figure}
@@ -301,7 +301,7 @@ En la pestaña 'Calibración', mostrada en la figura \ref{fig:robocomcali}, puede 
 
 \subsection{Generación de la trama de comunicación}
 
-\subsubsection{Estructura}
+\subsubsection{Estructura general de la trama}
 La estructura general de la trama enviada desde el software Robocom al sistema de control consta de tres bytes cuya estructura corresponde a la tabla \ref{TAB:estructura}. Esta trama carece de bytes que determinen el inicio o el fin de la comunicación o de algún un método de comprobación de errores en la transmisión.\\
 
 \begin{table}[H]
