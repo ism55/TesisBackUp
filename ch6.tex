@@ -1,3 +1,57 @@
+En este capítulo se describirán el software y hardware empleados para la programación del firmware de la tarjeta de desarrollo seleccionada para el prototipo. Además, se mostrarán los resultados alcanzados durante este proceso.
+
+\section{Hardware}
+
+
+A continuación se muestran los diagramas esquemáticos de conexión de la tarjeta de desarrollo ESP-8266 con el dsPIC del controlador del brazo robot.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{img/MontajeTesis}
+	\caption{Esquemático de conexión entre ESP-8266 y dsPIC30F3011}
+	\label{fig:montajetesis1}
+\end{figure}
+
+
+\begin{table}[H]
+	
+	\caption{Especificaciones de hardware}
+	\label{TAB:hardware1}
+	
+	\begin{center}
+		\begin{tabular}{|c|c|}
+			\hline
+			\multicolumn{ 2}{|c|}{\textbf{HARDWARE}} \\
+			\hline
+			Tarjeta de desarrollo &      LOL1n \\
+			\hline
+			Microcontrolador & ESP-8266 12-E \\
+			\hline
+			RAM & 80KB \\
+			\hline
+			Flash & 4MB \\
+			\hline
+			Oscilador & 80MHz\\
+			\hline
+			Procesador & Xtensa Tensilica L106 \\
+			\hline
+			WiFi & 892.11b/g/n \\
+			\hline
+			ISM &     2,4GHz \\
+			\hline
+			PA &     +25dBm \\
+			\hline
+			
+		\end{tabular}  
+	\end{center}
+\end{table}
+
+
+
+%=================================================================================================================================
+=====================================================================================
+
+
 El sistema de acceso remoto está desarrollado sobre un microcontrolador ESP-8266 12-E, utilizando la tarjeta de desarrollo Wemos para el prototipo de este trabajo.
 
 Para el desarrollo del sistema se utilizó como herramienta de programación el Kit de Desarrollo de Software (SDK) ESP-8266 NON-OS SDK de Espressif en lenguaje C, usando el PlatformIO IDE de Atom versión 1.38.1, compilado con GCC (GNU) 4.8.2.
@@ -69,6 +123,15 @@ La información de las especificaciones de hardware y software se observan en la 
 	\end{tabular}  
 	\end{center}
 \end{table}
+
+\section{Uso de librerías en lenguaje C}
+
+Para el desarrollo de aplicaciones con manipulación de caracteres y cadenas es necesario utilizar la librería \textit{string.h}. Esta librería está incluída en el estándar de lenguaje C, ya que es de uso común. 
+
+Incluye funciones para manipulación de arreglos de caracteres. Propiamente, define un tipo de variable, un macro y varias funciones para manipulación de arreglos y cadenas. Algunas de las funciones utilizadas comúnmente son: \textit{strtok, strcmp, strncmp, memset, strlen, strcpy, strncpy}, entre otros. 
+
+
+Otra librería importante que sirve soporte a \textit{string.h} es \textit{stdlib.h}, ya que posee las funciones necesarias para la conversión de caracteres en números, utilización de memoria dinámica para la generación de listas, colas y demás algoritmos de organización y posicionamiento de memorias. También está incluída en el lenguaje C estándar y es considerada de uso común. A grandes rasgos, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras, son las más utilizadas.
 
 \section{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
 
