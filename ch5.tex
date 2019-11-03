@@ -30,12 +30,12 @@ Por otra parte, la mejora que propone este trabajo de grado trata sobre una opti
 
 Las especificaciones de diseño del sistema de acceso remoto requieren del establecimiento de un servicio que permita comunicarse inalámbricamente con el brazo robot sin la necesidad de modificar invasivamente el hardware de este. De utilizarse tecnología de RF es necesario implementar el hardware emisor y receptor para procesar las señales, por lo que modificaría el sistema más de lo esperado. Lo mismo ocurre con las tecnologías de telefónia como GPRS y UMTS que dependen de la señal transmitida por las antenas repetidoras y de la cobertura local al momento de comunicarse para transmitir señales de largo alcance, lo cuál lo hace una tecnología económica y óptima para diversos sistemas, pero poco práctica para aplicaciones en áreas geográficas disminuidas como es el caso del brazo robot ubicado en el LCID de la Universidad Central de Venezuela.
 
-La tecnología bluetooth puede considerarse como una buena opción ya que los dispositivos que cuentan con ella son en su mayoría sencillos de implementar. No obstante, su conectividad está limitada a un área disminuida en donde la señal puede perderse a través de diversas superficies generando problemas de comunicación. Esto podría solucionarse estableciendo un servidor de los datos transmitidos desde un computador y algún otro dispositivo. No obstante, la tecnología bluetooth no soporta la posibilidad de servidores en red ya que su conectividad es de punto a punto, omitiendo la opción de otros equipos de unirse a esta red, imposibilitando el esquema propuesto en la figura \ref{fig:esquemapropuesto1}.
+La tecnología bluetooth puede considerarse como una buena opción ya que los dispositivos que cuentan con ella son en su mayoría sencillos de implementar. No obstante, su conectividad está limitada a un área disminuida en donde la señal puede perderse a través de diversas superficies generando problemas de comunicación. Esto podría solucionarse estableciendo un servidor de los datos transmitidos desde un computador y algún otro dispositivo. No obstante, la tecnología bluetooth no soporta la posibilidad de creación de servidores en red ya que su conectividad es de punto a punto, omitiendo la opción de otros equipos de unirse a esta red e imposibilitando el esquema propuesto en la figura \ref{fig:esquemapropuesto1}.
 
 
-La tecnología Wi-Fi implica implícitamente un mayor consumo de potencia en comparación con las tecnologías mencionadas anteriormente. Sin embargo, para algunas aplicaciones este factor no es delimitante para determinar su utilidad. En contraste, esta tecnología permite conectar una mayor cantidad de dispositivos a través de una red y a una distancia superior a la lograda por Bluetooth, lo cuál permite que computadores, teléfonos celulares y dispositivos de IoT, puedan establecer comunicación a través de un servidor web de forma local (sin conexión a internet) o en línea sin necesidad de una conexión física. Para compensar la ausencia del computador, este dispositivo debe conectarse al controlador del brazo manipulador vía puerto serial para así establecer la comunicación entre el servidor y el cliente hacia el robot.
+La tecnología Wi-Fi implica implícitamente un mayor consumo de potencia en comparación con las tecnologías mencionadas anteriormente. Sin embargo, para algunas aplicaciones este factor no es delimitante para determinar su utilidad. En contraste, esta tecnología permite conectar una mayor cantidad de dispositivos a través de una red y a una distancia superior a la lograda por Bluetooth, lo cuál permite que computadores, teléfonos celulares y dispositivos de IoT, puedan establecer comunicación a través de un servidor web de forma local (sin conexión a internet) o en línea, sin necesidad de una conexión física. Para compensar la ausencia del computador, este dispositivo debe conectarse al controlador del brazo manipulador vía puerto serial para así establecer la comunicación entre el servidor y el cliente hacia el robot. Logrando una instalación sin afectar el hardware original del sistema.
 
-Considerando una distribución relacionada al diagrama de bloques de la figura , puede observarse que 
+Considerando una distribución relacionada al diagrama de bloques de la figura \ref{fig:diagramabloques}, puede observarse que al añadir una etapa de comunicación inalámbrica implementada mediante un servidor en red local a través de aplicaciones, logra una adaptación no invasiva al sistema del brazo robot. Permitiendo que se manipule el firmware del microcontrolador Wi-Fi sin mayores alteraciones.
 
 \begin{figure}[H]
 	\centering
@@ -48,7 +48,7 @@ Considerando una distribución relacionada al diagrama de bloques de la figura , 
 %En esta página web se desea implementar los comandos de movimiento y configuración del brazo robot en tiempo real o con baja latencia para así eliminar completa o parcialmente la presencia de un computador de forma cableada.
 
 
-Motivado a esta estructura, se considera que las necesidades del proyecto requieren de un dipositivo que cuente con periféricos UART, medios de conexión por Wi-Fi, memoria con capacidad de las necesidades del código, y puertos de propósito general suficientes para implementar las señales indicadoras del prototipo. Dichas de otro modo, se resumen los requerimientos en la tabla \ref{TAB:requerimientos}.
+Motivado a esta estructura, se considera que las necesidades del proyecto requieren de un dipositivo que cuente con periféricos UART, medios de conexión por Wi-Fi, memoria con capacidad de las necesidades del código (soportar el código fuente de una página web, gráficos y código fuente del firmware), y puertos de propósito general suficientes para implementar las señales indicadoras del prototipo. Dichas de otro modo, se resumen los requerimientos en la tabla \ref{TAB:requerimientos}.
 
 
 \begin{table}[H]
@@ -121,6 +121,7 @@ Al poderse programar en diversos lenguajes, este dispositivo es una opción impor
 	\centering
 	\includegraphics[scale=0.3]{img/ESP-01}
 	\caption{ESP8266 con chip ESP-01}
+	{Fuente: https://www.espressif.com/ }
 	\label{fig:esp-01}
 \end{figure}
 
@@ -142,6 +143,7 @@ El costo varía entre los 3\$ hasta alrededor de los 5\$ (consultado el 24 de sep
 	\centering
 	\includegraphics[scale=0.5]{img/esp32}
 	\caption{ESP 32 de Espressif.}
+	{Fuente: https://www.espressif.com/}
 	\label{fig:esp32}
 \end{figure}
 

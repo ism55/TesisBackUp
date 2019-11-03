@@ -1,21 +1,136 @@
-En este capítulo se describirán el software y hardware empleados para la programación del firmware de la tarjeta de desarrollo seleccionada para el prototipo. Además, se mostrarán los resultados alcanzados durante este proceso.
-
-\section{Hardware}
+En este capítulo se describirán el hardware y software empleados para la programación del firmware de la tarjeta de desarrollo seleccionada para el prototipo. Además, se mostrarán los resultados alcanzados durante este proceso.
 
 
-A continuación se muestran los diagramas esquemáticos de conexión de la tarjeta de desarrollo ESP-8266 con el dsPIC del controlador del brazo robot.
+\section{Detalles de software}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=1]{img/MontajeTesis}
-	\caption{Esquemático de conexión entre ESP-8266 y dsPIC30F3011}
-	\label{fig:montajetesis1}
-\end{figure}
+El sistema de acceso remoto se desarrolló sobre un microcontrolador ESP-8266 12-E, utilizando la tarjeta de desarrollo Wemos para el prototipo de este trabajo.
+
+Para el desarrollo del sistema se utilizó como herramienta de programación el Kit de Desarrollo de Software (SDK) ESP-8266 NON-OS SDK de Espressif en lenguaje C, usando el PlatformIO IDE de Atom versión 1.38.1, compilado con GCC (GNU) 4.8.2. Esta información está resumida en la tabla \ref{TAB:software}. 
 
 
 \begin{table}[H]
 	
-	\caption{Especificaciones de hardware}
+	\caption{Especificaciones de software}
+	\label{TAB:software}
+	
+	\begin{center}
+		\begin{tabular}{|c|c|}
+			\hline
+			\multicolumn{ 2}{|c|}{\textbf{SOFTWARE}} \\
+			\hline
+			SDK & Espressif ESP-8266 NON-OS SDK v2.1.0 \\
+			\hline
+			Lenguaje &          C \\
+			\hline
+			Compilador & GCC (GNU) 4.8.2 \\
+			\hline
+			IDE & Atom PlatformIO IDE v1.38.1 \\
+			\hline
+		\end{tabular}  
+	\end{center}
+\end{table}
+
+\subsection{Configuración del IDE Atom PlatformIO}
+
+Al ejecutar el programa, se observará una pantalla como la indicada en la figura \ref{fig:atom1}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/atom_1}
+	\caption{Ventana principal del IDE Atom PlatformIO}
+	{1. Opción de creación de nuevo proyecto.}
+	\label{fig:atom1}
+\end{figure}
+
+
+En la ventana principal se selecciona la opción de nuevo proyecto, identificada en la sección 1 de la figura \ref{fig:atom1}. De esta manera el IDE pondrá a disposición del usuario todas las librerías contenidas en el SDK. Para lograr esto, se configuran los parámetros según la figura \ref{fig:atom3}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/atom_3}
+	\caption{Creación de nuevo proyecto}
+	{1. Nombre del proyecto.\\
+	2. Selección de microcontrolador. (Para este proyecto se usará Espressif ESP8266 12-E). \\
+	3. Selección de framework de desarrollo. (En este caso Non-OS SDK).\\}
+	\label{fig:atom3}
+\end{figure}
+
+
+Hecho esto, se podrá programar el microcontrolador en lenguaje C a través del IDE Atom PlatformIO. Compilando y cargando el programa como se muestra en la figura \ref{fig:atom4}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/atom_4}
+	\caption{Compilación y carga del programa en la tarjeta.}
+	{1. Compilar programa.\\
+	2. Cargar el programa a la tarjeta.
+	}
+	\label{fig:atom4}
+\end{figure}
+
+
+\subsection{Diseño de página web}
+
+En cuanto al diseño de la página web; se desarrolló este código a través del editor de texto Brackets versión 1.14, ya que este trae soporte en tiempo real para modificaciones del archivo HTML y los diversos scripts. Las versiones de software utilizadas para esta sección se encuentras indicadas en la tabla \ref{TAB:paginaweb}. 
+
+Posteriormente, el código fuente generado para la página web, observado en la figura \ref{fig:pagina1},  fue agregado al programa del sistema embebido como una cadena de caracteres, generando una página inicial para el servidor que se establecerá. 
+
+
+\begin{table}[H]
+	
+	\caption{Especificaciones del software empleado en la página web.}
+	\label{TAB:paginaweb}
+	
+	\begin{center}
+		\begin{tabular}{|c|c|}
+			\hline
+			\multicolumn{ 2}{|c|}{\textbf{PÁGINA WEB}} \\
+			\hline
+			Editor & Brackets versión 1.14 \\
+			\hline
+			HTML &          versión 5 \\
+			\hline
+			CSS & versión 3 \\
+			\hline
+			Javascript & versión ECMAScript 2016 (1) \\
+			\hline
+			jQuery & versión 3.4.1 (1) \\
+			\hline
+			
+		\end{tabular}  
+	{\\(1). Estas versiones de Javascript y jQuery dependerán del navegador utilizado, ya que automáticamente se tomará la más actualizada que posea el sistema.}
+	\end{center}
+\end{table}
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{img/pagina_1}
+	\caption{Vista del software Brackets para el diseño de la página web.}
+	\label{fig:pagina1}
+\end{figure}
+
+
+
+
+\section{Detalles de hardware}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.9]{img/fotoesp82662}
+	\caption{Placa del microcontrolador ESP-8266.}
+	\label{fig:fotoesp8266}
+\end{figure}
+
+
+Las características de hardware del sistema embebido utilizado para el diseño del prototipo pueden verse en la tabla \ref{TAB:hardware1}. Es importante mencionar que estos datos fueron obtenidos desde la información grabada en la placa (figura \ref{fig:fotoesp8266}) y desde la información técnica proporcionada por Espressif en \cite{esp1}.
+
+
+
+\begin{table}[H]
+	
+	\caption{Especificaciones de hardware de la tarjeta de desarrollo.}
 	\label{TAB:hardware1}
 	
 	\begin{center}
@@ -47,82 +162,59 @@ A continuación se muestran los diagramas esquemáticos de conexión de la tarjeta 
 \end{table}
 
 
-
-%=================================================================================================================================
-=====================================================================================
-
-
-El sistema de acceso remoto está desarrollado sobre un microcontrolador ESP-8266 12-E, utilizando la tarjeta de desarrollo Wemos para el prototipo de este trabajo.
-
-Para el desarrollo del sistema se utilizó como herramienta de programación el Kit de Desarrollo de Software (SDK) ESP-8266 NON-OS SDK de Espressif en lenguaje C, usando el PlatformIO IDE de Atom versión 1.38.1, compilado con GCC (GNU) 4.8.2.
-
+Para establecer la comunicación entre el disposito ESP8266 y el microcontrolador del brazo robot, es necesario enlazar el puerto serial de ambos integrados. A continuación se muestra el diagrama esquemático de conexión de la tarjeta de desarrollo ESP-8266 con el dsPIC30F3011 del controlador del brazo robot en la figura \ref{fig:montajetesis1}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.9]{img/fotoesp82662}
-	\caption{Placa del microcontrolador ESP-8266.}
-	\label{fig:fotoesp8266}
+	\includegraphics[scale=1]{img/MontajeTesis}
+	\caption{Esquemático de conexión entre ESP-8266 y dsPIC30F3011}
+	\label{fig:montajetesis1}
+\end{figure}
+
+Una vez establecidos y configurados todos los parámetros del prototipo, se instaló el hardware sobre una tarjeta de prototipos tipo stripboard a modo de producto final de este trabajo. Este circuito puede observarse en la figura \ref{fig:montajecookie}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.15]{img/circuito_final}
+	\caption{Montaje del prototipo.}
+	{LED 1. LED indicador de comunicación.\\
+	LED 2. LED indicador de encendido.
+}
+	\label{fig:montajecookie}
+	
 \end{figure}
 
 
-La información de las especificaciones de hardware y software se observan en la tabla \ref{TAB:hardware} y \ref{TAB:software}.
+\section{Detalles de firmware}
 
+\subsection{Programación en lenguaje Lua}
 
-\begin{table}[H]
-	
-	\caption{Especificaciones de hardware}
-	\label{TAB:hardware}
-	
-\begin{center}
-	\begin{tabular}{|c|c|}
-	\hline
-	\multicolumn{ 2}{|c|}{\textbf{HARDWARE}} \\
-	\hline
-	Tarjeta de desarrollo &      LOL1n \\
-	\hline
-	Microcontrolador & ESP-8266 12-E \\
-	\hline
-	RAM & 80KB \\
-	\hline
-	Flash & 4MB \\
-	\hline
-	Oscilador & 80MHz\\
-	\hline
-	Procesador & Xtensa Tensilica L106 \\
-	\hline
-	WiFi & 892.11b/g/n \\
-	\hline
-	ISM &     2,4GHz \\
-	\hline
-	PA &     +25dBm \\
-	\hline
-	
-\end{tabular}  
-\end{center}
-\end{table}
+Lua se trata de un lenguaje interpretado con código base escrito en C, con semejanzas al lenguaje Python pero menos eficiente. Es de fácil aprendizaje y posee una forma de programación intuitiva para el usuario no experto. Es decir, es un lenguaje diseñado para aplicaciones poco complejas ya que se encuentra en desarrollo. Su puesta en marcha requiere una modificación del bootloader del microcontrolador, debiendo cargar al dispositivo un archivo binario previo con los módulos que desean ser utilizados. Esto a su vez ofrece pocas opciones para el manejo de memoria y de los periféricos a un modo mejor optimizado. \cite{Online:lua}. Por estos motivos expuestos, no será utilizado para la programación de este prototipo.
 
+\subsection{Programación en lenguaje Simba}
 
-\begin{table}[H]
-	
-	\caption{Especificaciones de software}
-	\label{TAB:software}
-	
-	\begin{center}
-		\begin{tabular}{|c|c|}
-		\hline
-		\multicolumn{ 2}{|c|}{\textbf{SOFTWARE}} \\
-		\hline
-		SDK & Espressif ESP-8266 NON-OS SDK v2.1.0 \\
-		\hline
-		Lenguaje &          C \\
-		\hline
-		Compilador & GCC (GNU) 4.8.2 \\
-		\hline
-		IDE & Atom PlatformIO IDE v1.38.1 \\
-		\hline
-	\end{tabular}  
-	\end{center}
-\end{table}
+Simba es un sistema operativo de tiempo real (RTOS) escrito en lenguaje C que surgió como una opción para programar el microcontrolador ESP8266. Es soportado por el IDE Atom PlatformIO y ofrece ventajas en cuanto a su fácil aprendizaje y a un mayor potencial de las aplicaciones que pueden generarse. Sin embargo, este entorno aún se encuentra en desarrollo y por lo tanto presenta muchos fallos en torno a las librerías y drivers no implementados. Además, las librerías inherentes al firmware del dispositivo no están dispuestas para modificación del programador y su compilación es lenta en comparación al la realizada en lenguaje C. \cite{Online:simba}. Por este motivo no será utilizado en este prototipo.
+
+\subsection{Programación en lenguaje C}
+
+\subsubsection{Espressif RTOS ESP-8266 SDK}
+
+SDK, en inglés Software Development Kit (Kit de Desarrollo de Software). Es un compilado de herramientas necesarias para desarrollar aplicaciones específicas para el entorno deseado. 
+
+El ESP8266 ofrece la capacidad de ser programado basado en un sistema operativo de tiempo real (RTOS). Este SDK proporcionado por Espressif, se trata de una adaptación del entorno de código libre freeRTOS (página oficial:  https://www.freertos.org/). 
+
+Un sistema operativo de tiempo real es una herramienta eficiente para dispositivos con poca capacidad de procesamiento. Es decir, aquellos dispositivos que no cuentan con una variedad de núcleos o kernels. RTOS trata de implementar en estos microsistemas una similud de comportamiento de múltiples unidades de procesamiento aún estando contenidas en un solo núcleo. Lo cuál es una ventaja importante para la implementación de sistemas de mayor complejidad de código. 
+
+La lógica funcional del método de programación RTOS es mediante establecimiento de tareas e interrupciones controladas por órden de prioridad y por el timer principal del sistema. Esto genera la apariencia de estar procesándose múltiples tareas en un mismo instante. No obstante, estas tareas o 'tasks' están limitadas por el factor de tiempo que dicta el procesador. \cite{Online:rtos}.
+
+Este sistema operativo hace uso de todas las virtudes del procesador a una mayor escala que las otras opciones de programación (Simba, Lua, C), debido a que debe aprovechar todos los recursos para permitir la libre ejecución de la mayor cantidad de tareas; esto ocasiona que su compilación sea relativamente más lenta que el caso de Non-OS.
+
+Debido a que en este prototipo no es de interés la implementación de tareas para el manejo de la comunicación del brazo robot, ya que puede hacerse con un mismo núcleo; no se considerará para la programación de este proyecto.  
+
+\subsubsection{Espressif Non-OS ESP-8266 SDK}
+
+Se trata de un kit diseñado por la empresa Espressif para desarrollar software en dispositivos sin sistema operativo. En ella tiene las librerías de mayor importancia para la configuración y uso del ESP-8266. \cite{esp1} \cite{esp2} \cite{esp3} \cite{esp4} 
+
 
 \section{Uso de librerías en lenguaje C}
 
@@ -131,35 +223,56 @@ Para el desarrollo de aplicaciones con manipulación de caracteres y cadenas es n
 Incluye funciones para manipulación de arreglos de caracteres. Propiamente, define un tipo de variable, un macro y varias funciones para manipulación de arreglos y cadenas. Algunas de las funciones utilizadas comúnmente son: \textit{strtok, strcmp, strncmp, memset, strlen, strcpy, strncpy}, entre otros. 
 
 
-Otra librería importante que sirve soporte a \textit{string.h} es \textit{stdlib.h}, ya que posee las funciones necesarias para la conversión de caracteres en números, utilización de memoria dinámica para la generación de listas, colas y demás algoritmos de organización y posicionamiento de memorias. También está incluída en el lenguaje C estándar y es considerada de uso común. A grandes rasgos, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras, son las más utilizadas.
+Otra librería importante que sirve soporte a \textit{string.h} es \textit{stdlib.h}, debido a que posee las funciones necesarias para la conversión de caracteres en números, utilización de memoria dinámica para la generación de listas, colas y demás algoritmos de organización y posicionamiento de memorias. También está incluída en el lenguaje C estándar y es considerada de uso común. A grandes rasgos, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras; son las más utilizadas.
 
 \section{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
 
-SDK, en inglés Software Development Kit. Es un compilado de herramientas necesarias para desarrollar aplicaciones específicas para el en entorno deseado. 
 
-En el caso del Espressif NON OS ESP-8266 SDK, se trata de un kit diseñado por la empresa Espressif para desarrollar software en dispositivos sin sistema operativo. En ella tiene las librerías de mayor importancia para la configuración y uso del ESP-8266. \cite{esp1} \cite{esp2} \cite{esp3} \cite{esp4} 
+%En el caso del Espressif NON OS ESP-8266 SDK, 
 
 
-El SDK NON-OS provée un conjunto de interfaces de programación de aplicaciones (API) para las funcionalidades del núcleo ESP-8266, como recepción/ transmisión de datos a través de Wi-Fi, funciones para el manejo de TCP/IP, funciones para la interfaz de hardware y el manejo básico del sistema.
+El SDK NON-OS provee un conjunto de interfaces de programación de aplicaciones (API) para las funcionalidades del núcleo ESP-8266, como recepción/ transmisión de datos a través de Wi-Fi, funciones para el manejo de TCP/IP, funciones para la interfaz de hardware y el manejo básico del sistema.
 
 Las librerías más importantes incluídas dentro del SDK son: osapi.h, user\_interface.h, driver/uart.h, espconn.h, gpio.h, eagle\_soc.h.
 
 \subsection{osapi.h}
-Esta librería realiza una re-definición de algunas de las funciones más importantes de la librería string.h y algunas funciones para manejo del timer. Todas las funciones incluídas en esta librería incluyen el prefijo 'os', que simboliza que estas arrojan una respuesta de debug vía puerto serial al momento de utilizarlas. 
+Esta librería realiza una re-definición de algunas de las funciones más importantes de la librería string.h y algunas funciones para manejo del timer. Por lo tanto, es una librería importante para el manejo de cadena de caracteres. 
+
+Algunas de las funciones incluídas en esta librería incluyen el prefijo 'os', que simboliza que estas dan una respuesta de debug vía puerto serial al momento de utilizarlas. 
 
 Para deshabilitar estos comandos, es necesario escribir previo a todas las declaraciones del programa principal: 'system\_set\_os\_print(0)'. Y con esto pueden utilizarse sin inconvenientes las funciones con comandos 'os'.
+
+Visto en lenguaje C:
+
+\begin{verbatim}
+void ICACHE_FLASH_ATTR
+user_rf_pre_init(void)
+{
+	system_set_os_print(0);
+}
+\end{verbatim}
+
+Nótese que se hace el llamado de esta función dentro de la definición de 'user\_rf\_pre\_init' debido a que esta se ejecuta primero que la función main, haciendo que se evite cualquier error inesperado con los comandos 'os'.
 
 \subsection{user\_interface.h}
 
 Contiene las definiciones de las estructuras para configurar el Wi-Fi en modo estación o punto de acceso.
 
+Esto es, la definición de los macros: 'NULL\_MODE', 'STATION\_MODE', 'SOFTAP\_MODE' y 'STATIONAP\_MODE'; que permiten configurar los modos de funcionamiento del Wi-Fi.
+
+También define la estructura asociada a la función 'wifi\_softap\_get\_config', quien es la función encargada de configurar todos los parámetros para establecer la conexión Wi-Fi.
+
 \subsection{driver/uart.h}
 
-Posee los macros y variables necesarias para la configuración del UART.
+Posee los macros y variables necesarias para la configuración del UART. Entre ellos, define la función 'uart0\_tx\_buffer', la cuál es de vital importancia para la transmisión de cadenas de caracteres vía puerto serial en este prototipo.
 
 \subsection{espconn.h}
 
 Define las estructuras para la creación del socket TCP o UDP, así como los prototipos y declaraciones de las funciones de la API correspondiente. Con estas funciones es posible establecer un servidor o cliente mediante solicitudes y respuestas.
+
+Las funciones de interés en esta librería son: 'espconn\_connect', quien permite conectar al canal de comunicación una vez este sea creado con 'espconn\_create' y aceptado con la función 'espconn\_accept'.
+
+Las funciones 'espconn\_disconnect' y 'espconn\_delete' son de utilidad para desconectar el canal previo a eliminarlo, y así de esta manera evitar la saturación de la comunicación servidor-cliente, ya que esta solo permite la creación de un máximo de 12 canales, pero manteniendo únicamente 4 en paralelo en constante comunicación. Esto genera un problema que se resuelve aplicando estas funciones de desconexión y borrado.
 
 \subsection{gpio.h}
 
@@ -219,6 +332,17 @@ Como puede observarse en la tabla \ref{TAB:registrosesp}, el ESP-8266 posee múlt
 	
 \end{table}
 
+
+Los registros descritos en la tabla \ref{TAB:registrosesp} pueden observarse mejor en la figura \ref{fig:nodemcupins} , donde se muestra el pinout de este sistema embebido. La descripción de estos parámetros está descrita con detalle en la hoja de datos \cite{esp4}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{img/nodemcu_pins}
+	\caption{Pinout de sistema embebido con microcontrolador ESP8266.}
+	\label{fig:nodemcupins}
+\end{figure}
+
+La importancia de la correcta definición de los puertos de propósito general en este dispositivo dependerá de la aplicación que desea hacerse. En el caso del prototipo que se propone, es necesario definir el periférico de UART para operar con la comunicación serial hacia el brazo manipulador. Además, es necesario definir algunos pines como salida para visualización del comportamiento del programa y sin que estos interfieran con otros periféricos.
 
 \section{Contenido del programa}
 El programa consta de cinco archivos: user\_main.c, user\_config.h, funciones.h, funciones.c, pagina.h.
@@ -502,6 +626,30 @@ Una vez recortada la cadena, se utiliza la función \textit{strtok} para separar 
 El código del microcontrolador está, además de por comandos, estructurado por un total de catorce funciones que se ejecutan según sea el caso. Estas serán explicadas en los siguientes apartados.
 
 \subsection{Función server\_recv}
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función server\_recv.}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & server\_recv(void *arg, char *pdata, unsigned short len) \\
+		\hline
+		Descripción:  & Función de respuesta ante recepción de información \\
+		\hline
+		Parámetros: & arg -- estructura espconn \\
+		\hline
+		& pdata -- informacion recibida \\
+		\hline
+		& len -- tamaño de información recibida \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func1}%
+\end{table}%
+
+
+
 Esta es principalmente la función de respuesta ante recepción de información en el servidor.\\
 
 En ella se obtiene la cadena recibida en el canal TCP para la posteriór identificación de los comandos. Para esto, se realiza una evaluación de cadenas mediante la función \textit{strncmp} de la librería \textit{string.h} para buscar el identificador del comando.\\
@@ -510,21 +658,110 @@ Posteriormente, de acuerdo al resultado del comando, esta ejecutará una instrucc
 
 \subsection{Función server\_sent}
 
-Función de callback cuando se envía algo desde el servidor. Esta función enciende un LED de notificación en el pin D2 de la tarjeta de desarollo.
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función server\_sent.}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & server\_sent(void *arg); \\
+		\hline
+		Descripción:  & Función de respuesta ante envío de información \\
+		\hline
+		Parámetros: & arg -- estructura espconn \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func2}%
+\end{table}%
+
+
+Función de callback cuando se envía algo desde el servidor. Esta función enciende un LED de notificación en el pin D2 de la tarjeta de desarollo. Además, con cada comunicación emitida parpadeará el LED D4.
 
 \subsection{Función server\_discon}
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función server\_discon}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & server\_discon(void *arg); \\
+		\hline
+		Descripción:  & Función de respuesta ante desconexión \\
+		\hline
+		Parámetros: & arg -- estructura espconn \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func3}%
+\end{table}%
 
 Función de callback cuando se desconecta un canal TCP. Esta borra por completo el canal y vuelve a habilitar el servidor TCP en el puerto 8266, seguidamente apaga un led en el pin D4 de la tarjeta de desarrollo.
 
 \subsection{Función server\_listen}
 
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función server\_listen}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & server\_listen(void *arg);\\
+		\hline
+		Descripción:  & Función de respuesta ante un servidor creado exitosamente \\
+		\hline
+		Parámetros: & arg -- estructura espconn \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func4}%
+\end{table}%
+
+
 Esta función se utiliza para declarar cuáles serán las funciones de callback para 'escuchar' las conexiones en el canal TCP. Para hacer esto, se utiliza las funciones \textit{espconn\_regist\_sentcb} y \textit{espconn\_regist\_disconcb} del NON-OS SDK.
 
 \subsection{Función server\_recon}
 
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función server\_recon}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & server\_recon(void *arg, sint8 err); \\
+		\hline
+		Descripción:  & Función de respuesta ante un error en la creación del servidor\\
+		\hline
+		Parámetros: & arg -- estructura espconn \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func5}%
+\end{table}%
+
+
 Esta función se encarga de reconectar el servidor en caso de una falla en el establecimiento del canal TCP. Esto ocurre raramente. No obstante, se incluye como medida cautelar ante posibles errores en la comunicación.
 
 \subsection{Función init\_tcp}
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función init\_tcp.}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & init\_tcp(uint32\_t Local\_port); \\
+		\hline
+		Descripción:  & Funcion para configurar el servidor \\
+		\hline
+		Parámetros: & Local\_port -- puerto donde se creara el socket \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func6}%
+\end{table}%
+
 
 Dentro de la estructura de configuración de la conexión, se define el apuntador, el tipo (TCP) y el puerto para establecer la conexión.
 
@@ -534,14 +771,74 @@ Finalmente, para crear el servidor, se utiliza \textit{espconn\_accept} y se enc
 
 \subsection{Función ap\_config\_func}
 
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función ap\_config\_func}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & ap\_config\_func();\\
+		\hline
+		Descripción:  & Funcion para configurar el WiFi \\
+		\hline
+		Parámetros: & none \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func7}%
+\end{table}%
+
+
 Esta función configura la conexión que realiza el microcontrolador por medio de la señal WiFi. Se selecciona el modo de punto de acceso (SOFTAP MODE) en donde se da valor a la SSID y contraseña de la conexión a establecer. Como SSID se colocó 'ESP8266-WiFi' y contraseña 'esp123456' con seguridad WPA/WPA2 PSK, como se indica en la tabla \ref{TAB:wifi}.
 
 \subsection{Función gpio\_init}
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función gpio\_init}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & gpio\_init(); \\
+		\hline
+		Descripción:  & Configura los pines de proposito general\\
+		\hline
+		Parámetros: & none \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func8}%
+\end{table}%
+
 
 Esta función configura los pines D2 y D4 como salidas digitales. También configura el UART2 de 8 bits con bit de parada y 115200 baudios.
 
 \subsection{Función mover\_motor}
 \label{FUNC:movermotor}
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función mover\_motor}
+	\begin{tabularx}{\textwidth}{|L|L|}
+		\hline
+		Nombre de función: & void mover\_motor(int comando, char* recibido,float constante\_grados,float constante\_offset); \\
+		\hline
+		Descripción:  & Mueve el motor indicado con el parametro comando \\
+		\hline
+		Parámetros: & comando -- nombre del motor a mover \\
+		\hline
+		& recibido -- string recibido en el request de la pagina \\
+		\hline
+		& constante\_grados -- constante de calibracion para convertir la informacion a un valor binario \\
+		\hline
+		& constante\_offset -- constante de calibracion para corregir el error de bits \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabularx}%
+	\label{tab:func9}%
+\end{table}%
+
 
 Esta función recibe la cadena y la separa por secciones para tomar su valor.
 
@@ -583,9 +880,89 @@ Como se desea transmitir una trama como la indicada en la tabla \ref{TAB:estruct
 
 \subsection{Función mover\_motor\_2}
 
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función mover\_motor\_2}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & mover\_motor\_2(int comando, char* recibido); \\
+		\hline
+		Descripción:  & Mueve el motor indicado con el parametro comando \\
+		\hline
+		Parámetros: & comando -- nombre del motor a mover \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func10}%
+\end{table}%
+
+
 Esta función realiza la misma operación que \textit{mover\_motor} (\ref{FUNC:movermotor}). Sin embargo, la calibración de offset y proporcionalidad ya están predefinidas y no pueden cambiarse. Esto se hace para dar movimiento a los motores de la mano del robot (D, E, F).
 
 \subsection{Funciones cambiar\_constante, parametro\_pid, puenteH}
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función cambiar\_constante}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & cambiar\_constante(char* recibido); \\
+		\hline
+		Descripción:  & Cambia la constante del motor indicado con el parametro comando \\
+		\hline
+		Parámetros: & recibido -- string recibido en el request de la pagina \\
+		\hline
+		& constante\_cambiada -- constante de calibracion cambiada \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func11}%
+\end{table}%
+
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función parametro\_pid}
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & parametro\_pid(int comando,char* recibido); \\
+		\hline
+		Descripción:  & Cambia la constante del motor indicado con el parametro comando \\
+		\hline
+		Parámetros: & comando -- parametro del PID a modificar\\
+		\hline
+		& recibido -- string recibido en el request de la pagina \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func12}%
+\end{table}%
+
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función puenteH }
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & puenteH(int comando,char* recibido,int instruccion); \\
+		\hline
+		Descripción:  & Modifica el parametro del Puente H \\
+		\hline
+		Parámetros: & comando -- parametro del PID a modificar \\
+		\hline
+		& recibido -- string recibido en el request de la pagina \\
+		\hline
+		& instruccion -- Indica el encendido o apagado \\
+		\hline
+		Resultado:  & none \\
+		\hline
+	\end{tabular}%
+	\label{tab:func13}%
+\end{table}%
+
 
 Estas funciones se utilizan para cambiar el valor de las constantes de calibración presentes en los motores A, B y C (cambiar\_constante). También configura los parámetros del PID como Kp, Ki, Kd de los motores A, B y C (parametro\_pid). El registro PR1 del timer del controlador y por último habilita o deshabilita los puentes H de los motores A, B y C (puenteH). 
 
@@ -593,6 +970,24 @@ Estas funciones realizan un procesado similar a \textit{mover\_motor} y dan como
 
 
 \subsection{Función myatof}
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de Función myatof }
+	\begin{tabular}{|l|l|}
+		\hline
+		Nombre de función: & myatof(char *p); \\
+		\hline
+		Descripción:  & Convierte de ascii a float\\
+		\hline
+		Parámetros: & char -- string a convertir \\
+		\hline
+		Resultado:  & valor convertido a float \\
+		\hline
+	\end{tabular}%
+	\label{tab:func14}%
+\end{table}%
+
 
 Esta función se usa para convertir un caracter ASCII a un valor float. No se utiliza la función atof, de la librería \textit{stdlib.h}, ya que genera un error de compilación debido a que las funciones \textit{malloc} y \textit{free} están declaradas dentro del SDK como \textit{os\_malloc} y \textit{os\_free} y escritas de otra manera el compilador no las reconoce. Por lo tanto, se requirió un algoritmo que realizara el mismo proceso.
 \newpage
