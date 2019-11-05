@@ -16,7 +16,7 @@ Para el desarrollo del sistema se utilizó como herramienta de programación el Ki
 	\begin{center}
 		\begin{tabular}{|c|c|}
 			\hline
-			\multicolumn{ 2}{|c|}{\textbf{SOFTWARE}} \\
+			\multicolumn{ 2}{|c|}{\textbf{Atom PlatformIO IDE}} \\
 			\hline
 			SDK & Espressif ESP-8266 NON-OS SDK v2.1.0 \\
 			\hline
@@ -104,13 +104,44 @@ Posteriormente, el código fuente generado para la página web, observado en la fi
 
 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{img/pagina_1}
 	\caption{Vista del software Brackets para el diseño de la página web.}
 	\label{fig:pagina1}
 \end{figure}
 
+
+\subsection{Aplicación Android}
+
+El prototipo propuesto en este trabajo cuenta con una interfaz ejecutable en dispositivos Android con sistema operativo Oreo o superior. 
+
+La aplicación basada en el SDK de Android fue desarrollada en el entorno de programación Android Studio en lenguaje Java. Esta información está resumida en la tabla \ref{TAB:android}. 
+
+
+\begin{table}[H]
+	
+	\caption{Especificaciones de software}
+	\label{TAB:android}
+	
+	\begin{center}
+		\begin{tabular}{|c|c|}
+			\hline
+			\multicolumn{ 2}{|c|}{\textbf{APLICACIÓN ANDROID}} \\
+			\hline
+			SDK & Android \\
+			\hline
+			Lenguaje &        Java \\
+			\hline
+			IDE & Android Studio v3.5 \\
+			\hline
+			API & 28 \\
+			\hline
+			Sistema Operativo & Android Oreo (8.1) \\
+			\hline
+		\end{tabular}  
+	\end{center}
+\end{table}
 
 
 
@@ -175,7 +206,7 @@ Una vez establecidos y configurados todos los parámetros del prototipo, se insta
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.15]{img/circuito_final}
+	\includegraphics[scale=0.8]{img/circuito_final}
 	\caption{Montaje del prototipo.}
 	{LED 1. LED indicador de comunicación.\\
 	LED 2. LED indicador de encendido.
@@ -197,7 +228,7 @@ Simba es un sistema operativo de tiempo real (RTOS) escrito en lenguaje C que su
 
 \subsection{Programación en lenguaje C}
 
-\subsubsection{Espressif RTOS ESP-8266 SDK}
+\subsubsection{Kit de desarrollo de software: Espressif RTOS ESP-8266 SDK}
 
 SDK, en inglés Software Development Kit (Kit de Desarrollo de Software). Es un compilado de herramientas necesarias para desarrollar aplicaciones específicas para el entorno deseado. 
 
@@ -211,12 +242,15 @@ Este sistema operativo hace uso de todas las virtudes del procesador a una mayor
 
 Debido a que en este prototipo no es de interés la implementación de tareas para el manejo de la comunicación del brazo robot, ya que puede hacerse con un mismo núcleo; no se considerará para la programación de este proyecto.  
 
-\subsubsection{Espressif Non-OS ESP-8266 SDK}
+\subsubsection{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
 
 Se trata de un kit diseñado por la empresa Espressif para desarrollar software en dispositivos sin sistema operativo. En ella tiene las librerías de mayor importancia para la configuración y uso del ESP-8266. \cite{esp1} \cite{esp2} \cite{esp3} \cite{esp4} 
 
+El SDK NON-OS provee un conjunto de interfaces de programación de aplicaciones (API) para las funcionalidades del núcleo ESP-8266, como recepción/ transmisión de datos a través de Wi-Fi, funciones para el manejo de TCP/IP, funciones para la interfaz de hardware y el manejo básico del sistema.
 
-\section{Uso de librerías en lenguaje C}
+Las librerías más importantes incluídas dentro del SDK son: osapi.h, user\_interface.h, driver/uart.h, espconn.h, gpio.h, eagle\_soc.h.
+
+%\section{Uso de librerías en lenguaje C}
 
 Para el desarrollo de aplicaciones con manipulación de caracteres y cadenas es necesario utilizar la librería \textit{string.h}. Esta librería está incluída en el estándar de lenguaje C, ya que es de uso común. 
 
@@ -225,15 +259,13 @@ Incluye funciones para manipulación de arreglos de caracteres. Propiamente, defi
 
 Otra librería importante que sirve soporte a \textit{string.h} es \textit{stdlib.h}, debido a que posee las funciones necesarias para la conversión de caracteres en números, utilización de memoria dinámica para la generación de listas, colas y demás algoritmos de organización y posicionamiento de memorias. También está incluída en el lenguaje C estándar y es considerada de uso común. A grandes rasgos, esta librería define cuatro tipos de variables, múltiples macros, y varias funciones de uso general; funciones como: \textit{atoi, atof, atol, malloc, free, abort, abs, rand}, entre otras; son las más utilizadas.
 
-\section{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
+%\section{Kit de desarrollo de software: Espressif NON OS ESP-8266 SDK}
 
 
 %En el caso del Espressif NON OS ESP-8266 SDK, 
 
 
-El SDK NON-OS provee un conjunto de interfaces de programación de aplicaciones (API) para las funcionalidades del núcleo ESP-8266, como recepción/ transmisión de datos a través de Wi-Fi, funciones para el manejo de TCP/IP, funciones para la interfaz de hardware y el manejo básico del sistema.
 
-Las librerías más importantes incluídas dentro del SDK son: osapi.h, user\_interface.h, driver/uart.h, espconn.h, gpio.h, eagle\_soc.h.
 
 \subsection{osapi.h}
 Esta librería realiza una re-definición de algunas de las funciones más importantes de la librería string.h y algunas funciones para manejo del timer. Por lo tanto, es una librería importante para el manejo de cadena de caracteres. 
@@ -345,7 +377,7 @@ Los registros descritos en la tabla \ref{TAB:registrosesp} pueden observarse mej
 La importancia de la correcta definición de los puertos de propósito general en este dispositivo dependerá de la aplicación que desea hacerse. En el caso del prototipo que se propone, es necesario definir el periférico de UART para operar con la comunicación serial hacia el brazo manipulador. Además, es necesario definir algunos pines como salida para visualización del comportamiento del programa y sin que estos interfieran con otros periféricos.
 
 \section{Contenido del programa}
-El programa consta de cinco archivos: user\_main.c, user\_config.h, funciones.h, funciones.c, pagina.h.
+El programa consta de cinco archivos: user\_main.c, user\_config.h, funciones.h, funciones.c, pagina.h. Organizados de esta manera para lograr una compilación fluida con archivos de menor tamaño y para que sea un código en el que sea más sencillo modificar una instrucción sin afectar el proyecto. Es decir, sea un código más sencillo de leer para el programador.
 
 \subsection{user\_main.c}
 En el archivo user\_main.c se encuentra el segmento de código principal y las rutinas de configuración del módulo para su operatividad.
@@ -376,7 +408,7 @@ En el archivo funciones.h se encuentran los prototipos de todas las funciones y 
 \subsection{pagina.h}
 Este archivo contiene dos variables tipo char que contienen en una cadena el código HTML de la página web y la cadena de respuesta ante una solicitud exitosa.
 
-\subsection{Compilado}
+\subsection{Compilación del programa a través de Atom PlatformIO IDE}
 Al compilar el código y cargarlo en el microcontrolador, el IDE muestra los valores totales del consumo de memoria de esta aplicación, como se observa en la figura \ref{fig:compilado}.
 
 \begin{figure}[H]
@@ -386,11 +418,11 @@ Al compilar el código y cargarlo en el microcontrolador, el IDE muestra los valo
 	\label{fig:compilado}
 \end{figure}
 
-\section{Funcionamiento}\label{SEC:funcionamiento}
+\section{Funcionamiento de la comunicación cliente-servidor}\label{SEC:funcionamiento}
 
-El programa principal consta del establecimiento de un servidor TCP que espera una solicitud HTTP proveniente del browser al que se tiene acceso como cliente.
+El programa principal consta del establecimiento de un servidor TCP incluído en el microcontrolador ESP8266 que espera una solicitud HTTP proveniente del browser al que se tiene acceso como cliente. Este browser puede ser cualquier navegador de internet actualizado (Chrome, Firefox, Opera).
 
-El funcionamiento específico se resume en la figura, que muestra la comunicación cliente-servidor al momento de solicitar un comando.
+El funcionamiento específico se resume en la figura \ref{fig:httpserverclient}, que muestra la comunicación cliente-servidor al momento de solicitar un comando.
 
 \begin{figure}[H]
 	\centering
@@ -399,8 +431,18 @@ El funcionamiento específico se resume en la figura, que muestra la comunicación
 	\label{fig:httpserverclient}
 \end{figure}
 
+Esto se entiende de la siguiente manera:
 
-\subsection{Pseudocódigo}
+\begin{itemize}
+	\item El cliente se conecta al servidor y solicita la página web
+	\item El servidor responde 200 OK (comunicación exitosa) y envía la página web.
+	
+	\item El cliente realiza una modificación en la página
+	
+	\item El servidor recibe la trama y responde 200 OK.
+\end{itemize}
+
+\subsection{Pseudocódigo del programa del prototipo}
 
 \begin{center}
 	\begin{algorithm}[H]
@@ -765,9 +807,9 @@ Esta función se encarga de reconectar el servidor en caso de una falla en el est
 
 Dentro de la estructura de configuración de la conexión, se define el apuntador, el tipo (TCP) y el puerto para establecer la conexión.
 
-Luego, con las función \textit{espconn\_regist\_connectcb} se define el callback para 'escuchar' el servidor. 
+Luego, con la función \textit{espconn\_regist\_connectcb} de la librería \textit{espconn.h} se define el callback para 'escuchar' el servidor. 
 
-Finalmente, para crear el servidor, se utiliza \textit{espconn\_accept} y se enciende un led en el pin D4 de la tarjeta de desarrollo.
+Finalmente, para crear el servidor, se utiliza \textit{espconn\_accept} de la librería \textit{espconn.h} y se enciende un led en el pin D4 de la tarjeta de desarrollo.
 
 \subsection{Función ap\_config\_func}
 
@@ -876,7 +918,7 @@ Valor_{digital} = (\frac{Valor_{grados}}{K_{pro}}) - K_{offset}
 
 Una vez convertido el valor, este se desplaza 6 bits a la izquierda para ordenarlos.
 
-Como se desea transmitir una trama como la indicada en la tabla \ref{TAB:estructura}, es necesario que el valor obtenido anteriormente se desplace 8 bits a la derecha para así dar valor al dato high. El dato low no tiene mayores modificaciones, así que esta función termina su trabajo enviando el arreglo con la instrucción \textit{uart0\_tx\_buffer} del NON-OS SDK.
+Como se desea transmitir una trama como la indicada en la tabla \ref{TAB:estructura}, es necesario que el valor obtenido anteriormente se desplace 8 bits a la derecha para así dar valor al dato high. El dato low no tiene mayores modificaciones, así que esta función termina su trabajo enviando el arreglo con la instrucción \textit{uart0\_tx\_buffer} de la librería \textit{uart.h} del NON-OS SDK.
 
 \subsection{Función mover\_motor\_2}
 
@@ -966,7 +1008,7 @@ Esta función realiza la misma operación que \textit{mover\_motor} (\ref{FUNC:mov
 
 Estas funciones se utilizan para cambiar el valor de las constantes de calibración presentes en los motores A, B y C (cambiar\_constante). También configura los parámetros del PID como Kp, Ki, Kd de los motores A, B y C (parametro\_pid). El registro PR1 del timer del controlador y por último habilita o deshabilita los puentes H de los motores A, B y C (puenteH). 
 
-Estas funciones realizan un procesado similar a \textit{mover\_motor} y dan como resultado el número float de interés extraído de la cadena recibida para el caso de la función (cambiar\_constante), o el envío directo de la trama generada con ayuda de la función \textit{uart0\_tx\_buffer} 
+Estas funciones realizan un procesado similar a \textit{mover\_motor} y dan como resultado el número float de interés extraído de la cadena recibida para el caso de la función (cambiar\_constante), o el envío directo de la trama generada con ayuda de la función \textit{uart0\_tx\_buffer} de la librería \textit{uart.h} 
 
 
 \subsection{Función myatof}

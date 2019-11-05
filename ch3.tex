@@ -37,17 +37,14 @@ El diseño de un acceso remoto por RF debe llevar dos etapas: Transmisión y recep
 
 Es necesario el establecimiento de una interfaz de comunicación para la ejecución de la acción de control de forma inalámbrica, por lo tanto es común el diseño de circuitos osciladores transmisores/receptores que se colocan en el sistema a controlar y su unidad remota. 
 
-Por otro lado, una mejora de estos sistemas se obtiene al utilizar circuitos integrados como el NFR24L01 o el KYL-500S. Estos circuitos transceptores poseen la unidad de transmisión y recepción disponibles según sea la necesidad. Aunado a esto, es importante señalar que existen con la variedad de frecuencias y ancho de banda que requiera el diseñador. Por este motivo, son de gran utilidad para el diseño de accesos remotos.
+Por otro lado, una mejora de estos sistemas se obtiene al utilizar circuitos integrados como el NFR24L01 \cite{remotearm01} o el KYL-500S \cite{inproceedings02}. Estos circuitos transceptores poseen la unidad de transmisión y recepción disponibles según sea la necesidad. Aunado a esto, es importante señalar que existen con la variedad de frecuencias y ancho de banda que requiera el diseñador. Por este motivo, son de gran utilidad para el diseño de accesos remotos.\cite{aruaru}
 
-Una aplicación de un modelo de acceso remoto en brazos manipuladores o de robots en general, puede verse en \cite{remotearm01},  \cite{inproceedings02} y \cite{aruaru}. 
 
-Lo señalado en el trabajo \cite{remotearm01} trata de un diseño e implementación de un brazo robótico controlado de forma inalámbrica con fines industriales hecho en la Universidad de Ingeniería y Tecnología en Bangladesh. En este proyecto se contempla un brazo robótico de seis grados de libertad capaz de sostener un objeto de peso específico y colocarlo en una posición deseada. Para controlarlo se estableció un sistema que recibe instrucciones vía un joystick inalámbrico. 
+Un diseño de un brazo robótico controlado de forma inalámbrica con fines industriales puede observarse en propuestas hechas en la Universidad de Ingeniería y Tecnología en Bangladesh, en donde se contempla un robot de seis grados de libertad capaz de sostener un objeto de peso específico y colocarlo en una posición deseada. Esto fue logrado a través de un sistema que recibe instrucciones vía un joystick inalámbrico vía radiofrecuencia.\cite{remotearm01}
 
-El sistema se incluyó dentro del brazo para mayor facilidad de uso. El controlador del brazo se diseñó usando un microcontrolador ATMEGA-328P, el microcontrolador utilizado en el control remoto fue un ATMEGA-8; ambos dispositivos programados bajo el IDE de Arduino. Estos integrados se encargan de recibir la señal digital que es procesada por un módulo transceptor de comunicación RF no especificado en el documento.
+El manejo remoto de sistemas de medición y monitoreo de variables físicas puede realizarse de forma inalámbrica usando un módulo de comunicación por RF como el NFR24L01. El cuál debe ser implementado utilizando microcontroladores para el monitoreo y manipulación de periféricos en conjunto con una Interfaz Humano Máquina (HMI).\cite{inproceedings02} 
 
-La utilidad del manejo remoto de sistemas de medición puede observarse en propuestas como el trabajo \cite{inproceedings02}, donde se realizó un diseño e implementación de un ambiente robótico de asistencia y monitoreo de variables físicas, controlado de forma inalámbrica usando un módulo de comunicación por RF, NFR24L01 y dos microcontroladores PIC16F77A, uno para monitoreo y manipulación de periféricos; y otro como Interfaz Humano Máquina (HMI). 
-
-De forma similar al trabajo anterior, en \cite{aruaru} se utilizan dos microcontroladores AT89c52 y dos módulos KYL-500S para el diseño del controlador remoto de un interruptor de pared de 13A.
+%De forma similar al trabajo anterior, en \cite{aruaru} se utilizan dos microcontroladores AT89c52 y dos módulos KYL-500S para el diseño del controlador remoto de un interruptor de pared de 13A.
 
 
 La tecnología de Radiofrecuencia también involucra sistemas de comunicación vía Bluetooth o WiFi, debido a que estas ofrecen facilidades compatibles con la tecnología en vanguardia; además de permitir la conectividad a internet y ser un recurso importante en los sistemas para IoT.
@@ -116,7 +113,7 @@ Desde sus inicios, ha presentado mejoras en la tasa de transmisión de datos, con
 \end{table}%
 
 
-En \cite{articuloBT} se utilizó Bluetooth para controlar remotamente los movimientos de un brazo robot de cuatro grados de libertad. El controlador del brazo se realizó con un microcontrolador ATMEGA2560, la transmisión de las instrucciones se hizo con un control remoto de Playstation con conectividad Bluetooth.
+Se puede utilizar la tecnología Bluetooth para controlar remotamente los movimientos de un brazo robot de al menos cuatro grados de libertad. Esto puede lograrse mediante un controlador del robot que establezca la transmisión de las instrucciones a través de un control remoto con conectividad Bluetooth.\cite{articuloBT}
 
 \subsubsection{Wi-Fi}
 
@@ -126,9 +123,9 @@ Su capacidad de alcance es elevada, esto lo hace un elemento útil en el monitore
 
 Una ventaja de esta tecnología ante otras de radiofrecuencia es la seguridad en el envío de datos. Cada dispositivo emisor/receptor cuenta con la posibilidad de encriptar la transmisión usando WPA o WPA2.
 
-En la página web oficial establece la sexta generación para el año 2019 como la más actualizada. Esta cuenta con mejoras de seguridad, tasa de transmisión, alcance y fidelidad. Parte de esta información se puede observar en la tabla \ref{tab:WIFIversion}
+En la página web oficial establece la sexta generación para el año 2019 (octubre) como la más actualizada. Esta cuenta con mejoras de seguridad, tasa de transmisión, alcance y fidelidad. Parte de esta información se puede observar en la tabla \ref{tab:WIFIversion}
 
-En \cite{articulowifi} se construyó un brazo robot de cuatro grados de libertad basado en IoT. El controlador del robot se realizó usando una placa de desarrollo NXP FRDM-KL25Z, conectado a un módulo ESP-8266 para conectividad Wi-Fi.
+Un ejemplo de implementación de esta tecnología se observa en \cite{articulowifi}. Donde muestran cómo puede construirse un brazo robot basado en IoT a través de una placa de desarrollo NXP FRDM-KL25Z conectándose a un módulo ESP-8266 para conectividad Wi-Fi y lograr el movimiento.
 
 Este sistema recibe las instrucciones vía una plataforma web conectada a internet, y esta se comunica con el módulo ESP para establecer la conexión y de esta forma completar el sistema de IoT.
 
@@ -202,8 +199,30 @@ Luego de estudiar los aspectos generales de ambas tecnologías, en la tabla \ref{
 
 \subsection{Telefonía móvil}
 
-\subsubsection{GPRS.}
+Esta tecnología se creó en el siglo XX como una mejora a los sistemas de comunicación alámbricos y posteriormente surgieron los sistemas de telefonía móvil en los años ochenta. \cite{Online:telefonia}.
 
-\subsubsection{UMTS}
+La primera generación de esta tecnología es conocida como '1G' y su característica fundamental es la transmisión de información a través de radiofrecuencia de forma analógica. A partir de la generación '2G' se fue implementando la transmisión de forma digital, dando cabida a muchos métodos de comunicación que persisten en la actualidad. \cite{Online:1g5g}.
+
+
+La tecnología GPRS (General Packet Radio Service ) es la evolución de la tecnología GSM (Global System for Mobile Communications) y ambas son conocidas como redes de segunda generación o redes '2G'. Sus características principales fueron la integración de métodos de modulación digital para la transmisión de información, lo que generó una mejora en la calidad y fidelidad de las comunicaciones. \cite{Online:gprsusos}.
+
+El uso de estas propuestas tecnológicas en el ámbito del monitoreo y control de variables y sistemas por vía remota es bastante aceptado debido a que se pueden lograr comunicaciones de largas distancias (internacionales inclusive) utilizando únicamente la red de telefonía celular. Esto proporciona una solución para el monitoreo de sistemas geográficamente aislados, logrando disminuir costos de operatividad para las empresas que lo utilizan, representando una ganancia en términos de ingeniería. 
+
+Por otra parte, las redes 2G están limitadas al auge tecnológico generado por las redes de mayor gama (UMTS, WCDMA, EDGE, LTS, entre otros) ya que estas ofrecen una mejor calidad de comunicación, con mejoras en la transmisión y planes de servicios más económicos en comparación a la red 2G. Esto ocasiona que en los próximos años estas redes dejen de operar para ser sustituidas por unas más avanzadas.\cite{Online:2gexcelsior}.
+
+La implementación de este tipo de sistemas en la adaptación del hardware para un robot dependerá de un módulo de comunicación que pueda actuar de transceptor entre el sistema del brazo robot y la atmósfera, que es donde se transmitirá esta información. En el caso de la tecnología 2G, 3G o 4G, puede utilizarse un módulo como el SIM7000 de la compañía 'DFRobot'. \cite{mouser1}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{img/gprs}
+	\caption{Módulo SIM7000 de comunicación por telefonía móvil GSM.}
+	{Fuente: \cite{mouser1}.}
+			\label{fig:gprs}
+\end{figure}
+
+
+
+Sin embargo, el costo de esta unidad es de más de 30\$ (consultado en octubre de 2019). Lo cuál es rentable para proyectos de gran escala, pero no se recomienda la utilización en sistemas que pueden operar en una red local, como lo es el caso del brazo manipulador. Además, este tipo de sistema requieren una adaptación del hardware del robot que no es deseada para este prototipo.
+ 
 
 %\subsection{Aplicación de IoT.}

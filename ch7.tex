@@ -1,4 +1,4 @@
-\section{Interfaz}
+\section{Interfaz de la aplicación web}
 
 Para acceder al servidor, primero debe comprobarse que el dispositivo está conectado correctamente. Usando otro dispositivo que cuente con Wi-Fi puede hacerse esto rápidamente, mostrando lo indicado en la figura. 
 
@@ -28,7 +28,7 @@ Al abrir la web, esta solicitará al usuario que ingrese una clave. De ser exitos
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.06]{img/paginacompleta}
+	\includegraphics[scale=0.09]{img/paginacompleta}
 	\caption{Página web completa.}
 	\label{fig:paginacompleta}
 \end{figure}
@@ -58,32 +58,31 @@ Por otra parte, en la parte inferior puede observarse el botón 'Recargar página'
 	\label{fig:paginaprobador}
 \end{figure}
 
-En la figura \ref{fig:paginaprobador} se observan dos elementos: Una imagen del esquema de motores, codificada en base64. Y un cuadro de texto que indica 'Probador de trayectorias'.
+En la figura \ref{fig:paginaprobador} se observan dos elementos: Una imagen del esquema de motores, codificada en base64. Y un cuadro de texto que indica 'Probador de trayectorias'. En esta imagen están identificados los motores mediante una letra, y estos servirán para escribir y probar los comandos según la sintaxis que será explicada posteriormente.
 
 Este probador tiene la finalidad de probar rutinas de movimiento sencillas (sin retardos), con la idea de realizar un bosquejo rápido del movimiento que desea el usuario.
 
 Al presionar el botón 'pulsar', toda la rutina contenida en el cuadro de texto se enviará al brazo robot.
 
+\subsubsection{Sintaxis de comandos del programa}\label{sintaxis2}
+
 Las rutinas deben tener la estructura siguiente:
 
-\begin{verbatim}
-q1 -65.00
-q2 35.00
-q3 -65.00
-q4 34.83
-q5 -65.01
-q6 -34.65
-grip on
-q1 34.48
-q2 -65.02
-q3 34.30
-q4 -65.04
-q5 34.13
-q6 65.05
-grip off
-\end{verbatim}
+\begin{itemize}
+	\item Cada comando de movimiento constará de dos elementos: Un identificador $q_{i}$ (con i= 1,2,3,4,5,6) y un número separado por un espacio, decimal con dos cifras significativas que representará la cantidad en grados que se desea mover.
+	
+	\item El comando de movimiento debe formarse de la siguiente manera: <qi><espacio><sDDD.FF> donde (s) denota el signo positivo o negativo, DDD es la parte entera y FF la mantisa.
+	
+	\item Cada línea de comando debe incluir solo una instrucción. Para realizar dos o más instrucciones, deben generarse varias líneas separadas por un 'enter' (linefeed).
+	
+	\item El comando 'wait' no está implementado para la página web. Únicamente para la aplicación Android.
+	
+	\item El comando para habilitar la pinza es <grip><espacio><on>. Para deshabilitarla es <grip><espacio><off>
+	
+\end{itemize}
 
-En estas rutinas, 'qi' es el indicador de movimiento para el motor deseado. Siendo 1, 2, 3, 4, 5 y 6 correspondientes a los motores A, B, C, D, E y F. El número siguiente es el aproximado en grados del movimiento deseado. Puede ser un número entero o un número real de dos cifras significativas. El signo indica si el movimiento es en sentido negativo o no.
+
+En estas rutinas, 'qi' es el indicador de movimiento para el motor deseado. Siendo i =1, 2, 3, 4, 5 y 6 correspondientes a los motores A, B, C, D, E y F del esquema de la figura \ref{fig:paginaprobador}. El número siguiente es el aproximado en grados del movimiento deseado. Puede ser un número entero o un número real de dos cifras significativas. El signo indica si el movimiento es en sentido negativo o no.
 
 \subsubsection{Movimiento en tiempo real}
 
@@ -113,9 +112,9 @@ En la figura \ref{fig:paginaconfig} pueden observarse los parámetros configurabl
 
 A la izquierda se encuentran los parámetros correspondientes a los tres controladores PID presentes en el robot. Los valores mostrados son los enviados por defecto. Sin embargo, se recomienda al usuario cambiarlos a valores óptimos para evitar oscilaciones indeseadas.
 
-A la derecha, se encuentran los parámetros de calibración para el cálculo del valor de movimiento. Estos son los considerados en la ecuación \ref{grad2dig}, por lo tanto es importante realizar variaciones solo cuando el usuario esté completamente seguro.
+A la derecha, se encuentran los parámetros de calibración para el cálculo del valor de movimiento. Estos son los considerados en la ecuación \ref{ec:convertirdigital}, por lo tanto es importante realizar variaciones solo cuando el usuario esté completamente seguro.
 
-Seguidamente, se observan las opciones para habilitar o deshabilitar los puentes H de los motores principales. No obstante, esto no es recomendable modificar debido a que los motores constantemente realizan movimientos en sentidos positivos y negativos.
+Seguidamente, se observan las opciones para habilitar o deshabilitar los puentes H de los motores principales. No obstante, esto no es recomendable modificar debido a que los motores constantemente realizan movimientos en sentido horario y antihorario.
 
 Por último, está la opción de configuración del registro PR1, quien se encarga de seleccionar la tasa de muestreo del controlador manejado por el dsPIC. El valor mostrado es el seleccionado por defecto. Es importante mencionar que este valor solo debe ser modificado cuando se esté completamente seguro de sus consecuencias.
 
@@ -181,7 +180,7 @@ En esta aplicación sí se permite el uso de comandos de retardo (wait). Un ejempl
 	wait 200
 \end{verbatim}
 
-Los comandos 'wait' deben ir acompañados de un valor numérico entero que simbolizará un retardo en milisegundos.
+Los comandos <wait> deben ir acompañados de un valor numérico entero que simbolizará un retardo en milisegundos, a su vez separados por un espacio de la siguiente manera: <wait><espacio><cantidad>.
 
 En la figura \ref{fig:appfrommenu} se observa la vista en miniatura desde el menú de aplicaciones.
 
@@ -192,7 +191,7 @@ En la figura \ref{fig:appfrommenu} se observa la vista en miniatura desde el men
 	\label{fig:appfrommenu}
 \end{figure}
 
-En la figura \ref{fig:robocomapp} se observa la interfaz de la aplicación. 
+En la figura \ref{fig:robocomapp} se observa la interfaz de la aplicación Android. 
 
 El banner muestra el nombre de esta, 'ROBOCOM'. Seguidamente, el cuerpo de esta establece un campo de texto editable con etiqueta 'Número de repeticiones. En esta opción se coloca el número de veces que desea repetirse la rutina. Al dejar el valor en '0', el programa se ejecutará una sola vez.
 
@@ -208,26 +207,3 @@ A un lado se encuentra la etiqueta 'Status', que indica si la comunicación fue e
 Al centro de la aplicación está el campo de texto en el que se posará el texto de la rutina. Allí pueden escribirse los comandos de movimiento y configuración directamente o desde un archivo de texto que puede ser cargado al presionar el botón 'Cargar Archivo'.
 
 Las rutinas generadas o modificadas pueden ser guardadas en un nuevo archivo indicando el nombre y presionando la opción 'Guardar a archivo'.
-\section{Montaje}
-
-A continuación se muestran los diagramas esquemáticos de conexión de la tarjeta de desarrollo ESP-8266 con el dsPIC del controlador del brazo robot.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=1]{img/MontajeTesis}
-	\caption{Esquemático de conexión entre ESP-8266 y dsPIC30F3011}
-	\label{fig:montajetesis}
-\end{figure}
-
-
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[scale=0.1]{img/fotocircuito}
-%	\caption{Fotografía del montaje en protoboard de la tarjeta de desarrollo.}
-%	\label{fig:fotocircuito}
-%\end{figure}
-
-
-
-
-
