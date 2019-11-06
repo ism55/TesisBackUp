@@ -171,10 +171,53 @@ Para discriminar y seleccionar el dispositivo que mejor se ajuste a los requerim
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.75]{img/arana}
+	\includegraphics[scale=0.6]{img/chart}
 	\caption{Comparación entre los dispositivos considerados}
+	{}
 	\label{fig:arana}
 \end{figure}
+
+\begin{table}
+	\begin{tabular}{|c|l|}
+		\hline
+		\multicolumn{ 1}{|c|}{RTOS} & 0: No posee conectividad Wi-Fi \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 1: Puede implementarse RTOS \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 0: No puede implementarse RTOS \\
+		\hline
+		\multicolumn{ 1}{|c|}{Lenguaje C} & 1: Puede programarse en C \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 0: No puede programarse en C \\
+		\hline
+		\multicolumn{ 1}{|c|}{Costo (\$} & 1: Menor o igual a 5\$ \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 2: Entre 5\$ y 20\$ \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 3: Mayor a 20\$ \\
+		\hline
+		\multicolumn{ 1}{|c|}{Capacidad de Memoria (MB)} & 1: Menor o igual a 10MB \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 2: Entre 10MB y 100MB \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 3: De 100MB en adelante \\
+		\hline
+		\multicolumn{ 1}{|c|}{UART} &  1: 1 UART \\
+		\hline
+		\multicolumn{ 1}{|c|}{} &  2: 2 UART \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 3: 3 o más UART \\
+		\hline
+		\multicolumn{ 1}{|c|}{GPIO} & 1: Menos de 20 \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 2: Entre 20 y 30 \\
+		\hline
+		\multicolumn{ 1}{|c|}{} & 3: 30 o más \\
+		\hline
+		\end{tabular}  
+		
+	\caption{}
+\end{table}
 
 En esta figura puede observarse la gráfica verde como guía, ya que es la que representa a las necesidades mínimas del proyecto, según como se indica en la tabla \ref{TAB:requerimientos}. Alrededor se muestran las representaciones de las características de las tarjetas de desarrollo estudiadas en comparación con los parámetros ideales. En este gráfico se puede observar que a pesar de las considerables ventajas que ofrecen todos los dispositivos en cuestión, la gráfica que más se acerca a las condiciones ideales es la azul. Es decir, el ESP-8266. 
 

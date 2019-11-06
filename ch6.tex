@@ -422,6 +422,12 @@ Al compilar el código y cargarlo en el microcontrolador, el IDE muestra los valo
 
 El programa principal consta del establecimiento de un servidor TCP incluído en el microcontrolador ESP8266 que espera una solicitud HTTP proveniente del browser al que se tiene acceso como cliente. Este browser puede ser cualquier navegador de internet actualizado (Chrome, Firefox, Opera).
 
+TCP (protocolo de control de transmisión) es un protocolo que opera en la capa de transporte a través de IP (capa de internet). El interés principal para la utilización de este protocolo es que garantiza el envío y recepción de paquetes de datos proporcionando una transferencia de datos fiable con control de flujo, ya su vez comprueba automáticamente cada comunicación con el servidor los números de secuencia, mensajes de reconocimiento y temporizadores.
+
+UDP, en cambio, no se considera un protocolo fiable ya que contempla buscar el mejor enlace para la transmisión de la información, pero no garantiza que esta llegue a su destino.
+
+Para este prototipo propuesto, se utilizará TCP ya que es necesario que la información comunicada entre cliente-servidor sea en tiempo real; y por este motivo debe asegurarse que esta siempre se pueda transmitir.
+
 El funcionamiento específico se resume en la figura \ref{fig:httpserverclient}, que muestra la comunicación cliente-servidor al momento de solicitar un comando.
 
 \begin{figure}[H]
