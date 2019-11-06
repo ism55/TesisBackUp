@@ -173,57 +173,66 @@ Para discriminar y seleccionar el dispositivo que mejor se ajuste a los requerim
 	\centering
 	\includegraphics[scale=0.6]{img/chart}
 	\caption{Comparación entre los dispositivos considerados}
-	{}
 	\label{fig:arana}
 \end{figure}
 
-\begin{table}
-	\begin{tabular}{|c|l|}
-		\hline
-		\multicolumn{ 1}{|c|}{RTOS} & 0: No posee conectividad Wi-Fi \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 1: Puede implementarse RTOS \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 0: No puede implementarse RTOS \\
-		\hline
-		\multicolumn{ 1}{|c|}{Lenguaje C} & 1: Puede programarse en C \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 0: No puede programarse en C \\
-		\hline
-		\multicolumn{ 1}{|c|}{Costo (\$} & 1: Menor o igual a 5\$ \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 2: Entre 5\$ y 20\$ \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 3: Mayor a 20\$ \\
-		\hline
-		\multicolumn{ 1}{|c|}{Capacidad de Memoria (MB)} & 1: Menor o igual a 10MB \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 2: Entre 10MB y 100MB \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 3: De 100MB en adelante \\
-		\hline
-		\multicolumn{ 1}{|c|}{UART} &  1: 1 UART \\
-		\hline
-		\multicolumn{ 1}{|c|}{} &  2: 2 UART \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 3: 3 o más UART \\
-		\hline
-		\multicolumn{ 1}{|c|}{GPIO} & 1: Menos de 20 \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 2: Entre 20 y 30 \\
-		\hline
-		\multicolumn{ 1}{|c|}{} & 3: 30 o más \\
-		\hline
-		\end{tabular}  
-		
-	\caption{}
-\end{table}
+Para entender el gráfico de la figura \ref{fig:arana}, se describe la siguiente leyenda:
 
-En esta figura puede observarse la gráfica verde como guía, ya que es la que representa a las necesidades mínimas del proyecto, según como se indica en la tabla \ref{TAB:requerimientos}. Alrededor se muestran las representaciones de las características de las tarjetas de desarrollo estudiadas en comparación con los parámetros ideales. En este gráfico se puede observar que a pesar de las considerables ventajas que ofrecen todos los dispositivos en cuestión, la gráfica que más se acerca a las condiciones ideales es la azul. Es decir, el ESP-8266. 
+\begin{description}
+	\item[Conectividad Wi-Fi] 
+	
+	1: Posee conectividad Wi-Fi. 
+	\\ 0: No posee conectividad Wi-Fi
+	
+	\item[RTOS]
+	
+	0: No posee conectividad Wi-Fi\\
+	1: Puede implementarse RTOS\\
+	0: No puede implementarse RTOS\\
+
+	\item[Lenguaje C]
+	
+	1: Puede programarse en C\\
+	0: No puede programarse en C
+	
+	\item[Costo (\$] 
+	
+	1: Menor o igual a 5\$ \\
+	2: Entre 5\$ y 20\$\\
+	3: Mayor a 20\$\\
+	
+	\item[Capacidad de Memoria (MB)]
+	
+	1: Menor o igual a 10MB\\
+	2: Entre 10MB y 100MB\\
+	3: De 100MB en adelante\\
+	
+	\item[UART]
+	
+	1: 1 UART\\
+	2: 2 UART\\
+	3: 3 o más UART\\
+	
+	\item[GPIO] 
+	1: Menos de 20\\
+	2: Entre 20 y 30\\
+	3: 30 o más\\
+	
+
+	
+	
+	
+	
+\end{description}
+
+
+En esta figura puede observarse la gráfica verde como guía, ya que es la que representa a las necesidades mínimas del proyecto, según como se indica en la tabla \ref{TAB:requerimientos}. Alrededor se muestran las representaciones de las características de las tarjetas de desarrollo estudiadas en comparación con los parámetros ideales. En este gráfico se puede observar que a pesar de las considerables ventajas que ofrecen todos los dispositivos en cuestión, la gráfica que más se acerca a las condiciones ideales es la del ESP-8266. 
 
 Esto se evidencia al comprobar que es el dispositivo de menor costo entre los estudiados. Además, cubre las condiciones mínimas del diseño a pesar de no tener una extrema holgura de recursos como se demuestra en los dispositivos de mayor gama. 
 
-Por las características observadas en la figura \ref{fig:arana}, además de las dificultades de conectividad a internet, la posibilidad de conexión a diversos dispositivos, y las ventajas de la utilización de la tecnología Wi-Fi antes que Bluetooth como se muestra en la tabla \ref{TAB:comparacionbtwf}, se seleccionará el dispositivo ESP-8266 con conectividad Wi-Fi sin acceso a internet para establecer un servidor de comunicación con una página web incluida en el SoC el cuál podrá accederse de forma remota para lograr el movimiento del brazo robot sin presencia de computadores intermediarios.
+Otro factor importante para la selección de este dispositivo es la relación de costo-benecifio que se consigue con la adquisición de este módulo. Ya que puede igualar parte del alcance de dispositivos de mayor gama tecnológica a un costo considerablemente reducido. 
+
+Por las características observadas en la figura \ref{fig:arana}, además de las dificultades de conectividad a internet en el entorno que se utilizará, la posibilidad de conexión a diversos dispositivos para evitar la codependencia de un computador con un software computarizado, y las ventajas de la utilización de la tecnología Wi-Fi en comparación con Bluetooth como se muestra en la tabla \ref{TAB:comparacionbtwf}, se seleccionará el dispositivo ESP-8266 con conectividad Wi-Fi sin acceso a internet para establecer un servidor de comunicación con una página web incluida en el sistema embebido, el cuál podrá accederse de forma remota para lograr el movimiento del brazo robot sin presencia de computadores intermediarios.
 
 
 

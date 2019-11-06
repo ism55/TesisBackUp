@@ -159,11 +159,13 @@ Si el problema de conectividad persiste, es necesario eliminar los valores de co
 
 \subsection{Aplicación Android}
 
-Esta aplicación fue desarrollada en Android Studio versión 3.4.1 para API 27 (Android 8.1 Oreo) en lenguaje Java. 
+Esta aplicación fue desarrollada en Android Studio versión 3.4.1 para API 27 (Android 8.1 Oreo) en lenguaje Java, como soporte a la interfaz diseñada en las secciones anteriores. 
 
-La funcionalidad de la aplicación es comunicarse a través de un canal TCP con el servidor establecido en el ESP-8266. Allí enviará los comandos generados por el archivo de texto en el que será leído línea por línea. Esto se repetirá tantas veces como quiera el usuario.
+La funcionalidad de la aplicación es comunicarse a través de un canal TCP con el servidor establecido en el ESP-8266. Esta permite leer y generar archivos con comandos de movimientos de interés para la programación de trayectorias.  Por medio del canal TCP se enviarán los comandos generados por el archivo de texto en el que será leído línea por línea. La aplicación, además, permite que el usuario seleccione la cantidad de veces que desea que esta rutina sea procesada. 
 
-En esta aplicación sí se permite el uso de comandos de retardo (wait). Un ejemplo es la siguiente rutina:
+En esta aplicación sí se permite el uso de comandos de retardo (wait). No obstante, se debe tener precaución del hardware del teléfono en la que está instalada, ya que debe tener capacidad de procesamiento de tareas en segundo plano sin saturar la memoria RAM del procesador. 
+
+Un ejemplo de la utilización de esta aplicación es la siguiente rutina:
 
 \begin{verbatim}
 	q1 -74
