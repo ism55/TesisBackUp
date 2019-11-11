@@ -56,24 +56,13 @@ En la ventana principal se selecciona la opción de nuevo proyecto, identificada 
 \end{figure}
 
 
-Hecho esto, se podrá programar el microcontrolador en lenguaje C a través del IDE Atom PlatformIO. Compilando y cargando el programa como se muestra en la figura \ref{fig:atom4}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.3]{img/atom_4}
-	\caption{Compilación y carga del programa en la tarjeta.}
-	{1. Compilar programa.\\
-	2. Cargar el programa a la tarjeta.
-	}
-	\label{fig:atom4}
-\end{figure}
-
+Hecho esto, se podrá programar el microcontrolador en lenguaje C a través del IDE Atom PlatformIO. 
 
 \subsection{Diseño de página web}
 
-En cuanto al diseño de la página web; se desarrolló este código a través del editor de texto Brackets versión 1.14, ya que este trae soporte en tiempo real para modificaciones del archivo HTML y los diversos scripts. Las versiones de software utilizadas para esta sección se encuentras indicadas en la tabla \ref{TAB:paginaweb}. 
+En cuanto al diseño de la página web; se desarrolló este código a través del editor de texto Brackets versión 1.14, ya que este trae soporte en tiempo real para modificaciones del archivo HTML y los diversos scripts. Las versiones de software utilizadas para esta sección se encuentran indicadas en la tabla \ref{TAB:paginaweb}. 
 
-Posteriormente, el código fuente generado para la página web, observado en la figura \ref{fig:pagina1},  fue agregado al programa del sistema embebido como una cadena de caracteres, generando una página inicial para el servidor que se establecerá. 
+Posteriormente, el código fuente generado para la página web, (ver anexo: Código fuente web),  fue agregado al programa del sistema embebido como una cadena de caracteres, generando una página inicial para el servidor que se establecerá. 
 
 
 \begin{table}[H]
@@ -103,20 +92,11 @@ Posteriormente, el código fuente generado para la página web, observado en la fi
 \end{table}
 
 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.6]{img/pagina_1}
-	\caption{Vista del software Brackets para el diseño de la página web.}
-	\label{fig:pagina1}
-\end{figure}
-
-
 \subsection{Aplicación Android}
 
 El prototipo propuesto en este trabajo cuenta con una interfaz ejecutable en dispositivos Android con sistema operativo Oreo o superior. 
 
-La aplicación basada en el SDK de Android fue desarrollada en el entorno de programación Android Studio en lenguaje Java. Esta información está resumida en la tabla \ref{TAB:android}. 
+La aplicación basada en el SDK de Android fue desarrollada en el entorno de programación Android Studio en lenguaje Java. Esta información está resumida en la tabla \ref{TAB:android}. El código fuente de esta aplicación está incluido en el Anexo: Código de fuente Android.
 
 
 \begin{table}[H]
@@ -197,7 +177,7 @@ Para establecer la comunicación entre el disposito ESP8266 y el microcontrolador
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=1]{img/MontajeTesis}
+	\includegraphics[scale=0.8]{img/MontajeTesis}
 	\caption{Esquemático de conexión entre ESP-8266 y dsPIC30F3011}
 	\label{fig:montajetesis1}
 \end{figure}
@@ -365,7 +345,7 @@ Como puede observarse en la tabla \ref{TAB:registrosesp}, el ESP-8266 posee múlt
 \end{table}
 
 
-Los registros descritos en la tabla \ref{TAB:registrosesp} pueden observarse mejor en la figura \ref{fig:nodemcupins} , donde se muestra el pinout de este sistema embebido. La descripción de estos parámetros está descrita con detalle en la hoja de datos \cite{esp4}.
+Los registros descritos en la tabla \ref{TAB:registrosesp} pueden observarse mejor en la figura \ref{fig:nodemcupins}, donde se muestra el pinout de este sistema embebido. La descripción de estos parámetros está descrita con detalle en la hoja de datos \cite{esp4}.
 
 \begin{figure}[H]
 	\centering

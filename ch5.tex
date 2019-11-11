@@ -100,6 +100,8 @@ Las opciones de acceso remoto que ofrece este dispositivo son:
 
 Acceder a internet a través de un servidor web con conectividad a internet estableciendo un sitio web, o a través de su IP personal. También permite la copia y transferencia de archivos desde/a otro computador usando VNC, SSH, SFTP, SCP, SSHFS, rsync, FTP y SAMBA/CIFS.
 
+Por otra parte, el Raspberry Pi 3 cuenta con una memoria FLASH de aproximadamente 1GB, lo cuál lo hace útil para la implementación de sistemas operativos embebidos.
+
 \subsection{Cypress CYW54907}
 \begin{figure}[H]
 	\centering
@@ -113,7 +115,9 @@ Este equipo es una tarjeta de desarrollo basada en el microcontrolador CYW54907 
 
 El dispositivo cuenta con 30 pines de GPIO, tres UART y posibilidad de conectividad por radiofrecuenia con Wi-Fi o Bluetooth. Cuenta con un conector RJ45 para conexión Ethernet, además de ejecutar sistemas operativos y ser compatible con diversos módulos.
 
-Al poderse programar en diversos lenguajes, este dispositivo es una opción importante a considerar, ya que ofrece algunas ventajas convenientes en comparación a la Raspberry, como lo es poseer Wi-Fi incluido en el SoC. Su costo oficial es de 99\$. (Consultado el 24 de septiembre de 2019.)
+Al poderse programar en diversos lenguajes (comúnmente ensamblador, C y Python), este dispositivo es una opción importante a considerar, ya que ofrece algunas ventajas convenientes en comparación a la Raspberry, como lo es poseer Wi-Fi incluido en el SoC. Su costo oficial es de 99\$. (Consultado el 24 de septiembre de 2019.)
+
+Cuenta con un puerto USB y una memoria FLASH de aproximadamente 1GB.
 
 \subsection{ESP 8266}
 
@@ -154,9 +158,11 @@ Una de las nuevas implementaciones que este dispositivo trajo fue la posibilidad
 
 Cuenta con Wi-Fi y Bluetooth 4.2 BR/EDR/BLE, ademas de compatibilidad de comunicación SPI, I2C, I2S. 
 
-Entre otros elementos resaltantes, posee 3 UART, compatibilidad Ethernet MAC, bus CAN, controlador remoto infrarrojo, sensor de efecto Hall, 10 sensores capacitivos táctiles, y 16 canales para señales PWM.
+Entre otros elementos resaltantes, posee 3 UART, un puerto USB, compatibilidad Ethernet MAC, bus CAN, controlador remoto infrarrojo, sensor de efecto Hall, 10 sensores capacitivos táctiles, y 16 canales para señales PWM.
 
 Tiene un costo entre 5\$ y 10\$ (consultado el 24 de septiembre de 2019) y desde su aparición ha ganado popularidad entre los seguidores del ESP-8266 debido a la gran cantidad de periféricos que posee por un costo económico en comparación a competidores de mayor gama.
+
+Puede programarse en C, RTOS, ensamblador, Simba, Lua y Python. Además, la velocidad de procesamiento de este microcontrolador puede alcanzar los 240MHz.
 
 \section{Selección}
 
@@ -164,73 +170,24 @@ Basado en la información mostrada en la tabla \ref{TAB:comparacionbtwf}, se esti
 
 En cuanto al ancho de banda, esto permite que la comunicación sea de baja latencia y pueda transmitir datos en tiempo real con un retardo despreciable. Además, el rango es un factor determinante ya que el dispositivo puede estar considerablemente alejado y aún así poder comunicarse sin realizar reconexiones. 
 
-Motivado a la necesidad de no conectividad a internet, se considera que la comunicación vía Wi-Fi cumple las expectativas de los requerimientos si se establece una conexión a través de un servidor local. No obstante, cualquiera de los dispositivos anteriormente mencionados (con excepción de la Raspberry Pi 3) puede ajustarse a esta necesidad del diseño. 
+Motivado a la necesidad de no conectividad a internet, se considera que la comunicación vía Wi-Fi cumple las expectativas de los requerimientos si se establece una conexión a través de un servidor local. No obstante, cualquiera de los dispositivos anteriormente mencionados (con excepción del Raspberry Pi 3) puede ajustarse a esta necesidad del diseño. 
 
 Para discriminar y seleccionar el dispositivo que mejor se ajuste a los requerimientos mencionados, puede recurrirse al gráfico de la figura \ref{fig:arana}. 
 
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.6]{img/chart}
+	
+	\includegraphics[scale=0.4]{img/base4}
 	\caption{Comparación entre los dispositivos considerados}
 	\label{fig:arana}
 \end{figure}
 
-Para entender el gráfico de la figura \ref{fig:arana}, se describe la siguiente leyenda:
 
-\begin{description}
-	\item[Conectividad Wi-Fi] 
-	
-	1: Posee conectividad Wi-Fi. 
-	\\ 0: No posee conectividad Wi-Fi
-	
-	\item[RTOS]
-	
-	0: No posee conectividad Wi-Fi\\
-	1: Puede implementarse RTOS\\
-	0: No puede implementarse RTOS\\
-
-	\item[Lenguaje C]
-	
-	1: Puede programarse en C\\
-	0: No puede programarse en C
-	
-	\item[Costo (\$] 
-	
-	1: Menor o igual a 5\$ \\
-	2: Entre 5\$ y 20\$\\
-	3: Mayor a 20\$\\
-	
-	\item[Capacidad de Memoria (MB)]
-	
-	1: Menor o igual a 10MB\\
-	2: Entre 10MB y 100MB\\
-	3: De 100MB en adelante\\
-	
-	\item[UART]
-	
-	1: 1 UART\\
-	2: 2 UART\\
-	3: 3 o más UART\\
-	
-	\item[GPIO] 
-	1: Menos de 20\\
-	2: Entre 20 y 30\\
-	3: 30 o más\\
-	
-
-	
-	
-	
-	
-\end{description}
-
-
-En esta figura puede observarse la gráfica verde como guía, ya que es la que representa a las necesidades mínimas del proyecto, según como se indica en la tabla \ref{TAB:requerimientos}. Alrededor se muestran las representaciones de las características de las tarjetas de desarrollo estudiadas en comparación con los parámetros ideales. En este gráfico se puede observar que a pesar de las considerables ventajas que ofrecen todos los dispositivos en cuestión, la gráfica que más se acerca a las condiciones ideales es la del ESP-8266. 
+En la figura \ref{fig:arana} puede observarse la gráfica indicada como 'IDEAL' que es la que representa a las necesidades mínimas del proyecto, según como se indica en la tabla \ref{TAB:requerimientos}. Alrededor se muestran las representaciones de las características de las tarjetas de desarrollo estudiadas en comparación con los parámetros ideales. En este gráfico se puede observar que a pesar de las considerables ventajas que ofrecen todos los dispositivos en cuestión, la gráfica que más se acerca a las condiciones ideales es la del ESP-8266. 
 
 Esto se evidencia al comprobar que es el dispositivo de menor costo entre los estudiados. Además, cubre las condiciones mínimas del diseño a pesar de no tener una extrema holgura de recursos como se demuestra en los dispositivos de mayor gama. 
 
-Otro factor importante para la selección de este dispositivo es la relación de costo-benecifio que se consigue con la adquisición de este módulo. Ya que puede igualar parte del alcance de dispositivos de mayor gama tecnológica a un costo considerablemente reducido. 
+Otro factor importante para la selección de este dispositivo es la relación de costo-beneficio que se consigue con la adquisición de este módulo. Ya que puede igualar parte del alcance de dispositivos de mayor gama tecnológica a un costo considerablemente reducido. 
 
 Por las características observadas en la figura \ref{fig:arana}, además de las dificultades de conectividad a internet en el entorno que se utilizará, la posibilidad de conexión a diversos dispositivos para evitar la codependencia de un computador con un software computarizado, y las ventajas de la utilización de la tecnología Wi-Fi en comparación con Bluetooth como se muestra en la tabla \ref{TAB:comparacionbtwf}, se seleccionará el dispositivo ESP-8266 con conectividad Wi-Fi sin acceso a internet para establecer un servidor de comunicación con una página web incluida en el sistema embebido, el cuál podrá accederse de forma remota para lograr el movimiento del brazo robot sin presencia de computadores intermediarios.
 
