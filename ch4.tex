@@ -18,6 +18,8 @@ Este brazo manipulador cuenta con seis grados de libertad, siendo tres correspon
 %	\label{fig:brazofoto}
 %\end{figure}
 
+Con respecto a las acciones del sistema, este cuenta con las siguientes: Movimiento de los seis motores en sentido horario y antihorario a través de un controlador PID y señales PWM, accionamiento de una pinza neumática de dos estados (abierto/cerrado), ajuste de los parámetros del controlador PID y de las constantes de calibración para el movimiento de los motores y habilitación/deshabilitación de los puentes H.
+
 \subsubsection{Limitaciones de movimiento}
 
 Los motores del brazo manipulador MA2000, identificados como A, B, C, D, E y F en la figura \ref{fig:esquemabrazo}, tienen limitaciones físicas que impiden que tenga una total libertad de movimiento. Esto conlleva a que el sistema controlador del brazo deba evitar que los motores hagan un esfuerzo mayor al permitido limitando estos movimientos según las condiciones de cada motor. pudiendo disminuir la posibilidad de daños a la integridad del equipo para garantizar una mejor funcionalidad del sistema.
@@ -52,7 +54,7 @@ En las figuras \ref{fig:maximoA}, \ref{fig:maximoB} y \ref{fig:maximoC} se puede
 			\includegraphics[scale=0.11]{img/q1_grado_-135}
 			(c) -135°
 	\end{minipage}
-	\caption{Límites máximos de movimiento para el motor A.}
+	\caption{Límites máximos de movimiento para el motor A (q1).}
 	\label{fig:maximoA}
 \end{figure}
 
@@ -75,7 +77,7 @@ En las figuras \ref{fig:maximoA}, \ref{fig:maximoB} y \ref{fig:maximoC} se puede
 		\includegraphics[scale=0.15]{img/q2_grado_-135}
 		(c) -135°
 	\end{minipage}
-	\caption{Límites máximos de movimiento para el motor B.}
+	\caption{Límites máximos de movimiento para el motor B (q2).}
 	\label{fig:maximoB}
 \end{figure}
 
@@ -98,7 +100,7 @@ En las figuras \ref{fig:maximoA}, \ref{fig:maximoB} y \ref{fig:maximoC} se puede
 		\includegraphics[scale=0.15]{img/q3_grado_-135}
 		(c) -135°
 	\end{minipage}
-	\caption{Límites máximos de movimiento para el motor C.}
+	\caption{Límites máximos de movimiento para el motor C (q3).}
 	\label{fig:maximoC}
 \end{figure}
 
@@ -122,7 +124,7 @@ En las figuras \ref{fig:maximoD}, \ref{fig:maximoE} y \ref{fig:maximoF} se puede
 		\includegraphics[scale=0.15]{img/q4_grado_-66}
 		(c) -66°
 	\end{minipage}
-	\caption{Límites máximos de movimiento para el motor D.}
+	\caption{Límites máximos de movimiento para el motor D (q4).}
 	\label{fig:maximoD}
 \end{figure}
 
@@ -144,7 +146,7 @@ En las figuras \ref{fig:maximoD}, \ref{fig:maximoE} y \ref{fig:maximoF} se puede
 		\includegraphics[scale=0.15]{img/q5_grado_-66}
 		(c) -66°
 	\end{minipage}
-	\caption{Límites máximos de movimiento para el motor E.}
+	\caption{Límites máximos de movimiento para el motor E (q5).}
 	\label{fig:maximoE}
 \end{figure}
 
@@ -167,7 +169,7 @@ En las figuras \ref{fig:maximoD}, \ref{fig:maximoE} y \ref{fig:maximoF} se puede
 		\includegraphics[scale=0.20]{img/q6_grado_-66}
 		(c) -66°
 	\end{minipage}
-	\caption{Límites máximos de movimiento para el motor F.}
+	\caption{Límites máximos de movimiento para el motor F (q6).}
 	\label{fig:maximoF}
 \end{figure}
 
@@ -186,24 +188,24 @@ En la figura \ref{fig:dspic} puede observarse con detalle la tarjeta del control
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.45]{img/dsPIC.jpg}
-	\caption{Tarjeta controladora con microcontrolador dsPIC30F3011}
+	\includegraphics[scale=0.4]{img/dsPIC2.jpg}
+	\caption{Tarjeta controladora con microcontrolador dsPIC30F3011. Con referencia a la figura \ref{fig:dspicpinout}}
 	\label{fig:dspic}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.9]{img/ftdi}
-	\caption{Tarjeta del convertidor USB/Serial FTDI232}
+	\includegraphics[scale=0.4]{img/ftdi2}
+	\caption{Tarjeta del convertidor USB/Serial FTDI232 incluida en la unidad controladora.}
 	\label{fig:ftdi}
 \end{figure}
 
 
-El sistema realiza una acción de control PID en tres articulaciones principales (hombro, codo y muñeca) con ayuda de los puentes H de la figura \ref{fig:actuadores} para permitir el movimiento de los motores en sentido horario o antihorario. Para esto se configuran los parámetros desde un software (cliente) y se envían al controlador en una trama de tres bytes vía puerto serial, la cual será descrita en secciones posteriores.\\
+El sistema realiza una acción de control PID en tres articulaciones principales (hombro, codo y muñeca) con ayuda de los puentes H de la figura \ref{fig:actuadores} para permitir el movimiento de los motores en sentido horario o antihorario. Para esto se configuran los parámetros desde un software (Robocom) y se envían al controlador en una trama de tres bytes vía puerto serial, la cual será descrita en secciones posteriores.\\
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.9]{img/actuadores}
+	\includegraphics[scale=0.2]{img/puentesh2}
 	\caption{Puentes H L296.}
 	\label{fig:actuadores}
 \end{figure}
@@ -239,18 +241,11 @@ Al ejecutar el programa, se puede observar una pantalla como la expuesta en la f
 
 En el panel inferior, según se observa en la figura \ref{fig:robocommenu1}, se encuentran las configuraciones generales de comunicación, el accionamiento de la pinza neumática, la habilitación de los puentes H y un menú que corresponde a la configuración del graficador del error.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.8]{img/robocom_menu2}
-	\caption{Panel inferior de Robocom}
-	\label{fig:robocommenu1}
-\end{figure}
+En la pestaña 'Comunicación' (figura \ref{fig:robocomopen} sección 3), se selecciona el puerto COM al que se conecta originalmente el controlador del brazo.
 
-En la pestaña 'Comunicación', se selecciona el puerto COM al que se conecta originalmente el controlador del brazo.
+La pestaña 'Gripper' (figura \ref{fig:robocomopen} sección 4) posee un botón que activa o desactiva la pinza neumática.
 
-La pestaña 'Gripper' posee un botón que activa o desactiva la pinza neumática.
-
-La pestaña 'Puentes H' permite habilitar o deshabilitar los puentes H de los motores principales.
+La pestaña 'Puentes H' (figura \ref{fig:robocomopen} sección 5) permite habilitar o deshabilitar los puentes H de los motores principales.
 
 %En la pestaña 'Configuración del gráfico' se encuentran las opciones de visualización del error. No obstante, esta funcionalidad no es estudiada en este trabajo.
 
@@ -289,7 +284,7 @@ $ K_{offset}$ es el error de corrección de la conversión a bits y es medida en b
 
 
 
-En la pestaña 'Calibración', mostrada en la figura \ref{fig:robocomcali}, puede apreciarse mejor la información sobre $ K_{offset}$ y $K_{pro}$ descritas anteriormente.
+Al acceder a la pestaña 'Menú' que aparece en la figura \ref{fig:robocomopen} se puede acceder a la opción 'Calibración', y en la figura \ref{fig:robocomcali} puede apreciarse mejor la información sobre $ K_{offset}$ y $K_{pro}$ descritas anteriormente.
 
 \begin{figure}[H]
 	\centering
@@ -305,7 +300,7 @@ En la pestaña 'Calibración', mostrada en la figura \ref{fig:robocomcali}, puede 
 La estructura general de la trama enviada desde el software Robocom al sistema de control consta de tres bytes cuya estructura corresponde a la tabla \ref{TAB:estructura}. Esta trama carece de bytes que determinen el inicio o el fin de la comunicación o de algún un método de comprobación de errores en la transmisión.\\
 
 \begin{table}[H]
-	\label{TAB:estructura}
+
 
 \caption{Estructura general de la trama de comunicación.}
 \begin{center}
@@ -317,7 +312,7 @@ La estructura general de la trama enviada desde el software Robocom al sistema d
 	 \hline
 \end{tabular} 
 \end{center}
-	
+		\label{TAB:estructura}
 \end{table}
 
 
@@ -447,9 +442,7 @@ La estructura general de la trama enviada desde el software Robocom al sistema d
 %\end{center}
 
 
-Al ejecutar Robocom se envía una rutina por defecto para una configuración previa de la posición de cada motor. Esto se logra presionando la pestaña 'Posiciones por defecto' que se observa en la figura \ref{fig:robocomopen}(sección 1).
-
-Al presionar la función 'Posiciones por defecto' se producirá la trama de comunicación mostrada en la figura \ref{fig:docklight}. Esto se observó con ayuda del software DockLight v2.2, que es un sniffer/monitor de puerto serial RS232 para Windows.
+Al ejecutar Robocom se envía una rutina por defecto para una configuración previa de la posición de cada motor. Esto se logra presionando la pestaña 'Posiciones por defecto' que se observa en la figura \ref{fig:robocomopen}(sección 1), se producirá la trama de comunicación mostrada en la figura \ref{fig:docklight}. Esto se observó con ayuda del software DockLight v2.2, que es un sniffer/monitor de puerto serial RS232 para Windows.
 
 \begin{figure}[H]
 	\centering
@@ -458,14 +451,14 @@ Al presionar la función 'Posiciones por defecto' se producirá la trama de comuni
 	\label{fig:docklight}
 \end{figure}
 
-
+Esta trama mostrada en la figura \ref{fig:docklight} indica al brazo que el motor 1 (motor A) está en 0.99 (F! 00 C0), entre otras instrucciones que pueden comprenderse con mayor claridad con ayuda de la tabla \ref{TAB:tramadefault}. Además, se tiene una lista de comandos permitidos en la comunicación del controlador y Robocom, la cual se muestra en la tabla \ref{TAB:comandocliente}.
 
 
 \begin{table}[H]
 
 	\caption{Comandos enviados al generar trama por defecto.}
 	{Información obtenida con el software DockLight.}
-	\label{TAB:tramadefault}
+	
 	\begin{center}
 		\begin{tabular}{|c|c|}
 		\hline
@@ -499,10 +492,9 @@ Al presionar la función 'Posiciones por defecto' se producirá la trama de comuni
 		\hline
 	\end{tabular}  
 	\end{center}
+\label{TAB:tramadefault}
 \end{table}
 
-
-Para comprender los datos enviados que se muestran en la tabla \ref*{TAB:tramadefault}, se tiene una lista de comandos permitidos en la comunicación del controlador y Robocom. Esta lista se muestra en la tabla \ref{TAB:comandocliente}.
 
 Cada dato incluido en la trama es procesado para ser enviado de forma correcta a la unidad de control. El procesado se realiza partiendo de un valor digital que luego es calculado en su equivalente en grados o radianes. 
 
@@ -714,7 +706,7 @@ Se configuraron para un periodo de 17,3 ms. Para obtener una posición del servom
 
 \begin{figure}[H]
 	%\centering
-	\includegraphics[scale=0.65]{img/dspicpinout}
+	\includegraphics[scale=0.7]{img/dspicpinout}
 	\caption{Pines de conexión del módulo controlador original.}
 	\label{fig:dspicpinout}
 \end{figure}

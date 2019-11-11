@@ -222,60 +222,50 @@
 \newenvironment{dedication}%
 {\cleardoublepage \thispagestyle{empty} \vspace*{\stretch{1}}%
 \begin{center} \em} {\end{center} \vspace*{\stretch{3}} }%
-\begin{dedication}%
+
 
 
 
 %A quien desees dedicar este trabajo
+\begin{center}
+	
+{\small  
+\textit{A las tantas horas de esfuerzo},\\
+\textit{a las voluntades que desfallecen},\\
+\textit{a las verdades que fortalecen},\\
+\textit{a nuestros planes, a veces, dispersos.}\\
+.}
 
+{\small \textit{A las ínfimas muestras de pasión},\\
+\textit{a todo lo que emerge ante mis ojos},\\
+\textit{a toda la alegría de mi entorno},\\
+\textit{a las ganas de un mundo mejor.}\\
+.}
 
-A las tantas horas de esfuerzo,\\
+{\small \textit{A la incertidumbre que a veces inspira},\\
+\textit{a la vida escrita en papel},\\
+\textit{a la historia que está dormida},\\
+\textit{a la espera de un amanecer}.\\
+.}
 
-a las voluntades que desfallecen,\\
-
-a las verdades que fortalecen,\\
-
-a nuestros planes, a veces, dispersos.\\
-
-
-A las ínfimas muestras de pasión,\\
-
-a todo lo que emerge ante mis ojos,\\
-
-a toda la alegría de mi entorno,\\
-
-a las ganas de un mundo mejor.\\
-
-
-A la incertidumbre que a veces inspira,\\
-
-a la vida escrita en papel,\\
-
-a la historia que está dormida,\\
-
-a la espera de un amanecer.\\
-
-%a la dificultad de vivir la vida\\
-
-A los sueños desiertos de un joven,\\
-
-a la vida que nos dieron nuestros padres,\\
-
-a la fuerza que heredó nuestro nombre,\\
-
-al lugar que bastió nuestra sangre.
+{\small \textit{A los sueños desiertos de un joven},\\
+\textit{a la vida que nos dieron nuestros padres},\\
+\textit{a la fuerza que heredó nuestro nombre},\\
+\textit{al lugar que bastió nuestra sangre.}\\.}
 
 
 
+\end{center}
 
-\end{dedication}%
+
+%
 
 %==================================================================
 \chapter*{RECONOCIMIENTOS Y AGRADECIMIENTOS}
 %\markboth{Reconocimientos}{Reconocimientos}%
 \addcontentsline{toc}{chapter}{RECONOCIMIENTOS Y AGRADECIMIENTOS}%
 %\setlength{\parskip}{0.2cm}%
-%\input{agradecimientos.tex}%
+\input{agradecimientos.tex}%
 
 %======================= Página de Resumen ==========================
 \newpage
@@ -301,7 +291,7 @@ Escuela de Ingeniería Eléctrica. Mención Electrónica Computación y Control. Año 
 
 \noindent \textbf{Resumen.-} 
 
-El principal objetivo de este trabajo fue el diseño de un prototipo de sistema de acceso remoto al controlador del brazo manipulador MA2000. Partiendo de un software computarizado realizado en un trabajo anterior y el deshuso del equipo, surgió la necesidad de una mejora del sistema original que permitió utilizarlo sin necesidad de computadoras, a través de un sistema remoto que realizó la adaptación. Para el diseño de este prototipo se estudiaron varias dispositivos compatibles con tecnología remota donde finalmente se seleccionó el microcontrolador ESP8266 como hardware para implementar el prototipo, debido a que contó con los requerimientos básicos necesarios para el alcance propuesto de este sistema. Se diseñó una interfaz web alojada en un servidor dentro del microcontrolador el cuál se puede acceder a través de una red inalámbrica vía Wi-Fi. Como soporte a la interfaz principal, se diseñó una aplicación en Android Studio que permitió la lectura de archivos de texto para la programación de rutinas de movimiento. La solución propuesta al problema inicial se logró con los objetivos planteados, pudiendo manejar el brazo manipulador sin presencia del software original ni conexiones alámbricas diferentes al puerto serial del microcontrolador. Como documento de respaldo para la utilización, se generó un manual en línea en el que se encuentran las características de configuración y uso del prototipo, así como material audiovisual del funcionamiento de este.
+El principal objetivo de este trabajo fue el diseño de un prototipo de sistema de acceso remoto al controlador del brazo manipulador MA2000. Partiendo de un software realizado en un trabajo anterior y el desuso del equipo, surgió la necesidad de una mejora del sistema original que permitió utilizarlo sin necesidad de computadoras, a través de un sistema remoto. Para el diseño de este prototipo se seleccionó el microcontrolador ESP8266, debido a que contó con los requerimientos básicos necesarios para el alcance propuesto de este sistema. Se diseñó una interfaz web alojada en un servidor dentro del microcontrolador el cuál se puede acceder a través de una red inalámbrica vía Wi-Fi. Como soporte a la interfaz principal, se diseñó una aplicación en Android Studio que permitió la lectura de archivos de texto para la programación de rutinas de movimiento. La solución propuesta al problema inicial se logró con los objetivos planteados, pudiendo manejar el brazo manipulador sin presencia del software original ni conexiones alámbricas diferentes al puerto serial del microcontrolador. Como documento de respaldo para la utilización, se generó un manual en línea en el que se encuentran las características de configuración y uso del prototipo, así como material audiovisual del funcionamiento de este.
 \end{spacing}
 
 %\underline{RESUMEN}
@@ -310,7 +300,7 @@ El principal objetivo de este trabajo fue el diseño de un prototipo de sistema d
 %\input{resumen.tex}%
 %\end{abstract}
 %====================== Páginas de Contenidos =====================
-\renewcommand{\baselinestretch}{1.5}% Espaciado entre linea
+\renewcommand{\baselinestretch}{0.5}% Espaciado entre linea
 \addtocounter{page}{3}%
 \setlength{\parskip}{3pt}% Separación entre párrafos
 
