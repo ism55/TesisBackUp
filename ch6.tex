@@ -359,6 +359,16 @@ La importancia de la correcta definición de los puertos de propósito general en 
 \section{Contenido del programa}
 El programa consta de cinco archivos: user\_main.c, user\_config.h, funciones.h, funciones.c, pagina.h. Organizados de esta manera para lograr una compilación fluida con archivos de menor tamaño y para que sea un código en el que sea más sencillo modificar una instrucción sin afectar el proyecto. Es decir, sea un código más sencillo de leer para el programador.
 
+\subsection{Diagrama de flujo del programa}
+En la figura \ref{fig:flowchart} se observa un esquema general de funcionamiento que indica cómo es la ejecución de los archivos del programa.
+\begin{figure}[H]
+
+	\includegraphics[scale=0.25]{img/flowchart}
+	\caption{Diagrama de flujo del funcionamiento del programa.}
+	\label{fig:flowchart}
+\end{figure}
+
+
 \subsection{user\_main.c}
 En el archivo user\_main.c se encuentra el segmento de código principal y las rutinas de configuración del módulo para su operatividad.
 
@@ -1018,7 +1028,7 @@ Estas funciones realizan un procesado similar a \textit{mover\_motor} y dan como
 
 
 Esta función se usa para convertir un caracter ASCII a un valor float. No se utiliza la función atof, de la librería \textit{stdlib.h}, ya que genera un error de compilación debido a que las funciones \textit{malloc} y \textit{free} están declaradas dentro del SDK como \textit{os\_malloc} y \textit{os\_free} y escritas de otra manera el compilador no las reconoce. Por lo tanto, se requirió un algoritmo que realizara el mismo proceso.
-\newpage
+
 
 
 
