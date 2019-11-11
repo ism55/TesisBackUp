@@ -1,17 +1,18 @@
 \section{Interfaz de la aplicación web}
 
-Para acceder al servidor, primero debe comprobarse que el dispositivo está conectado correctamente. Usando otro dispositivo que cuente con Wi-Fi puede hacerse esto rápidamente, mostrando lo indicado en la figura. 
+Para acceder al servidor puede hacerse desde cualquier dispositivo que cuente con WiFi, primero debe comprobarse que el dispositivo está conectado correctamente. Por ejemplo, usando un computador con Windows 10 puede verse lo indicado en la figura \ref{fig:redesdisp}. 
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.5]{img/redesdisp}
-	\caption[Detección de señal Wi-Fi]{Detección de señal Wi-Fi emitida por el microcontrolador ESP-8266.}
+	\caption[Detección de señal Wi-Fi]{Detección de señal Wi-Fi emitida por el microcontrolador ESP-8266}
+	{Vista en un PC con Windows 10 64 bits.}
 	\label{fig:redesdisp}
 \end{figure}
 
 
 \subsection{Página web alojada en servidor}
-La aplicación principal consta de una página web alojada en el servidor ESP-8266 a la que se puede acceder vía http://192.168.4.1:8266 que luce como se observa en la figura \ref{fig:paginacompleta}.
+La aplicación principal consta de una página web alojada en el servidor ESP-8266 a la que se puede acceder vía http://192.168.4.1:8266 (Nota: no acceder conectado a internet) que luce como se observa en la figura \ref{fig:paginacompleta}.
 
 Al abrir la web, esta solicitará al usuario que ingrese una clave. De ser exitosa, permitirá el ingreso; en caso contrario, enviará al usuario a Google. Esto se observa en la figura \ref{fig:clave}.
 
@@ -21,6 +22,7 @@ Al abrir la web, esta solicitará al usuario que ingrese una clave. De ser exitos
 	\subfigure[Clave exitosa]{\includegraphics[scale=0.7]{img/claveexitosa}\label{fig:claveexitosa}}
 	\subfigure[Clave incorrecta]{\includegraphics[scale=0.7]{img/claveincorrecta}\label{fig:claveincorrecta}}
 	\caption{Solicitud de clave para entrada a la página.}
+	{Vista desde Windows 10 64bits a través del navegador Google chrome.}
 	\label{fig:clave}
 	
 \end{figure}
@@ -30,6 +32,7 @@ Al abrir la web, esta solicitará al usuario que ingrese una clave. De ser exitos
 	\centering
 	\includegraphics[scale=0.09]{img/paginacompleta}
 	\caption{Página web completa.}
+	{Vista desde Windows 10 64bits a través del navegador Google chrome.}
 	\label{fig:paginacompleta}
 \end{figure}
 
