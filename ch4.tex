@@ -184,7 +184,7 @@ En la figura \ref{fig:diagramajuan2} se puede observar el diagrama de bloques qu
 
 
 
-En la figura \ref{fig:dspic} puede observarse con detalle la tarjeta del controlador principal del brazo robot, quien actúa como servidor recibiendo vía puerto serial las órdenes de control, para posteriormente realizar las correspondientes acciones indicadas en la trama de comunicación. Para ello, cuenta con un módulo convertidor de USB-Serial FTDI232 (figura \ref{fig:ftdi}) para una óptima comunicación con el computador a través de un software cliente. El controlador también puede responder el estado de cada articulación relacionada a los motores DC, leyendo las entradas analógicas conectadas a potenciómetros y engranajes que ayudan a conocer la posición del brazo y así ejecutar el control PID, tal como se indica en la figura \ref{fig:diagramajuan2}.\\
+En la figura \ref{fig:dspic} puede observarse con detalle la tarjeta del controlador principal del brazo robot, quien actúa como servidor recibiendo vía puerto serial las órdenes de control, para posteriormente realizar las correspondientes acciones indicadas en la trama de comunicación. Para ello, cuenta con un módulo convertidor de USB-Serial FTDI-232R (figura \ref{fig:ftdi}) para una óptima comunicación con el computador a través de un software cliente. El controlador también puede responder el estado de cada articulación relacionada a los motores DC, leyendo las entradas analógicas conectadas a potenciómetros y engranajes que ayudan a conocer la posición del brazo y así ejecutar el control PID, tal como se indica en la figura \ref{fig:diagramajuan2}.\\
 
 \begin{figure}[H]
 	\centering
@@ -196,7 +196,7 @@ En la figura \ref{fig:dspic} puede observarse con detalle la tarjeta del control
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{img/ftdi2}
-	\caption{Tarjeta del convertidor USB/Serial FTDI232 incluida en la unidad controladora.}
+	\caption{Tarjeta del convertidor USB/Serial FTDI-232R incluida en la unidad controladora.}
 	\label{fig:ftdi}
 \end{figure}
 
@@ -206,7 +206,7 @@ El sistema realiza una acción de control PID en tres articulaciones principales 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.2]{img/puentesh2}
-	\caption{Puentes H L296.}
+	\caption{Puentes H L298.}
 	\label{fig:actuadores}
 \end{figure}
 
@@ -239,7 +239,7 @@ Al ejecutar el programa, se puede observar una pantalla como la expuesta en la f
 \end{figure}
 
 
-En el panel inferior, según se observa en la figura \ref{fig:robocommenu1}, se encuentran las configuraciones generales de comunicación, el accionamiento de la pinza neumática, la habilitación de los puentes H y un menú que corresponde a la configuración del graficador del error.
+En el panel inferior, según se observa en la figura \ref{fig:robocomopen}, se encuentran las configuraciones generales de comunicación, el accionamiento de la pinza neumática, la habilitación de los puentes H y un menú que corresponde a la configuración del graficador del error.
 
 En la pestaña 'Comunicación' (figura \ref{fig:robocomopen} sección 3), se selecciona el puerto COM al que se conecta originalmente el controlador del brazo.
 
@@ -268,9 +268,9 @@ El programa realiza una conversión del número observado en digital a grados o ra
 Valor_{grados} = (Valor_{digital}+ K_{offset})K_{pro}
 \end{equation}
 
-Donde $K_{pro}$ es una constante proporcional de calibración que es utilizada para convertir el ángulo de binario a grados, medida en grados/bits y su valor programado por defecto es 0.33 grados/bits para los tres motores principales (A, B, C). Para el caso de los motores de la mano (D, E, F), el valor es fijo y vale 0.035 grados/bits.
+Donde $K_{pro}$ es una constante proporcional de calibración que es utilizada para convertir el ángulo de binario a grados, medida en grados/bit y su valor programado por defecto es 0.33 grados/bit para los tres motores principales (A, B, C). Para el caso de los motores de la mano (D, E, F), el valor es fijo y vale 0.035 grados/bit.
 
-$ K_{offset}$ es el error de corrección de la conversión a bits y es medida en bits. Su valor inicial es 0 para los motores A y C, y 39 para el motor B. Para los motores de la mano (D, E, F), el valor es fijo y vale 5682 bits.
+$ K_{offset}$ es el error de corrección de la conversión a bits y es medida en bits. Su valor inicial es 0 para los motores A y C, y 39 para el motor B. Para los motores de la mano (D, E, F), el valor es fijo y vale 5682 bit.
 
 
 
@@ -289,7 +289,7 @@ Al acceder a la pestaña 'Menú' que aparece en la figura \ref{fig:robocomopen} se
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{img/robocom_cali}
-	\caption[onfiguración de constantes de calibració]{Configuración de constantes de calibración del software Robocom}
+	\caption[Configuración de constantes de calibración]{Configuración de constantes de calibración del software Robocom}
 	\label{fig:robocomcali}
 \end{figure}
 
@@ -320,17 +320,17 @@ La estructura general de la trama enviada desde el software Robocom al sistema d
 \subsubsection{Sintaxis de comandos de movimiento}
 
 \begin{itemize}
-	\item La trama de comunicación será de 24 bits distribuidos: 8 bits para el comando y 16 bits para el dato a transmitir, como se indica en la tabla \ref{TAB:estructura}.
+	\item La trama de comunicación será de 24 bits distribuidos: 8 bits para el comando y 16 bit para el dato a transmitir, como se indica en la tabla \ref{TAB:estructura}.
 	
-	\item La cabecera o 'comando' de la trama puede tomar cualquier valor referido en la tabla \ref{TAB:comandocliente} en la columna 'Comando'. El valor será de 8 bits e indicará qué instrucción ejecutará el controlador.
+	\item La cabecera o 'comando' de la trama puede tomar cualquier valor referido en la tabla \ref{TAB:comandocliente} en la columna 'Comando'. El valor será de 8 bit e indicará qué instrucción ejecutará el controlador.
 	
-	\item El dato será el valor equivalente en hexadecimal del ángulo que se desea mover y será guardado en una variable de 16 bits 'Vdigital'.
+	\item El dato será el valor equivalente en hexadecimal del ángulo que se desea mover y será guardado en una variable de 16 bit 'Vdigital'.
 	
-	\item Para los motores A, B, C este valor binario debe trasladarse el contenido de la variable 'Vdigital' 6 bits a la izquierda. Esto no se realiza para los motores D, E y F.
+	\item Para los motores A, B y C este valor binario debe trasladarse el contenido de la variable 'Vdigital' 6 bit a la izquierda. Esto no se realiza para los motores D, E y F.
 	
-	\item Para todos los motores, se obtendrá el valor bajo (byte menos significativo) al igualar 'Vigital' a una variable de 8 bits 'Vlow'.
+	\item Para todos los motores, se obtendrá el valor bajo (byte menos significativo) al igualar 'Vigital' a una variable de 8 bit 'Vlow'.
 	
-	\item Para todos los motores, se obtendrá el valor alto (byte más significativo) al trasladar el contenido de la variable 'Vdigital' 8 bits a la derecha e igualarlos a una variable de 8 bits 'Vhigh'.
+	\item Para todos los motores, se obtendrá el valor alto (byte más significativo) al trasladar el contenido de la variable 'Vdigital' 8 bits a la derecha e igualarlos a una variable de 8 bit 'Vhigh'.
 	
 	\item La trama final será <Comando><Vhigh><Vlow>.
 \end{itemize}
@@ -691,14 +691,14 @@ En cuanto a los motores D, E, F, el cálculo del equivalente en grados se determi
 
 \section{Unidad de control}
 
-El microcontrolador recibe todas las instrucciones vía puerto serial configurado con 8 bits, 1 bit de parada, 115200 baudios; y utiliza solo los pines de Rx (U2RX) y Tx(U2TX) para establecer la comunicación. Ante cada instrucción de movimiento, el microcontrolador puede emitir un total de nueve señales PWM. Para los motores A, B, C, les corresponden dos señales, una para movimiento positivo y otra para movimiento negativo, respectivamente. El resto de los motores poseen solo una señal PWM para cada uno. El diagrama de conexiones e identificación de las funciones de cada pin se puede observar en la figura \ref{fig:dspicpinout}.
+El microcontrolador recibe todas las instrucciones vía puerto serial configurado con 8 bits, 1 bit de parada, 115200 baudios; y utiliza solo los terminales de Rx (U2RX) y Tx(U2TX) para establecer la comunicación. Ante cada instrucción de movimiento, el microcontrolador puede emitir un total de nueve señales PWM. Para los motores A, B, C, les corresponden dos señales, una para movimiento positivo y otra para movimiento negativo, respectivamente. El resto de los motores poseen solo una señal PWM para cada uno. El diagrama de conexiones e identificación de las funciones de cada pin se puede observar en la figura \ref{fig:dspicpinout}.
 
 \section{PWM}
-En la figura \ref{fig:dspicpinout} se observan los pines de salida seleccionados para la señal PWM que controlará a los motores. En el manual anexo al trabajo de Marcano \cite{juan1} indica cuáles son las características básicas que deben poseer los registros de configuración de PWM para el microcontrolador Microchip dsPIC30F3011: 
+En la figura \ref{fig:dspicpinout} se observan los terminales de salida seleccionados para la señal PWM que controlará a los motores. En el manual anexo al trabajo de Marcano \cite{juan1} indica cuáles son las características básicas que deben poseer los registros de configuración de PWM para el microcontrolador Microchip dsPIC30F3011: 
 
 Motores A, B, C:
 
-Estos motores tienen configurada una señal PWM de 11 bits y frecuencia 29,328kHz. Con esta resolución de señal se puede obtener un ciclo de trabajo máximo configurando el registro de Duty Cycle (PDC) a un valor de 2048. Los pines de salida de PWM fueron configurados en modo complementario, por lo tanto para que la corriente promedio entregada al motor sea cero se configura el registro PDC=1023. Para que el motor produzca par máximo, el registro de duty cycle debe ser PDC=0 para que gire en un sentido o PDC =2048 para que gire en el otro sentido.
+Estos motores tienen configurada una señal PWM de 11 bits y frecuencia 29,328kHz. Con esta resolución de señal se puede obtener un ciclo de trabajo máximo configurando el registro de Duty Cycle (PDC) a un valor de 2048. Los terminales de salida de PWM fueron configurados en modo complementario, por lo tanto para que la corriente promedio entregada al motor sea cero se configura el registro PDC=1023. Para que el motor produzca par máximo, el registro de duty cycle debe ser PDC=0 para que gire en un sentido o PDC =2048 para que gire en el otro sentido.
 
 Motores D, E, F:
 
@@ -707,6 +707,6 @@ Se configuraron para un periodo de 17,3 ms. Para obtener una posición del servom
 \begin{figure}[H]
 	%\centering
 	\includegraphics[scale=0.7]{img/dspicpinout}
-	\caption{Pines de conexión del módulo controlador original.}
+	\caption{terminales de conexión del módulo controlador original.}
 	\label{fig:dspicpinout}
 \end{figure}

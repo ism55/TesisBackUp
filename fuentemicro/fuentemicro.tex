@@ -3,12 +3,14 @@
 \usepackage[spanish]{babel}
 \usepackage[latin1]{inputenc}
 %opening
-\title{Código fuente del microcontrolador ESP8266}
+\title{Anexos}
 \author{Ismael Bautista}
 
 \begin{document}
 
 \maketitle
+\tableofcontents%
+\part{Código fuente del microcontrolador ESP8266}
 
 \section{user\_main.c}
 
@@ -1448,5 +1450,1212 @@ const char *pagina2=
 "</html>";
 
 \end{Verbatim}
+
+\part{Código fuente de aplicación Android}
+
+\section{AndroidManifest.xml}
+
+\begin{Verbatim}[fontsize=\tiny]
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.example.myapplication3">
+
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+<application
+android:allowBackup="true"
+android:icon="@mipmap/eie_launcher_foreground"
+android:label="TEG APK"
+android:roundIcon="@mipmap/eie_launcher_foreground"
+android:supportsRtl="true"
+android:theme="@style/AppTheme"
+>
+<activity android:name=".MainActivity"
+android:label="ROBOCOM">
+<intent-filter>
+<action android:name="android.intent.action.MAIN" />
+
+<category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+</activity>
+</application>
+
+</manifest>
+\end{Verbatim}
+
+
+\section{activity\_main.xml}
+\begin{Verbatim}[fontsize=\tiny]
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/relativeLayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#333"
+tools:context=".MainActivity">
+
+<TextView
+android:id="@+id/txtoutput"
+android:layout_width="56dp"
+android:layout_height="45dp"
+
+android:layout_marginStart="312dp"
+android:layout_marginTop="32dp"
+android:hint="Status:"
+android:textColor="#fff"
+android:textColorHint="#fff"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+tools:layout_conversion_wrapHeight="50"
+tools:layout_conversion_wrapWidth="0" />
+
+<EditText
+android:id="@+id/txtinput1"
+android:layout_width="242dp"
+android:layout_height="275dp"
+android:layout_marginStart="80dp"
+
+android:layout_marginTop="90dp"
+android:layout_marginEnd="80dp"
+
+android:ems="10"
+android:gravity="center_horizontal|center_vertical"
+android:hint="Ingrese comando: \ncmd xxx \nLuego presione enter."
+android:inputType="textMultiLine"
+android:scrollbarAlwaysDrawVerticalTrack="true"
+android:scrollbarSize="8dp"
+android:scrollbarStyle="outsideInset"
+android:scrollbars="vertical"
+android:textColor="#fff"
+android:textColorHint="#AAA"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/button"
+app:layout_constraintTop_toTopOf="parent"
+tools:layout_conversion_wrapHeight="423"
+tools:layout_conversion_wrapWidth="659" />
+
+<EditText
+android:id="@+id/repid"
+android:layout_width="75dp"
+android:layout_height="41dp"
+android:layout_marginStart="204dp"
+android:layout_marginTop="36dp"
+android:ems="10"
+android:gravity="center_horizontal|center_vertical"
+android:inputType="number"
+android:text="0"
+android:textColor="#fff"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+tools:text="0" />
+
+<TextView
+android:id="@+id/textView"
+android:layout_width="158dp"
+android:layout_height="38dp"
+android:layout_marginStart="36dp"
+android:layout_marginTop="36dp"
+
+android:text="Numero de repeticiones: "
+android:textColor="#fff"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+<Button
+android:id="@+id/cargar"
+android:layout_width="136dp"
+android:layout_height="48dp"
+android:layout_marginStart="176dp"
+android:layout_marginTop="396dp"
+android:background="#2a7fba"
+android:text="Cargar archivo"
+android:textColor="#FFF"
+android:textStyle="bold"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+<Button
+android:id="@+id/guardar"
+android:layout_width="164dp"
+android:layout_height="48dp"
+android:layout_marginStart="204dp"
+android:layout_marginTop="500dp"
+android:background="#2a7fba"
+android:text="Guardar a archivo"
+android:textColor="#FFF"
+android:textStyle="bold"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+<Button
+android:id="@+id/button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="72dp"
+android:layout_marginTop="396dp"
+android:background="#2a7fba"
+android:text="INICIAR"
+android:textColor="#FFF"
+android:textStyle="bold"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+<EditText
+android:id="@+id/archivoname"
+android:layout_width="170dp"
+android:layout_height="37dp"
+android:layout_marginStart="24dp"
+android:layout_marginTop="508dp"
+android:ems="10"
+android:hint="Nombre de archivo"
+android:inputType="textPersonName"
+android:textColor="#FFF"
+android:textColorHint="#AAA"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+\end{Verbatim}
+
+\section{ClassConnection.java}
+
+\begin{Verbatim}[fontsize=\tiny]
+package com.example.myapplication3;
+
+
+import android.os.AsyncTask;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+
+public class ClassConnection extends AsyncTask<String,String,String> {
+@Override
+protected String doInBackground(String... strings) {
+
+HttpURLConnection httpURLConnection = null;
+URL url=null;
+try {
+url = new URL(strings[0]);
+} catch (MalformedURLException e) {
+e.printStackTrace();
+}
+
+try {
+httpURLConnection = (HttpURLConnection) url.openConnection();
+httpURLConnection.setConnectTimeout(500);
+//httpURLConnection.connect();
+int code=0;
+try {
+code = httpURLConnection.getResponseCode();
+}
+catch (Exception e){
+
+}
+
+if(code!=200){
+code=404;
+}
+return Integer.toString(code);
+
+
+
+} catch (IOException e) {
+e.printStackTrace();
+}
+
+return null;
+}
+
+
+
+
+/*public static void main(String[] args) throws Exception {
+
+
+
+
+ClassConnection http = new ClassConnection();
+
+//System.out.println("GET Request Using HttpURLConnection");
+//http.sendGet();
+//System.out.println();
+//System.out.println("POST Request Using HttpURLConnection");
+//http.sendPost();
+}
+
+// HTTP GET request
+private void sendGet() throws Exception {
+
+//String username="hitenpratap";
+StringBuilder stringBuilder = new StringBuilder("http://192.168.4.1:8266");
+stringBuilder.append("?num1=15");
+//stringBuilder.append(URLEncoder.encode(username, "UTF-8"));
+
+URL obj = new URL(stringBuilder.toString());
+
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+//con.setRequestProperty("User-Agent", USER_AGENT);
+//con.setRequestProperty("Accept-Charset", "UTF-8");
+
+//System.out.println("\nSending request to URL : " + url);
+//System.out.println("Response Code : " + con.getResponseCode());
+//System.out.println("Response Message : " + con.getResponseMessage());
+
+
+BufferedReader in = new BufferedReader(
+new InputStreamReader(con.getInputStream()));
+String line;
+StringBuffer response = new StringBuffer();
+
+while ((line = in.readLine()) != null) {
+response.append(line);
+}
+in.close();
+
+//System.out.println(response.toString());
+
+}*/
+}
+
+\end{Verbatim}
+
+\section{MainActivity.java}
+\begin{Verbatim}[fontsize=\tiny]
+package com.example.myapplication3;
+
+
+
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+
+public class MainActivity extends AppCompatActivity {
+
+private static final int READ_REQUEST_CODE=42;
+private static final int PERMISSION_REQUEST_STORAGE=1000;
+
+
+TextView probar;
+TextView etiqueta;
+Button getFile;
+EditText cuadro;
+EditText repetir;
+Button getButton;
+Button guarda_archivo;
+EditText archivoNombre;
+@Override
+protected void onCreate(final Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+getButton=(Button)findViewById(R.id.button);
+etiqueta=(TextView)findViewById(R.id.txtoutput);
+cuadro=(EditText)findViewById(R.id.txtinput1);
+guarda_archivo=(Button)findViewById(R.id.guardar);
+archivoNombre = (EditText)findViewById(R.id.archivoname);
+//final String[] response = {""};
+final String url="http://192.168.4.1:8266";
+
+
+if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+!= PackageManager.PERMISSION_GRANTED) {
+requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_STORAGE);
+}
+
+
+//        ClassConnection connection = new ClassConnection();
+//        try {
+//            response[0] = connection.execute(url).get();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        etiqueta.setText("Status: "+response[0]);
+
+guarda_archivo.setOnClickListener(new View.OnClickListener() {
+
+@Override
+public void onClick(View v) {
+String nombrearchivo=archivoNombre.getText().toString();
+String contenido=cuadro.getText().toString();
+if(!contenido.equals("")    &&  !nombrearchivo.equals("")){
+
+saveTextAsFile(nombrearchivo,contenido);
+
+} else {
+Toast.makeText(MainActivity.this, "No deje espacios en blanco", Toast.LENGTH_SHORT).show();
+}
+}
+}
+
+
+);
+
+getButton.setOnClickListener(new View.OnClickListener() {
+@SuppressLint("SetTextI18n")
+@Override
+public void onClick(View view) {
+//ClassConnection connection = new ClassConnection();
+
+//                StringBuilder query = new StringBuilder(url);
+//                query.append("?");
+//                ////query.append("85");
+repetir =(EditText)findViewById(R.id.repid);
+cuadro=(EditText)findViewById(R.id.txtinput1);
+
+String valor_rep= repetir.getText().toString();
+for (int i=0; i<Integer.parseInt(valor_rep)+1;i++){
+
+String valor=cuadro.getText().toString();
+Scanner scanner=new Scanner(valor);
+
+
+while(scanner.hasNextLine()){
+String line=scanner.nextLine();
+if(!line.isEmpty()){
+String[] arreglo = line.split(" ");
+comparar(arreglo[0],arreglo[1],url);
+}
+
+
+
+
+
+}
+}
+
+
+//Toast.makeText(getApplicationContext(), "Multiline: "+valor, Toast.LENGTH_LONG).show();
+//String valor = cuadro1.getText().toString().toLowerCase();
+//query.append(valor);
+
+
+
+
+//                try {
+//                    response[0] = connection.execute(query.toString()).get();
+//                } catch (ExecutionException e) {
+//                    e.printStackTrace();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+
+//etiqueta.setText("Status: "+response[0]);
+}
+});
+
+//PERMISOS
+if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},PERMISSION_REQUEST_STORAGE);
+}
+
+getFile =(Button)findViewById(R.id.cargar);
+
+getFile.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+performFileSearch();
+}
+});
+
+}
+
+
+//GUARDAR ARCHIVO
+
+private void saveTextAsFile(String archivo, String content){
+String fileName= archivo + ".txt";
+
+//CREAR
+File file=new File(Environment.getExternalStorageDirectory().getAbsolutePath(),fileName);
+
+///ESCRIBIR
+
+
+try {
+FileOutputStream fos = new FileOutputStream(file);
+fos.write(content.getBytes());
+fos.close();
+
+Toast.makeText(this, "Guardado",Toast.LENGTH_SHORT).show();
+} catch (FileNotFoundException e) {
+e.printStackTrace();
+Toast.makeText(this, "Archivo no encontrado",Toast.LENGTH_SHORT).show();
+} catch (IOException e) {
+e.printStackTrace();
+Toast.makeText(this, "Error guardando",Toast.LENGTH_SHORT).show();
+}
+
+}
+//LEER ARCHIVO
+
+protected StringBuilder readText(String input){
+
+
+StringBuilder text = new StringBuilder();
+try{
+File file=new File(Environment.getExternalStorageDirectory(), input);
+
+FileInputStream fis = new FileInputStream(file);
+
+if(fis != null){
+InputStreamReader isr = new InputStreamReader(fis);
+BufferedReader br = new BufferedReader(isr);
+
+String line=null;
+while((line =br.readLine())!=null){
+text.append(line);
+text.append("\n");
+
+
+}
+fis.close();
+
+}
+
+
+} catch (FileNotFoundException e) {
+e.printStackTrace();
+} catch (IOException e) {
+e.printStackTrace();
+}
+return text;
+}
+
+//SELECCIONAR ARCHIVO
+
+private void performFileSearch(){
+Intent  intent =new Intent(Intent.ACTION_OPEN_DOCUMENT);
+intent.addCategory(Intent.CATEGORY_OPENABLE);
+intent.setType("text/*");
+startActivityForResult(intent,READ_REQUEST_CODE);
+}
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+if(requestCode==READ_REQUEST_CODE && resultCode== Activity.RESULT_OK){
+if(data!= null){
+Uri uri =data.getData();
+String path=uri.getPath();
+path = path.substring(path.indexOf(":")+1);
+Toast.makeText(this,""+path,Toast.LENGTH_SHORT).show();
+cuadro.setText(readText(path));
+//cuadro.setText("Hola mundo");
+
+}
+}
+}
+
+@Override
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults){
+if(requestCode==PERMISSION_REQUEST_STORAGE){
+if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+Toast.makeText(this,"¡Permiso concedido!",Toast.LENGTH_SHORT).show();
+}else{
+Toast.makeText(this, "Permiso no concedido", Toast.LENGTH_SHORT).show();
+finish();
+}
+}
+}
+
+public void comparar(String s0, String s1,String url){
+ClassConnection connection = new ClassConnection();
+StringBuilder query = new StringBuilder(url);
+query.append("?");
+
+final String[] response = {""};
+switch (s0){
+case "q1":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("num1");
+query.append("=");
+
+
+if(Float.parseFloat(s1)>135){query.append("135");}
+if(Float.parseFloat(s1)<-135){query.append("-135");}
+else{query.append(s1);}
+
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+
+case "q2":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("num2");
+query.append("=");
+if(Float.parseFloat(s1)>135){query.append("135");}
+if(Float.parseFloat(s1)<-135){query.append("-135");}
+else{query.append(s1);}
+
+try {
+response[0] = connection.execute(query.toString()).get();
+AsyncTask<String, String, String> test=connection.execute(query.toString());
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+
+case "q3":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("num3");
+query.append("=");
+if(Float.parseFloat(s1)>135){query.append("135");}
+if(Float.parseFloat(s1)<-135){query.append("-135");}
+else{query.append(s1);}
+
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+
+case "q4":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("num4");
+query.append("=");
+if(Float.parseFloat(s1)>60){query.append("60");}
+if(Float.parseFloat(s1)<-60){query.append("-60");}
+else{query.append(s1);}
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+
+case "q5":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("num5");
+query.append("=");
+if(Float.parseFloat(s1)>60){query.append("60");}
+if(Float.parseFloat(s1)<-60){query.append("-60");}
+else{query.append(s1);}
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+
+case "q6":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("num6");
+query.append("=");
+if(Float.parseFloat(s1)>60){query.append("60");}
+if(Float.parseFloat(s1)<-60){query.append("-60");}
+else{query.append(s1);}
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+
+case "grip":
+if(s1.equals("on")){
+query.append("gripon");
+
+}
+if(s1.equals("off")){
+query.append("gripoff");
+}
+
+
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+
+case "wait":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+
+//Thread.sleep(Integer.parseInt(s1));
+long antes = System.currentTimeMillis();
+long despues = System.currentTimeMillis();
+long resultado=0;
+while(resultado < Integer.parseInt(s1)){
+despues = System.currentTimeMillis();
+resultado=despues-antes;
+}
+
+break;
+case "pr1":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("PR1");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kp1":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kp1");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "ki1":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Ki1");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kd1":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kd1");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kp2":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kp2");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "ki2":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Ki2");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kd2":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kd2");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kp3":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kp3");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "ki3":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Ki3");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kd3":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kd3");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kpro1":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kpro1");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kpro2":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kpro2");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "kpro3":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Kpro3");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "koffset1":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Koffset1");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "koffset2":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Koffset2");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "koffset3":
+try {
+Float.parseFloat(s1);
+}
+catch (NumberFormatException e) {
+break;
+}
+query.append("Koffset3");
+query.append("=");
+query.append(s1);
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "puente1":
+if(s1.equals("on")){
+query.append("=ON");
+
+}
+if(s1.equals("off")){
+query.append("=OFF");
+}
+
+
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "puente2":
+if(s1.equals("on")){
+query.append("=ON");
+
+}
+if(s1.equals("off")){
+query.append("=OFF");
+}
+
+
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+case "puente3":
+if(s1.equals("on")){
+query.append("=ON");
+
+}
+if(s1.equals("off")){
+query.append("=OFF");
+}
+
+
+try {
+response[0] = connection.execute(query.toString()).get();
+if (!response[0].equals("200")){
+response[0]="404";
+}
+
+} catch (ExecutionException e) {
+e.printStackTrace();
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+etiqueta.setText("Status: "+response[0]);
+break;
+
+default:
+etiqueta.setText("Status: "+ "404");
+break;
+}}}
+
+\end{Verbatim}
+
+
+
 
 \end{document}

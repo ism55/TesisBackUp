@@ -30,7 +30,7 @@ Por otra parte, la mejora que propone este trabajo de grado trata sobre una opti
 
 Las especificaciones de diseño del sistema de acceso remoto requieren del establecimiento de un servicio que permita comunicarse inalámbricamente con el brazo robot sin la necesidad de modificar invasivamente el hardware de este. De utilizarse tecnología de RF es necesario implementar el hardware emisor y receptor para procesar las señales, por lo que modificaría el sistema más de lo esperado. Lo mismo ocurre con las tecnologías de telefónia como GPRS y UMTS que dependen de la señal transmitida por las antenas repetidoras y de la cobertura local al momento de comunicarse para transmitir señales de largo alcance, lo cuál lo hace una tecnología económica y óptima para diversos sistemas, pero poco práctica para aplicaciones en áreas geográficas disminuidas como es el caso del brazo robot ubicado en el LCID de la Universidad Central de Venezuela.
 
-La tecnología bluetooth puede considerarse como una buena opción ya que los dispositivos que cuentan con ella son en su mayoría sencillos de implementar. No obstante, su conectividad está limitada a un área disminuida en donde la señal puede perderse a través de diversas superficies generando problemas de comunicación. Esto podría solucionarse estableciendo un servidor de los datos transmitidos desde un computador y algún otro dispositivo. No obstante, la tecnología bluetooth no soporta la posibilidad de creación de servidores en red ya que su conectividad es de punto a punto, omitiendo la opción de otros equipos de unirse a esta red e imposibilitando el esquema propuesto en la figura \ref{fig:esquemapropuesto1}.
+La tecnología Bluetooth puede considerarse como una buena opción ya que los dispositivos que cuentan con ella son en su mayoría sencillos de implementar. No obstante, su conectividad está limitada a un área disminuida en donde la señal puede perderse a través de diversas superficies generando problemas de comunicación. Esto podría solucionarse estableciendo un servidor de los datos transmitidos desde un computador y algún otro dispositivo. No obstante, la tecnología Bluetooth no soporta la posibilidad de creación de servidores en red ya que su conectividad es de punto a punto, omitiendo la opción de otros equipos de unirse a esta red e imposibilitando el esquema propuesto en la figura \ref{fig:esquemapropuesto1}.
 
 
 La tecnología Wi-Fi implica implícitamente un mayor consumo de potencia en comparación con las tecnologías mencionadas anteriormente. Sin embargo, para algunas aplicaciones este factor no es delimitante para determinar su utilidad. En contraste, esta tecnología permite conectar una mayor cantidad de dispositivos a través de una red y a una distancia superior a la lograda por Bluetooth, lo cuál permite que computadores, teléfonos celulares y dispositivos de IoT, puedan establecer comunicación a través de un servidor web de forma local (sin conexión a internet) o en línea, sin necesidad de una conexión física. Para compensar la ausencia del computador, este dispositivo debe conectarse al controlador del brazo manipulador vía puerto serial para así establecer la comunicación entre el servidor y el cliente hacia el robot. Logrando una instalación sin afectar el hardware original del sistema.
@@ -92,7 +92,7 @@ Esta tarjeta de desarrollo cuenta con microprocesador Broadcom BCM2837B0, propia
 
 Posee cuarenta pines de GPIO, dos UART, además de cuatro puertos USB, un puerto HDMI, un conector auxiliar de 3.5mm y posibilidad de conectar una memoria SD y display táctil. Cuenta con puerto RJ45 para conexión Ethernet, entre otros elementos.
 
-Su gran capacidad de procesamiento lo hace ser una de las primeras opciones a considerar en la realización de servidores web debido a su bajo costo (alrededor de 35\$ según distribuidor oficial. Consultado el 24 de septiembre de 2019.) con relación a todos los elementos que ofrece, ya que permite la ejecución de sistemas operativos basados en Linux, pudiendo programarse en lenguajes como Python, C\# o C.
+Su gran capacidad de procesamiento lo hace ser una de las primeras opciones a considerar en la realización de servidores web debido a su bajo costo (alrededor de 35\$ según distribuidor oficial. Consultado el 24 de septiembre de 2019). con relación a todos los elementos que ofrece, ya que permite la ejecución de sistemas operativos basados en Linux, pudiendo programarse en lenguajes como Python, C\# o C.
 
 Cuenta, además, con Bluetooth 4.2/BLE y compatibilidad de módulos de conexión Wi-Fi que no están incluidos en el producto principal. 
 
@@ -124,7 +124,7 @@ Cuenta con un puerto USB y una memoria FLASH de aproximadamente 1GB.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.3]{img/ESP-01}
-	\caption{ESP8266 con chip ESP-01}
+	\caption{ESP8266 con tarjeta de desarrollo ESP-01}
 	{Fuente: https://www.espressif.com/ }
 	\label{fig:esp-01}
 \end{figure}
@@ -156,7 +156,7 @@ El ESP 32 es también fabricado por la empresa Espressif Systems y surgió como un
 
 Una de las nuevas implementaciones que este dispositivo trajo fue la posibilidad de establecer todos los pines de GPIO como entradas analógicas, con un convertidor analógico/digital de 12bits de resolución y un convertidor digital/analógico de 8bits. Es importante mencionar que esta versión cuenta con 36 GPIO y el doble de memoria flash, 16MB.
 
-Cuenta con Wi-Fi y Bluetooth 4.2 BR/EDR/BLE, ademas de compatibilidad de comunicación SPI, I2C, I2S. 
+Cuenta con Wi-Fi y Bluetooth 4.2 BR/EDR/BLE, además de compatibilidad de comunicación SPI, I2C, I2S. 
 
 Entre otros elementos resaltantes, posee 3 UART, un puerto USB, compatibilidad Ethernet MAC, bus CAN, controlador remoto infrarrojo, sensor de efecto Hall, 10 sensores capacitivos táctiles, y 16 canales para señales PWM.
 
@@ -183,7 +183,7 @@ Para discriminar y seleccionar el dispositivo que mejor se ajuste a los requerim
 \end{figure}
 
 
-En la figura \ref{fig:arana} puede observarse la gráfica indicada como 'IDEAL' que es la que representa a las necesidades mínimas del proyecto, según como se indica en la tabla \ref{TAB:requerimientos}. Alrededor se muestran las representaciones de las características de las tarjetas de desarrollo estudiadas en comparación con los parámetros ideales. En este gráfico se puede observar que a pesar de las considerables ventajas que ofrecen todos los dispositivos en cuestión, la gráfica que más se acerca a las condiciones ideales es la del ESP-8266. 
+En la figura \ref{fig:arana} puede observarse la gráfica indicada como 'REQUERIMIENTOS' que es la que representa a las necesidades mínimas del proyecto, según como se indica en la tabla \ref{TAB:requerimientos}. Alrededor se muestran las representaciones de las características de las tarjetas de desarrollo estudiadas en comparación con los parámetros ideales. En este gráfico se puede observar que a pesar de las considerables ventajas que ofrecen todos los dispositivos en cuestión, la gráfica que más se acerca a las condiciones ideales es la del ESP-8266. 
 
 Esto se evidencia al comprobar que es el dispositivo de menor costo entre los estudiados. Además, cubre las condiciones mínimas del diseño a pesar de no tener una extrema holgura de recursos como se demuestra en los dispositivos de mayor gama. 
 

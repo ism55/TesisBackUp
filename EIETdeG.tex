@@ -194,10 +194,13 @@
 
 %======================= Constancia de Aprobación ===================
 %\newpage
-\begin{figure}
+\begin{figure}[H]
         \begin{center}
         %\centering
         %\includegraphics[height=23cm]{aprobacion.eps}
+	\centering
+	\includegraphics[height=23cm]{img/aprobacion}
+	
 
         \vspace{0.5mm}
         \label{Fig.aprobacion}
@@ -205,7 +208,7 @@
         \end{figure}
 \thispagestyle{empty}
 %======================= Mención Honorífica =========================
-\newpage
+
 %\thispagestyle{empty}
 
 \begin{figure}
@@ -368,11 +371,13 @@ El principal objetivo de este trabajo fue el diseño de un prototipo de sistema d
 %==================================================================
 \chapter*{CONCLUSIONES}\label{CAP:conclu}
 %\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
+\addcontentsline{toc}{chapter}{CONCLUSIONES}%
 \input{conclusiones.tex}
 
 %==================================================================
 \chapter*{RECOMENDACIONES}\label{CAP:recomendaciones}
 %\markboth{Tu Segundo Capítulo}{Tu Segundo Capítulo}%
+\addcontentsline{toc}{chapter}{RECOMENDACIONES}%
 \input{recomendaciones.tex}
 
 \appendix
